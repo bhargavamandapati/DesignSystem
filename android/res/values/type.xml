@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Aurora AAOS IVI type scale. Normal = Roboto, Condensed = Roboto Condensed. sp sizes; letterSpacing in em. -->
+<resources>
+
+    <!-- Normal -->
+    <style name="TextAppearance.Aurora.Display">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">56sp</item>
+        <item name="android:lineHeight">64sp</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:letterSpacing">-0.0045</item>
+    </style>
+    <style name="TextAppearance.Aurora.HeadlineLarge">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:lineHeight">48sp</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:letterSpacing">0.0</item>
+    </style>
+    <style name="TextAppearance.Aurora.HeadlineMedium">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:lineHeight">44sp</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:letterSpacing">0.0</item>
+    </style>
+    <style name="TextAppearance.Aurora.HeadlineSmall">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:lineHeight">40sp</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:letterSpacing">0.0</item>
+    </style>
+    <style name="TextAppearance.Aurora.TitleLarge">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:lineHeight">40sp</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:letterSpacing">0.0</item>
+    </style>
+    <style name="TextAppearance.Aurora.TitleMedium">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:lineHeight">36sp</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:letterSpacing">0.0054</item>
+    </style>
+    <style name="TextAppearance.Aurora.TitleSmall">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:lineHeight">32sp</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:letterSpacing">0.0042</item>
+    </style>
+    <style name="TextAppearance.Aurora.BodyLarge">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:lineHeight">36sp</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:letterSpacing">0.0107</item>
+    </style>
+    <style name="TextAppearance.Aurora.BodyMedium">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:lineHeight">32sp</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:letterSpacing">0.0104</item>
+    </style>
+    <style name="TextAppearance.Aurora.BodySmall">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:lineHeight">28sp</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+    <style name="TextAppearance.Aurora.LabelLarge">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:lineHeight">36sp</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:letterSpacing">0.0036</item>
+    </style>
+    <style name="TextAppearance.Aurora.LabelMedium">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:lineHeight">32sp</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:letterSpacing">0.0208</item>
+    </style>
+    <style name="TextAppearance.Aurora.LabelSmall">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:lineHeight">28sp</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:letterSpacing">0.025</item>
+    </style>
+
+    <!-- Condensed -->
+    <style name="TextAppearance.Aurora.Condensed.Display">
+        <item name="android:fontFamily">@font/roboto_condensed</item>
+        <item name="android:textSize">56sp</item>
+        <item name="android:lineHeight">64sp</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:letterSpacing">-0.0045</item>
+    </style>
+    <style name="TextAppearance.Aurora.Condensed.HeadlineLarge">
+        <item name="android:fontFamily">@font/roboto_condensed</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:lineHeight">48sp</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:letterSpacing">0.0</item>
+    </style>
+    <style name="TextAppearance.Aurora.Condensed.HeadlineMedium">
+        <item name="android:fontFamily">@font/roboto_condensed</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:lineHeight">44sp</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:letterSpacing">0.0</item>
+    </style>
+    <style name="TextAppearance.Aurora.Condensed.HeadlineSmall">
+        <item name="android:fontFamily">@font/roboto_condensed</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:lineHeight">40sp</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:letterSpacing">0.0</item>
+    </style>
+    <style name="TextAppearance.Aurora.Condensed.TitleLarge">
+        <item name="android:fontFamily">@font/roboto_condensed</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:lineHeight">40sp</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:letterSpacing">0.0</item>
+    </style>
+    <style name="TextAppearance.Aurora.Condensed.TitleMedium">
+        <item name="android:fontFamily">@font/roboto_condensed</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:lineHeight">36sp</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:letterSpacing">0.0054</item>
+    </style>
+    <style name="TextAppearance.Aurora.Condensed.TitleSmall">
+        <item name="android:fontFamily">@font/roboto_condensed</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:lineHeight">32sp</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:letterSpacing">0.0042</item>
+    </style>
+    <style name="TextAppearance.Aurora.Condensed.BodyLarge">
+        <item name="android:fontFamily">@font/roboto_condensed</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:lineHeight">36sp</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:letterSpacing">0.0107</item>
+    </style>
+    <style name="TextAppearance.Aurora.Condensed.BodyMedium">
+        <item name="android:fontFamily">@font/roboto_condensed</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:lineHeight">32sp</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:letterSpacing">0.0104</item>
+    </style>
+    <style name="TextAppearance.Aurora.Condensed.BodySmall">
+        <item name="android:fontFamily">@font/roboto_condensed</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:lineHeight">28sp</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+    <style name="TextAppearance.Aurora.Condensed.LabelLarge">
+        <item name="android:fontFamily">@font/roboto_condensed</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:lineHeight">36sp</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:letterSpacing">0.0036</item>
+    </style>
+    <style name="TextAppearance.Aurora.Condensed.LabelMedium">
+        <item name="android:fontFamily">@font/roboto_condensed</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:lineHeight">32sp</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:letterSpacing">0.0208</item>
+    </style>
+    <style name="TextAppearance.Aurora.Condensed.LabelSmall">
+        <item name="android:fontFamily">@font/roboto_condensed</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:lineHeight">28sp</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:letterSpacing">0.025</item>
+    </style>
+
+    <!-- Tabular numerals helper -->
+    <style name="TextAppearance.Aurora.Tabular">
+        <item name="android:fontFeatureSettings">tnum</item>
+    </style>
+</resources>

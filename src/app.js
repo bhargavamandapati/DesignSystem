@@ -60,10 +60,7 @@ function renderRoles(){const t=T();for(const [id,list] of Object.entries(ROLE_GR
  $$('.role').forEach(b=>b.onclick=()=>copy(b.dataset.copyText))}
 
 /* ---------- typography ---------- */
-const TYPE=[['Display','t-display',56,64,400,'-0.25','Headline of the screen'],['Headline Large','t-headline-l',40,48,400,'0','Sunday route to the lake'],['Headline Medium','t-headline-m',36,44,400,'0','Midnight Violet Drive'],['Headline Small','t-headline-s',32,40,400,'0','Navigate to Home'],
-['Title Large','t-title-l',32,40,500,'0','Bluetooth devices'],['Title Medium','t-title-m',28,36,500,'0.15','Turn right onto Violet Ave'],['Title Small','t-title-s',24,32,500,'0.1','Recently played'],
-['Body Large','t-body-l',28,36,400,'0.3','Neon Orchid — Amethyst Roads'],['Body Medium','t-body-m',24,32,400,'0.25','12.4 km · Light traffic'],['Body Small','t-body-s',20,28,400,'0.4','Updated 2 min ago (non-critical)'],
-['Label Large','t-label-l',28,36,500,'0.1','Navigate'],['Label Medium','t-label-m',24,32,500,'0.5','NOW PLAYING'],['Label Small','t-label-s',20,28,500,'0.5','DAY · 21°C']];
+const TYPE=/*TYPE*/;
 $('#typescale').innerHTML=TYPE.map(t=>`<div class="ty"><div><div class="nm">${t[0]}</div><small>${t[1].replace('t-','.t-')}</small></div><div class="${t[1]}">${t[6]}</div><small>${t[2]}sp / ${t[3]}sp<br>w${t[4]} · ls ${t[5]}</small></div>`).join('');
 
 /* ---------- spacing / shape / elevation ---------- */

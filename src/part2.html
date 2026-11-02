@@ -24,6 +24,13 @@
   <tr><td>Numerals (temp, speed, range, frequency)</td><td><span class="pill ok">Default</span> tabular</td><td>Allowed, tabular</td></tr>
   <tr><td>Safety alerts</td><td><span class="pill ok">Always</span></td><td><span class="pill no">Never</span> — keep maximum legibility</td></tr>
  </tbody></table></div>
+ <h3>Download fonts &amp; Android XML</h3>
+ <p>Static <b>TTF</b> files (what Android needs in <code>res/font/</code>) and <b>WOFF2</b> (web). Latin character set; Roboto family, Apache&nbsp;2.0. Add them to a project, then reference <code>@font/roboto</code>, <code>@font/roboto_condensed</code> or <code>@font/roboto_mono</code>.</p>
+ <div class="viewbar"><button class="tbtn" id="fontZipAndroid" style="background:var(--c-primary);color:var(--c-on-primary);border-color:transparent;font-weight:600">Download Android fonts + XML (.zip)</button><button class="tbtn" id="fontZipXml">XML only (.zip)</button><button class="tbtn" id="fontZipWeb">Web fonts + fonts.css (.zip)</button></div>
+ <div class="tw"><table class="tbl"><thead><tr><th>Family</th><th>Weight</th><th>Android resource</th><th>Download</th></tr></thead><tbody id="fontFiles"></tbody></table></div>
+ <h4>What the XML looks like</h4>
+ <div class="codewrap"><button class="cp" data-copy="#fontXmlView">Copy</button><pre id="fontXmlView" style="max-height:360px"><code></code></pre></div>
+ <p style="font-size:13px;color:var(--c-on-surface-variant)">The zip contains <code>res/font/*.ttf</code>, the three <code>res/font/*.xml</code> font families (weights 400/500) and <code>res/values/type.xml</code> with 13 <code>TextAppearance.Aurora.*</code> styles for normal and <code>TextAppearance.Aurora.Condensed.*</code> for condensed. The same files are in the repo under <code>android/res/</code>.</p>
  <h3>Font stack</h3>
  <div class="codewrap"><button class="cp" data-copy="#stack">Copy</button><pre id="stack"><code>/* Normal */    font-family: Roboto, "Google Sans", "Segoe UI", system-ui, sans-serif;
 /* Condensed */ font-family: "Roboto Condensed", "Arial Narrow", Roboto, sans-serif;

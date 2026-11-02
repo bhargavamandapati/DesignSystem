@@ -22,3 +22,6 @@ Regenerate with `python3 tools/icons_src.py` (or `python3 build.py`).
 
 ## Android colors
 `android/res/values*/colors*.xml` — every role + tonal palette per theme (`aurora_<role>`, drive modes `aurora_eco_<role>` …). Also downloadable from the Developers → Token export section.
+
+## Android fonts
+`android/res/font/*.ttf` (Roboto, Roboto Condensed, Roboto Mono; 400/500, Latin), font-family XMLs (`roboto.xml`, `roboto_condensed.xml`, `roboto_mono.xml`) and `android/res/values/type.xml` (`TextAppearance.Aurora.*` and `.Condensed.*`). Also downloadable from the Fonts section. TTFs are in `fonts/ttf/`.
