@@ -1,4 +1,4 @@
-function fit(){$$('.frame-wrap').forEach(w=>{const f=$('.frame',w);const wd=w.clientWidth;if(!wd||!f)return;const k=wd/1280;f.style.transform=`scale(${k})`;w.style.height=(720*k)+'px'})}
+function fit(){$$('.frame-wrap').forEach(w=>{const f=$('.frame',w);const wd=w.clientWidth;if(!wd||!f)return;const k=wd/1280;f.style.transform=`scale(${k})`;w.style.height=(720*k)+'px';w.style.borderRadius=(32*k)+'px'})}
 addEventListener('resize',fit);
 /* ---- system layout + reference screens ---- */
 const HV={l:21,r:22,fan:3,ac:true,auto:false,def:false,shl:0,shr:0};

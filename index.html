@@ -370,7 +370,7 @@ body[data-driving=true] .restrict>*:nth-child(n+7){display:none}
 
 /* car frames (pattern screens) */
 .frame-wrap{width:100%;border-radius:22px;overflow:hidden;background:var(--c-surface);position:relative;margin:12px 0;box-shadow:0 0 0 2px var(--c-primary),0 0 0 8px var(--c-surface-container-high),0 0 0 9px var(--c-border),0 10px 30px color-mix(in srgb,var(--c-primary) 22%,transparent);transition:box-shadow .3s}
-.frame{width:1280px;height:720px;transform-origin:0 0;display:flex;flex-direction:column;background:var(--c-surface);position:absolute;left:0;top:0;overflow:hidden}
+.frame{width:1280px;height:720px;border-radius:32px;transform-origin:0 0;display:flex;flex-direction:column;background:var(--c-surface);position:absolute;left:0;top:0;overflow:hidden}
 .frame .body{flex:1;display:flex;min-height:0}
 .frame .pane{flex:1;padding:24px 32px;min-width:0;overflow:hidden}
 .map{background:
@@ -564,6 +564,8 @@ table.tbl.sp td{padding:6px 10px}
 .themecard b{font-size:18px}.themecard small{font-size:12px;letter-spacing:.04em;text-transform:uppercase}.themecard .d{font-size:13px;line-height:1.4}
 .themecard .sws{display:flex}.themecard .sws i{width:32px;height:32px;border-radius:50%;margin-right:-8px;border:2px solid rgba(255,255,255,.18)}
 
+.a-status,.a-hvbar{padding-left:36px;padding-right:36px}
+
 </style>
 </head>
 <body data-driving="false">
@@ -651,6 +653,7 @@ table.tbl.sp td{padding:6px 10px}
   <tr><td>Panel</td><td>10.1″ · 1920 × 1080 px · 16:9 · ≈ 218 ppi</td><td>Landscape, touch + rotary</td></tr>
   <tr><td>Density bucket</td><td><b>1.5×</b> (240 dpi) → design viewport <b>1280 × 720 dp</b></td><td>All specs in this document are in dp / sp</td></tr>
   <tr><td>Physical size of 76 dp target</td><td>76 × 1.5 = 114 px ≈ <b>13 mm</b></td><td>Meets 10–15 mm automotive touch-target guidance</td></tr>
+  <tr><td>Display corner radius</td><td><b>32 dp</b> (48 px) rounded corners</td><td>Whole screen is clipped to this radius; keep touch targets and text out of the corner inset (status/HVAC bars use 36 dp side padding)</td></tr>
   <tr><td>Window size class</td><td>Expanded width (≥ 840 dp), medium height</td><td>12-column grid, two-pane layouts</td></tr>
  </tbody></table></div>
  <h3>Standard system layout</h3>
@@ -1379,7 +1382,7 @@ const rc=$$('.a-rot',rg);let ri=0;const rf=n=>{ri=(n+rc.length)%rc.length;rc.for
 rg.addEventListener('keydown',e=>{const m={ArrowRight:1,ArrowLeft:-1,ArrowDown:3,ArrowUp:-3}[e.key];if(m){e.preventDefault();rf(ri+m)}else if(e.key==='Enter'||e.key===' '){e.preventDefault();$('#rotout').textContent='Activated: '+rl[ri];toast(rl[ri]+' activated')}});
 rc.forEach((c,i)=>c.addEventListener('focus',()=>{ri=i;rc.forEach((x,j)=>x.classList.toggle('focus',j===i));$('#rotout').textContent='Focus: '+rl[i]}));
 
-function fit(){$$('.frame-wrap').forEach(w=>{const f=$('.frame',w);const wd=w.clientWidth;if(!wd||!f)return;const k=wd/1280;f.style.transform=`scale(${k})`;w.style.height=(720*k)+'px'})}
+function fit(){$$('.frame-wrap').forEach(w=>{const f=$('.frame',w);const wd=w.clientWidth;if(!wd||!f)return;const k=wd/1280;f.style.transform=`scale(${k})`;w.style.height=(720*k)+'px';w.style.borderRadius=(32*k)+'px'})}
 addEventListener('resize',fit);
 /* ---- system layout + reference screens ---- */
 const HV={l:21,r:22,fan:3,ac:true,auto:false,def:false,shl:0,shr:0};
@@ -1511,9 +1514,9 @@ progress:[
  {n:'Badge',s:'<b>Number</b> 32 high, min 32 wide · <b>dot</b> 16 · label 20/28 w600',st:[['Default','error','onError','—','']]},
  {n:'Banner / alert',s:'<b>Radius</b> 20 · padding 20 V / 28 H · text 26/32 · icon 40 · ≤ 1 action',st:[['Error / safety','errorContainer','onErrorContainer','—','never auto-dismiss'],['Warning','warningContainer','onWarningContainer','—',''],['Success','successContainer','onSuccessContainer','—',''],['Info','secondaryContainer','onSecondaryContainer','—','']]}],
 sysbars:[
- {n:'Status bar',s:'<b>1280 × 56</b> · padding 24 H · text Label Medium 24 · icons 32',st:[['Container','surfaceContainerLowest','onSurface','—',''],['Icons','—','onSurfaceVariant','—','active BT/voice: primary'],['Avatar','primaryContainer','onPrimaryContainer','—','36 dp']]},
+ {n:'Status bar',s:'<b>1280 × 56</b> · padding 36 H · text Label Medium 24 · icons 32',st:[['Container','surfaceContainerLowest','onSurface','—',''],['Icons','—','onSurfaceVariant','—','active BT/voice: primary'],['Avatar','primaryContainer','onPrimaryContainer','—','36 dp']]},
  {n:'App bar (right rail)',s:'<b>120 × 568</b> · item 112 × 88 · radius 28 · pill 88 × 44 · icon 36 · label 20/24 w500',st:[['Rail container','surfaceContainerLowest','—','—',''],['Active','secondaryContainer','onSecondaryContainer','—','label onSurface'],['Inactive','—','onSurfaceVariant','—',''],['Hover','—','onSurfaceVariant@8','—',''],['Focused (rotary)','—','onSurface',TR,'6 dp inset ring'],['Pressed','—','onSurface@12','—','']]},
- {n:'HVAC bar',s:'<b>1280 × 96</b> · buttons 76 · temp Title 36/44 tabular, 0.5° step · padding 24 H · gap 12 between zones',st:[['Container','surfaceContainerLowest','onSurface','—',''],['Button — off','—','onSurfaceVariant','—','76 × 76 circle'],['Button — on','primaryContainer','onPrimaryContainer','—','aria-pressed'],['Focused','—','onSurface',TR,''],['Disabled','—','onSurface@38','—','']]}],
+ {n:'HVAC bar',s:'<b>1280 × 96</b> · buttons 76 · temp Title 36/44 tabular, 0.5° step · padding 36 H · gap 12 between zones',st:[['Container','surfaceContainerLowest','onSurface','—',''],['Button — off','—','onSurfaceVariant','—','76 × 76 circle'],['Button — on','primaryContainer','onPrimaryContainer','—','aria-pressed'],['Focused','—','onSurface',TR,''],['Disabled','—','onSurface@38','—','']]}],
 hvac:[
  {n:'Climate stepper & toggle tiles',s:'<b>Stepper</b> 76 · value Display 56 · <b>tile</b> 112 × 112 · radius 28 · icon 44 · label 20/28 w500',st:[['Stepper button','secondaryContainer','onSecondaryContainer','—',''],['Value','—','onSurface','—','unit onSurfaceVariant'],['Tile off','surfaceContainerHighest','onSurfaceVariant','—',''],['Tile on','primaryContainer','onPrimaryContainer','—',''],['Focused','—','onSurface',TR,'']]}],
 mediactl:[

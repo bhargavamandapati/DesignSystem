@@ -348,7 +348,7 @@ body[data-driving=true] .restrict>*:nth-child(n+7){display:none}
 
 /* car frames (pattern screens) */
 .frame-wrap{width:100%;border-radius:22px;overflow:hidden;background:var(--c-surface);position:relative;margin:12px 0;box-shadow:0 0 0 2px var(--c-primary),0 0 0 8px var(--c-surface-container-high),0 0 0 9px var(--c-border),0 10px 30px color-mix(in srgb,var(--c-primary) 22%,transparent);transition:box-shadow .3s}
-.frame{width:1280px;height:720px;transform-origin:0 0;display:flex;flex-direction:column;background:var(--c-surface);position:absolute;left:0;top:0;overflow:hidden}
+.frame{width:1280px;height:720px;border-radius:32px;transform-origin:0 0;display:flex;flex-direction:column;background:var(--c-surface);position:absolute;left:0;top:0;overflow:hidden}
 .frame .body{flex:1;display:flex;min-height:0}
 .frame .pane{flex:1;padding:24px 32px;min-width:0;overflow:hidden}
 .map{background:
@@ -541,3 +541,5 @@ table.tbl.sp td{padding:6px 10px}
 .themecard[aria-pressed=true]{box-shadow:0 0 0 3px var(--c-tertiary)}
 .themecard b{font-size:18px}.themecard small{font-size:12px;letter-spacing:.04em;text-transform:uppercase}.themecard .d{font-size:13px;line-height:1.4}
 .themecard .sws{display:flex}.themecard .sws i{width:32px;height:32px;border-radius:50%;margin-right:-8px;border:2px solid rgba(255,255,255,.18)}
+
+.a-status,.a-hvbar{padding-left:36px;padding-right:36px}
