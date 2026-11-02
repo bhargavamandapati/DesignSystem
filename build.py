@@ -12,6 +12,7 @@ for tid, t in tok['themes'].items():
     css_tok += '%s{color-scheme:%s;%s}\n' % (sel, t['mode'], ''.join('--c-%s:%s;' % (kebab(k), v) for k, v in t['roles'].items()))
 fonts = ''
 for fam, fn, w in [('Roboto','roboto-latin-400-normal',400),('Roboto','roboto-latin-500-normal',500),
+                   ('Roboto Condensed','roboto-condensed-latin-400-normal',400),('Roboto Condensed','roboto-condensed-latin-500-normal',500),
                    ('Roboto Mono','roboto-mono-latin-400-normal',400),('Roboto Mono','roboto-mono-latin-500-normal',500)]:
     b = base64.b64encode((R/'fonts'/(fn+'.woff2')).read_bytes()).decode()
     fonts += '@font-face{font-family:"%s";font-weight:%d;font-style:normal;font-display:swap;src:url(data:font/woff2;base64,%s) format("woff2")}\n' % (fam, w, b)

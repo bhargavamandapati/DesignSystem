@@ -1,8 +1,10 @@
 /* ============ Doc chrome + AAOS IVI component CSS (1dp = 1px) ============ */
 *,*::before,*::after{box-sizing:border-box}
+:root{--font-ui:Roboto,"Google Sans","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif}
+:root[data-width=condensed]{--font-ui:"Roboto Condensed","Arial Narrow",Roboto,system-ui,sans-serif}
 :root{--c-border:color-mix(in srgb,var(--c-primary) 38%,var(--c-outline-variant))}
 html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--c-background);color:var(--c-on-background);font-family:Roboto,"Google Sans","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.6}
+body{margin:0;background:var(--c-background);color:var(--c-on-background);font-family:var(--font-ui);font-size:16px;line-height:1.6}
 a{color:var(--c-primary)}
 code,pre,.mono{font-family:"Roboto Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 code{font-size:.88em;background:var(--c-surface-container-high);padding:.1em .4em;border-radius:6px}
@@ -105,7 +107,7 @@ table.tbl th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:
 /* ======================================================
    AAOS IVI COMPONENTS  (prefix .a-  ;  dp == px)
    ====================================================== */
-.a-root{font-family:Roboto,"Google Sans",system-ui,sans-serif;color:var(--c-on-surface);--focus:var(--c-tertiary);line-height:1.3}
+.a-root{font-family:var(--font-ui);color:var(--c-on-surface);--focus:var(--c-tertiary);line-height:1.3}
 .a-root svg.i{font-size:40px}
 .t-display{font-size:56px;line-height:64px;font-weight:400;letter-spacing:-.25px}
 .t-headline-l{font-size:40px;line-height:48px;font-weight:400}
@@ -543,3 +545,14 @@ table.tbl.sp td{padding:6px 10px}
 .themecard .sws{display:flex}.themecard .sws i{width:32px;height:32px;border-radius:50%;margin-right:-8px;border:2px solid rgba(255,255,255,.18)}
 
 .a-status,.a-hvbar{padding-left:36px;padding-right:36px}
+
+.fontsel{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 6px 0 12px;border:1px solid var(--c-border);border-radius:20px;background:var(--c-surface-container-high);color:var(--c-on-surface);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.fontsel select{height:32px;border:0;border-radius:16px;background:var(--c-secondary-container);color:var(--c-on-secondary-container);font:600 14px var(--font-ui);padding:0 8px;cursor:pointer;max-width:150px;text-transform:none;letter-spacing:0}
+.fontsel select:focus-visible{outline:3px solid var(--c-tertiary)}
+@media(max-width:700px){.fontsel{display:none}}
+.fcmp{display:grid;grid-template-columns:150px 1fr 1fr;gap:6px 18px;align-items:baseline}
+.fcmp>div{padding:8px 0;border-bottom:1px solid var(--c-border)}
+.fcmp .h{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--c-on-surface-variant)}
+.fn{font-family:Roboto,sans-serif!important}.fc{font-family:"Roboto Condensed","Arial Narrow",sans-serif!important}
+.fitbox{width:300px;border:2px dashed var(--c-border);border-radius:16px;padding:12px 16px;font-size:28px;line-height:36px;font-weight:500;background:var(--c-surface-container)}
+.card-d .fn,.card-d .fc{overflow-wrap:anywhere}

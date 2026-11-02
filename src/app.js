@@ -27,6 +27,8 @@ function setTheme(t){if(!THEMES[t])t='aurora-night';root.dataset.theme=t;store.s
  renderThemeCards();renderTonal();renderRoles();renderContrast();renderExport();renderSpecs();}
 $('#themeSel').innerHTML=['Appearance','Drive mode'].map(g=>`<optgroup label="${g==='Drive mode'?'Drive modes':g}">`+TORDER.filter(i=>THEMES[i].group===g).map(i=>`<option value="${i}">${THEMES[i].name}</option>`).join('')+'</optgroup>').join('');
 $('#themeSel').onchange=e=>setTheme(e.target.value);
+function setWidth(w){root.dataset.width=w==='condensed'?'condensed':'normal';store.set('aurora-width',w);$('#fontSel').value=root.dataset.width;requestAnimationFrame(fit)}
+$('#fontSel').onchange=e=>setWidth(e.target.value);
 function setDriving(d){document.body.dataset.driving=d;store.set('aurora-drv',d);
  $('#drvBtn').innerHTML=icon('car')+' '+(d?'Driving':'Parked');$('#drvBtn').setAttribute('aria-pressed',d);
  $$('.drvlabel').forEach(e=>e.textContent=d?'Driving':'Parked');}
@@ -170,6 +172,7 @@ const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){$$('a
 secs.forEach(s=>io.observe(s));
 
 /* ---------- init ---------- */
+setWidth(store.get('aurora-width','normal'));
 setTheme(store.get('aurora-theme2','aurora-night'));
 setDriving(store.get('aurora-drv','false')==='true');
 showScreen();

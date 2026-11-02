@@ -11,7 +11,7 @@ Top-bar toggles: **Night/Day** theme and **Parked/Driving** UX-restriction simul
 Edit files in `src/` (`tokens.json`, `styles.css`, `part1-3.html`, `app.js`) then run `python3 build.py`.
 Token export (Android `colors.xml`, `themes.xml` + Car UI RRO, CSS, JSON, Compose) is generated inside the page.
 
-Fonts: Roboto / Roboto Mono (Apache 2.0, from @fontsource).
+Fonts: Roboto (normal), Roboto Condensed and Roboto Mono, embedded (Apache 2.0, from @fontsource). Switch width with the Font dropdown.
 
 ## Layout
 Top status bar (56 dp) · right app bar (120 dp) · bottom HVAC bar (96 dp) · app area 1160×568 dp. Full-screen mode dismisses all bars (app area 1280×720 dp).

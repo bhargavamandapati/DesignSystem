@@ -1,19 +1,43 @@
-<section class="sec" id="fonts" data-title="Fonts" data-group="Foundations">
- <div class="eyebrow">Foundations</div><h2>Fonts</h2>
- <p>Roboto (400, 500) and Roboto Mono (400, 500) are <b>embedded in this file</b> as WOFF2, so typography renders identically offline. Roboto is the AAOS system default; OEMs can swap in a brand family through <code>config_fontFamily</code> RRO.</p>
+<section class="sec" id="fonts" data-title="Fonts (normal & condensed)" data-group="Foundations">
+ <div class="eyebrow">Foundations</div><h2>Fonts — normal &amp; condensed</h2>
+ <p>Two widths of the Roboto family are <b>embedded in this file</b> as WOFF2 (Latin, weights 400 and 500), so typography renders identically offline. Switch the whole design system with the <b>Font</b> dropdown in the top bar — every component, screen and spec follows it. Roboto is the AAOS system default; OEMs can replace it through <code>config_fontFamily</code> RRO.</p>
  <div class="grid g2">
-  <div class="card-d a-root"><div style="font-size:64px;line-height:1.1">Aa</div><h5>Roboto — UI &amp; body</h5><p>Weights 400 Regular · 500 Medium. Open glyph shapes and tall x-height keep legibility at distance.</p><div style="font-size:26px;margin-top:10px">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 °C km/h ½ % &amp; @</div></div>
-  <div class="card-d a-root"><div style="font-size:64px;line-height:1.1;font-family:'Roboto Mono',monospace">Aa</div><h5>Roboto Mono — data &amp; code</h5><p>Diagnostics, tokens, VIN, tabular readouts only. Not for general UI.</p><div style="font-size:24px;margin-top:10px;font-family:'Roboto Mono',monospace">0123456789 12:45:09<br>WVWZZZ1KZAW123456<br>#6750A4 · 76dp · 28sp</div></div>
+  <div class="card-d a-root"><div class="fn" style="font-size:64px;line-height:1.1">Aa</div><h5>Normal — Roboto</h5><p>Default for all UI: titles, body, labels, buttons. Weights 400 Regular · 500 Medium.</p><div class="fn" style="font-size:26px;margin-top:10px">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 °C km/h ½ % &amp; @</div></div>
+  <div class="card-d a-root"><div class="fc" style="font-size:64px;line-height:1.1">Aa</div><h5>Condensed — Roboto Condensed</h5><p>≈ 12% narrower. For tight slots: rail labels, tab bars, HVAC bar, status bar, long place names. Weights 400 · 500.</p><div class="fc" style="font-size:26px;margin-top:10px">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 °C km/h ½ % &amp; @</div></div>
+  <div class="card-d a-root"><div style="font-size:64px;line-height:1.1;font-family:'Roboto Mono',monospace">Aa</div><h5>Mono — Roboto Mono</h5><p>Diagnostics, tokens, VIN, tabular readouts only. Not for general UI.</p><div style="font-size:24px;margin-top:10px;font-family:'Roboto Mono',monospace">0123456789 12:45:09<br>WVWZZZ1KZAW123456<br>#6750A4 · 76dp · 28sp</div></div>
  </div>
+ <h3>Side by side</h3>
+ <div class="a-root fcmp"><div class="h">Style</div><div class="h">Normal</div><div class="h">Condensed</div>
+  <div class="h">Headline Medium 36/44</div><div class="fn t-headline-m">Navigate to Violet Avenue</div><div class="fc t-headline-m">Navigate to Violet Avenue</div>
+  <div class="h">Title Medium 28/36 · 500</div><div class="fn t-title-m">Connected to Pixel 9</div><div class="fc t-title-m">Connected to Pixel 9</div>
+  <div class="h">Body Medium 24/32</div><div class="fn t-body-m">12.4 km · Light traffic · Arrive 11:00 AM</div><div class="fc t-body-m">12.4 km · Light traffic · Arrive 11:00 AM</div>
+  <div class="h">Label Small 20/28 · 500</div><div class="fn t-label-s">CLIMATE · RECIRCULATION · DEFROST</div><div class="fc t-label-s">CLIMATE · RECIRCULATION · DEFROST</div>
+  <div class="h">Numerals 56 (tabular)</div><div class="fn t-display" style="font-variant-numeric:tabular-nums">21.5°  98.4  312 km</div><div class="fc t-display" style="font-variant-numeric:tabular-nums">21.5°  98.4  312 km</div></div>
+ <h3>Fit test — same 300 dp slot</h3>
+ <div class="stage a-root pad" style="gap:28px;align-items:flex-start"><span class="cap">Normal wraps, condensed fits</span><div><div class="fitbox fn">Alexandra Montgomery</div><small>Normal — wraps to 2 lines</small></div><div><div class="fitbox fc">Alexandra Montgomery</div><small>Condensed — fits on 1 line</small></div></div>
+ <h3>When to use which</h3>
+ <div class="tw"><table class="tbl"><thead><tr><th>Use</th><th>Normal</th><th>Condensed</th></tr></thead><tbody>
+  <tr><td>Titles, body, buttons, dialogs</td><td><span class="pill ok">Default</span></td><td>Only when the string doesn't fit and cannot be shortened</td></tr>
+  <tr><td>App bar (rail) labels, tab labels, chips</td><td>Short labels (≤ 8 chars)</td><td><span class="pill ok">Preferred</span> for long or localized labels</td></tr>
+  <tr><td>HVAC bar, status bar, toggles</td><td>—</td><td><span class="pill ok">Allowed</span> where horizontal space is fixed</td></tr>
+  <tr><td>Contact / place / track names</td><td>Primary line</td><td>Secondary line, or when truncating would hide the key part</td></tr>
+  <tr><td>Numerals (temp, speed, range, frequency)</td><td><span class="pill ok">Default</span> tabular</td><td>Allowed, tabular</td></tr>
+  <tr><td>Safety alerts</td><td><span class="pill ok">Always</span></td><td><span class="pill no">Never</span> — keep maximum legibility</td></tr>
+ </tbody></table></div>
  <h3>Font stack</h3>
- <div class="codewrap"><button class="cp" data-copy="#stack">Copy</button><pre id="stack"><code>font-family: Roboto, "Google Sans", "Segoe UI", system-ui, sans-serif;   /* UI   */
-font-family: "Roboto Mono", ui-monospace, Menlo, Consolas, monospace;     /* data */</code></pre></div>
+ <div class="codewrap"><button class="cp" data-copy="#stack">Copy</button><pre id="stack"><code>/* Normal */    font-family: Roboto, "Google Sans", "Segoe UI", system-ui, sans-serif;
+/* Condensed */ font-family: "Roboto Condensed", "Arial Narrow", Roboto, sans-serif;
+/* Mono */      font-family: "Roboto Mono", ui-monospace, Menlo, Consolas, monospace;
+
+/* Android: res/font/roboto_condensed.xml → android:fontFamily="@font/roboto_condensed"
+   or sans-serif-condensed (system condensed) */</code></pre></div>
  <div class="tw"><table class="tbl"><thead><tr><th>Concern</th><th>Guidance</th></tr></thead><tbody>
+  <tr><td>Minimum size</td><td>Condensed is narrower, not smaller: keep the same sp sizes (≥ 24 sp for driver-critical text, never below 20 sp). Don't shrink size to "fit" — switch width first.</td></tr>
   <tr><td>Numerals</td><td>Use tabular figures for clocks, speed, range, temperature so values don't jitter (<code>font-variant-numeric: tabular-nums</code> / <code>fontFeatureSettings="tnum"</code>).</td></tr>
-  <tr><td>Localization</td><td>Fallback to Noto for CJK, Arabic, Hebrew, Devanagari, Thai. Allow 40% text expansion (German) and mirror layout for RTL.</td></tr>
-  <tr><td>Scaling</td><td>Use <b>sp</b>. Support system font scale 1.0–1.3; layouts must reflow, not clip. Safety text is never scaled below 24 sp.</td></tr>
-  <tr><td>Rendering</td><td>Disable synthetic bold/italic; avoid italics and all-caps beyond short labels (≤ 12 characters).</td></tr>
-  <tr><td>Licensing</td><td>Roboto and Roboto Mono: Apache 2.0.</td></tr>
+  <tr><td>Localization</td><td>Fallback to Noto for CJK, Arabic, Hebrew, Devanagari, Thai (no condensed width exists there — use the normal width). Allow 40% text expansion (German) and mirror layout for RTL.</td></tr>
+  <tr><td>Scaling</td><td>Use <b>sp</b>. Support system font scale 1.0–1.3; layouts must reflow, not clip.</td></tr>
+  <tr><td>Rendering</td><td>Disable synthetic bold/italic; avoid italics and all-caps beyond short labels (≤ 12 characters). Light/Thin weights are not provided — they break up on automotive panels.</td></tr>
+  <tr><td>Licensing</td><td>Roboto, Roboto Condensed, Roboto Mono: Apache 2.0.</td></tr>
  </tbody></table></div>
 </section>
 
