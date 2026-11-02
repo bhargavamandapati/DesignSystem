@@ -157,6 +157,7 @@ rc.forEach((c,i)=>c.addEventListener('focus',()=>{ri=i;rc.forEach((x,j)=>x.class
 /*SCREENS*/
 /*ICONS_UI*/
 /*SPECS*/
+/*AUDIT*/
 
 /* ---------- nav ---------- */
 const secs=$$('section.sec[data-title]');const groups=[];secs.forEach(s=>{if(!groups.includes(s.dataset.group))groups.push(s.dataset.group)});

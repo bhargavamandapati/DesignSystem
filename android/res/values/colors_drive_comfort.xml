@@ -49,8 +49,8 @@
     <color name="aurora_comfort_surface_container_highest">#FF33353A</color>
 
     <!-- Outline & inverse -->
-    <color name="aurora_comfort_outline">#FF8E9099</color>
-    <color name="aurora_comfort_outline_variant">#FF44474F</color>
+    <color name="aurora_comfort_outline">#FF7890C7</color>
+    <color name="aurora_comfort_outline_variant">#FF2D4678</color>
     <color name="aurora_comfort_inverse_surface">#FFE2E2E9</color>
     <color name="aurora_comfort_inverse_on_surface">#FF2F3036</color>
     <color name="aurora_comfort_inverse_primary">#FF455E91</color>

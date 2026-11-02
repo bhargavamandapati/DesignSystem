@@ -81,6 +81,14 @@ carUx.registerListener { r -&gt;
  <div class="codewrap"><button class="cp" data-copy="#exportOut">Copy</button><button class="cp" style="right:76px" id="dlExport">Download</button><pre id="exportOut" style="max-height:420px"><code></code></pre></div>
 </section>
 
+<section class="sec" id="audit" data-title="Compliance audit" data-group="Developers">
+ <div class="eyebrow">Governance</div><h2>Compliance audit</h2>
+ <p>Runs <b>inside this page</b> against the live components, for the selected theme or all seven. It checks the automotive rules and that every border follows the theme.</p>
+ <ul class="t"><li><b>Contrast</b> — every container/content pair in the specification tables ≥ 4.5:1 (text), plus borders and the focus ring ≥ 3:1 (WCAG 1.4.11; ISO 15008 legibility).</li><li><b>Touch targets</b> — every interactive component ≥ 76 dp including its expanded hit area (Android for Cars / automotive reach guidance).</li><li><b>Text size</b> — nothing below 20 sp; counts of 20–23 sp text (secondary only) are reported.</li><li><b>Borders</b> — every border, outline and ring on a component must be in the <b>theme's own hue</b> (purple theme → purple borders, green → green…). Semantic error/warning/success borders are exempt.</li></ul>
+ <div class="viewbar"><button class="tbtn" id="auditOne" style="background:var(--c-primary);color:var(--c-on-primary);border-color:transparent;font-weight:600">Run for selected theme</button><button class="tbtn" id="auditAll">Run for all 7 themes</button></div>
+ <div id="auditOut"><p style="color:var(--c-on-surface-variant)">Press a button to run the audit.</p></div>
+</section>
+
 <section class="sec" id="checklist" data-title="Checklist & references" data-group="Developers">
  <div class="eyebrow">Governance</div><h2>Release checklist &amp; references</h2>
  <h3>Design review checklist</h3>

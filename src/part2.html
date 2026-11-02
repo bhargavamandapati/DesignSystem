@@ -163,7 +163,7 @@
   <ul class="a-menu" role="menu"><li role="menuitem"><ic n="nav"></ic>Share ETA</li><li role="menuitem" class="sel"><ic n="check"></ic>Avoid tolls</li><li role="menuitem"><ic n="settings"></ic>Route options</li><hr><li role="menuitem" style="color:var(--c-error)"><ic n="close"></ic>Cancel route</li></ul>
   <div style="display:grid;gap:16px;width:640px;max-width:100%"><div class="a-snack"><span>Route updated · 4 min faster</span><button class="a-btn text">Undo</button></div><div class="a-snack"><span>Message sent</span></div><button class="a-btn tonal" id="snackBtn">Show snackbar</button></div>
  </div>
- <div class="spec" data-spec="Dialog|width 640dp, radius 28dp, padding 40dp;Actions|≤ 2 driving, ≤ 3 parked;Menu|row 76dp, width 320–560dp;Snackbar|min 80dp, 5–8 s, no action while driving"></div>
+ <div class="spec" data-spec="Dialog|width 640dp, radius 28dp, padding 40dp;Actions|≤ 2 driving, ≤ 3 parked;Menu|row 76dp, width 320–560dp;Snackbar|min 92dp, action 76dp, 5–8 s, no action while driving"></div>
  <div class="dd"><div class="do"><b>Do</b>Title is a question or statement; body ≤ 120 characters; destructive action named explicitly ("Forget").</div><div class="dont"><b>Don't</b>Stack dialogs, show non-critical dialogs over navigation, or auto-dismiss ones that need a decision.</div></div>
 </section>
 
@@ -191,9 +191,9 @@
  <div class="stage a-root pad" style="align-items:flex-start;gap:32px"><span class="cap">Right rail — Home active · Maps active (hover) · focus</span>
   <div data-slot="rail" style="height:568px;width:120px"></div>
   <div data-slot="rail:2" style="height:568px;width:120px"></div>
-  <div class="card-d" style="max-width:440px"><h5>Rules</h5><ul class="t" style="margin:0;padding-left:18px"><li>6 fixed destinations; Home is always first and returns to launcher state.</li><li>Active item: filled pill 88 × 44 dp, label in onSurface. Inactive: icon + label in onSurfaceVariant.</li><li>Order is stable — never re-sort by usage.</li><li>Badge (32 dp, error) allowed on Phone / Messages only.</li><li>Hidden in full-screen mode.</li></ul></div>
+  <div class="card-d" style="max-width:440px"><h5>Rules</h5><ul class="t" style="margin:0;padding-left:18px"><li>6 fixed destinations; Home is always first and returns to launcher state.</li><li>Active item: filled pill 88 × 40 dp, label in onSurface. Inactive: icon + label in onSurfaceVariant.</li><li>Order is stable — never re-sort by usage.</li><li>Badge (32 dp, error) allowed on Phone / Messages only.</li><li>Hidden in full-screen mode.</li></ul></div>
  </div>
- <div class="spec" data-spec="Width|120dp;Item|112×88dp, radius 28dp;Active pill|88×44dp, radius 22dp;Icon|36dp;Label|20sp/24 w500;Gap|4dp;Items|6 (max)"></div>
+ <div class="spec" data-spec="Width|120dp;Item|112×88dp, radius 28dp;Active pill|88×40dp, radius 22dp;Icon|36dp;Label|24sp/26 w500;Gap|4dp;Items|6 (max)"></div>
  <h3>HVAC bar · 1280 × 96 dp</h3>
  <div class="stage a-root col pad" style="padding:20px"><span class="cap">Bottom — interactive</span><div data-slot="hvbar" style="width:1280px;max-width:none"></div></div>
  <div class="spec" data-spec="Height|96dp;Targets|76dp, 4dp gaps;Temp value|Title 36sp tabular, 0.5° steps;Zones|driver · fan/modes · passenger;Toggle on|primaryContainer / onPrimaryContainer"></div>
@@ -239,7 +239,7 @@
  <div class="stage a-root pad"><span class="cap">Listening</span>
   <div class="a-voice"><div class="orb"><ic n="mic"></ic></div><div class="t-headline-s">"Navigate to the nearest charger"</div><div class="t-body-m" style="color:var(--c-on-surface-variant);margin-top:6px">Listening… Try "Call Alex" or "Play jazz"</div></div>
  </div>
- <div class="spec" data-spec="HUN|760dp, radius 28dp, 8 s;Alert banner|full width, icon + text;Voice orb|120dp;Voice overlay|non-modal, keeps map visible"></div>
+ <div class="spec" data-spec="HUN|760dp, radius 28dp, actions 76dp, 8 s;Alert banner|full width, icon + text;Voice orb|120dp;Voice overlay|non-modal, keeps map visible"></div>
 </section>
 
 <section class="sec" id="rotary" data-title="Rotary & focus demo" data-group="Automotive">

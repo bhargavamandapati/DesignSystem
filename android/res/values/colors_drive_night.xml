@@ -49,8 +49,8 @@
     <color name="aurora_night_surface_container_highest">#FF232728</color>
 
     <!-- Outline & inverse -->
-    <color name="aurora_night_outline">#FF798083</color>
-    <color name="aurora_night_outline_variant">#FF373F42</color>
+    <color name="aurora_night_outline">#FF438C9B</color>
+    <color name="aurora_night_outline_variant">#FF004651</color>
     <color name="aurora_night_inverse_surface">#FFC3C8CA</color>
     <color name="aurora_night_inverse_on_surface">#FF262B2D</color>
     <color name="aurora_night_inverse_primary">#FF005C69</color>

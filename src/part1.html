@@ -81,7 +81,7 @@
  <div class="tw"><table class="tbl"><thead><tr><th>#</th><th>Region</th><th>Size (dp)</th><th>Contents</th><th>Colors</th></tr></thead><tbody>
   <tr><td><span class="pill">1</span></td><td><b>Status bar</b> (top)</td><td>1280 × <b>56</b></td><td>Clock, outside temp, user avatar, Bluetooth, Wi-Fi, signal, voice. Icons 32 dp, text Label Medium 24 sp.</td><td>surfaceContainerLowest · onSurface · icons onSurfaceVariant</td></tr>
   <tr><td><span class="pill">2</span></td><td><b>App area</b></td><td>1160 × <b>568</b></td><td>The only region apps draw into. Edge-to-edge content stays 16 dp inside.</td><td>surface</td></tr>
-  <tr><td><span class="pill">3</span></td><td><b>App bar</b> (right rail)</td><td><b>120</b> × 568 · item 112 × 88</td><td>6 destinations: Home, Maps, Phone, Media, Vehicle, Apps. Icon 36 dp + 20 sp label.</td><td>surfaceContainerLowest · active pill 88×44 secondaryContainer</td></tr>
+  <tr><td><span class="pill">3</span></td><td><b>App bar</b> (right rail)</td><td><b>120</b> × 568 · item 112 × 88</td><td>6 destinations: Home, Maps, Phone, Media, Vehicle, Apps. Icon 36 dp + 24 sp label.</td><td>surfaceContainerLowest · active pill 88×40 secondaryContainer</td></tr>
   <tr><td><span class="pill">4</span></td><td><b>HVAC bar</b> (bottom)</td><td>1280 × <b>96</b></td><td>Driver seat heat + temp, fan, A/C, Auto, Defrost, passenger temp + seat heat. 76 dp targets.</td><td>surfaceContainerLowest · toggles primaryContainer when on</td></tr>
  </tbody></table></div>
  <h3>Full-screen (immersive) mode</h3>
@@ -115,7 +115,9 @@
   <tr><td><code>primary</code></td><td>Primary actions (filled button), active slider, selected switch, key progress</td><td>Large background areas, body text</td></tr>
   <tr><td><code>primaryContainer</code></td><td>Selected states, hero cards, now-playing, icon chips</td><td>Text on surface</td></tr>
   <tr><td><code>secondaryContainer</code></td><td>Tonal buttons, selected nav/tab, filter chips</td><td>Status</td></tr>
-  <tr><td><code>tertiary</code></td><td>Focus ring (rotary), accent highlights, current-location marker</td><td>Primary CTAs</td></tr>
+  <tr><td><code>tertiary</code></td><td>Accent highlights, current-location marker, tertiary chips</td><td>Primary CTAs, borders</td></tr>
+  <tr><td><code>outline</code> / <code>outlineVariant</code></td><td>Component borders (outlined button, field, chip, switch, checkbox) and dividers — <b>tinted from the theme's own primary palette</b> so borders always match the theme</td><td>Neutral gray borders</td></tr>
+  <tr><td><code>onPrimaryContainer</code> (focus ring)</td><td>Rotary/keyboard focus ring, 6 dp, in the theme's hue</td><td>Fills</td></tr>
   <tr><td><code>error</code> / container</td><td>Faults, destructive actions, blocking alerts</td><td>Brand emphasis</td></tr>
   <tr><td><code>success</code> / <code>warning</code></td><td>Charging, connected, low fuel/range, cautions (always with icon + text)</td><td>Sole indicator — never color alone</td></tr>
   <tr><td><code>surfaceContainer*</code></td><td>Elevation via tone: cards, lists, menus, sheets</td><td>Drop shadows as only separator</td></tr>
@@ -131,7 +133,7 @@
  <h3>State layers</h3>
  <div class="tw"><table class="tbl"><thead><tr><th>State</th><th>Overlay opacity</th><th>Notes</th></tr></thead><tbody>
   <tr><td>Hover (mouse / simulator)</td><td>8%</td><td>Rare in vehicle; supported for dev simulators.</td></tr>
-  <tr><td>Focused (rotary / keyboard)</td><td>12% + 6 dp ring</td><td>Ring uses <code>tertiary</code>, offset 4 dp. Must be visible on all surfaces.</td></tr>
+  <tr><td>Focused (rotary / keyboard)</td><td>12% + 6 dp ring</td><td>Ring uses <code>onPrimaryContainer</code> (theme-hued, high contrast), offset 4 dp. Must be visible on all surfaces.</td></tr>
   <tr><td>Pressed</td><td>12%</td><td>Ripple radiates from touch point, ≤ 200 ms.</td></tr>
   <tr><td>Dragged</td><td>16%</td><td>Sliders &amp; reorderable lists.</td></tr>
   <tr><td>Disabled</td><td>content 38% · container 12%</td><td>Explain <i>why</i> (e.g. "Unavailable while driving").</td></tr>
@@ -143,7 +145,7 @@
  <p class="lead">Roboto (system default on AAOS; OEMs may supply a brand face via RRO). Scale is enlarged ~1.5–2× over phone defaults for 60–80&nbsp;cm viewing distance.</p>
  <div id="typescale" class="a-root"></div>
  <div class="grid g2">
-  <div class="card-d"><h5>Minimums</h5><p><b>24 sp</b> for anything the driver must read while moving. <b>20 sp</b> only for tertiary, non-critical meta (e.g. timestamps). Never below 20 sp.</p></div>
+  <div class="card-d"><h5>Minimums</h5><p><b>24 sp</b> for anything the driver must read while moving. <b>20 sp</b> only for secondary, non-critical meta (e.g. timestamps). Never below 20 sp.</p></div>
   <div class="card-d"><h5>Physical check</h5><p>ISO 15008 targets ≈ 16–20 arcmin character height. At 750&nbsp;mm that is ≈ 3.5–4.4&nbsp;mm — verify on the real panel, since dp ≠ mm across displays.</p></div>
   <div class="card-d"><h5>Weights</h5><p>Regular (400) for reading, Medium (500) for actions and labels. Avoid Light and Thin — they break up on automotive panels and in sunlight.</p></div>
   <div class="card-d"><h5>Writing for glance</h5><p>Titles ≤ 25 characters, body ≤ 120 characters, sentence case, one idea per line. Truncate with ellipsis; never shrink text to fit.</p></div>
@@ -163,7 +165,7 @@
  <h3>Spacing scale</h3><div id="spacescale"></div>
  <h3>Touch &amp; hit targets</h3>
  <div class="stage pad a-root"><span class="cap">Visual size vs hit area</span>
-  <div style="text-align:center"><div style="width:76px;height:76px;border:2px dashed var(--c-tertiary);border-radius:12px;display:grid;place-items:center"><div style="width:44px;height:44px;border-radius:50%;background:var(--c-primary)"></div></div><small>76 dp hit area</small></div>
+  <div style="text-align:center"><div style="width:76px;height:76px;border:2px dashed var(--c-focus);border-radius:12px;display:grid;place-items:center"><div style="width:44px;height:44px;border-radius:50%;background:var(--c-primary)"></div></div><small>76 dp hit area</small></div>
   <div style="text-align:center"><div style="display:flex;gap:16px"><div class="a-ib tonal"><ic n="home"></ic></div><div class="a-ib tonal"><ic n="search"></ic></div></div><small>≥ 16 dp gap</small></div>
  </div>
  <ul class="t"><li>Minimum target <b>76 × 76 dp</b>; primary driving actions <b>96 dp</b>. Visual element may be smaller, hit area may not.</li><li>Minimum <b>16 dp</b> between adjacent targets (8 dp absolute floor for dense toggle groups).</li><li>Place frequent controls in reach zone: toward the driver's side and lower half of the display.</li><li>No tiny close icons, drag handles, edge swipes or multi-finger gestures.</li></ul>
@@ -240,7 +242,7 @@
   <div style="text-align:center"><button class="a-btn" disabled>Disabled</button><br><small>disabled</small></div>
  </div>
  <div class="grid g3">
-  <div class="card-d"><h5>Focus ring</h5><p>6&nbsp;dp, <code>tertiary</code>, 4&nbsp;dp offset, rounded to the component shape. Contrast ≥ 3:1 vs. adjacent surfaces.</p></div>
+  <div class="card-d"><h5>Focus ring</h5><p>6&nbsp;dp, <code>onPrimaryContainer</code>, 4&nbsp;dp offset, rounded to the component shape. Contrast ≥ 3:1 vs. adjacent surfaces.</p></div>
   <div class="card-d"><h5>Focus order</h5><p>Reading order (leading→trailing, top→bottom) with <code>nudge</code> shortcuts to jump between toolbar, content and the app bar.</p></div>
   <div class="card-d"><h5>Default focus</h5><p>Restore last focus on return. On first entry focus the primary action or first list item, never a destructive button.</p></div>
  </div>

@@ -49,8 +49,8 @@
     <color name="aurora_offroad_surface_container_highest">#FF3C332C</color>
 
     <!-- Outline & inverse -->
-    <color name="aurora_offroad_outline">#FF9D8E81</color>
-    <color name="aurora_offroad_outline_variant">#FF50453A</color>
+    <color name="aurora_offroad_outline">#FFBF8445</color>
+    <color name="aurora_offroad_outline_variant">#FF693C00</color>
     <color name="aurora_offroad_inverse_surface">#FFEEE0D5</color>
     <color name="aurora_offroad_inverse_on_surface">#FF372F28</color>
     <color name="aurora_offroad_inverse_primary">#FF855317</color>

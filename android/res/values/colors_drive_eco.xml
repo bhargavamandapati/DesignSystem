@@ -49,8 +49,8 @@
     <color name="aurora_eco_surface_container_highest">#FF303633</color>
 
     <!-- Outline & inverse -->
-    <color name="aurora_eco_outline">#FF89938D</color>
-    <color name="aurora_eco_outline_variant">#FF404944</color>
+    <color name="aurora_eco_outline">#FF569E80</color>
+    <color name="aurora_eco_outline_variant">#FF00513A</color>
     <color name="aurora_eco_inverse_surface">#FFDEE4DF</color>
     <color name="aurora_eco_inverse_on_surface">#FF2C322E</color>
     <color name="aurora_eco_inverse_primary">#FF1D6B50</color>

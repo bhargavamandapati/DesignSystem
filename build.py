@@ -48,7 +48,7 @@ content = ''.join((S/p).read_text() for p in ('part1.html','part2.html','part4.h
 html = (S/'template.html').read_text()
 html = (html.replace('/*FONTS*/', fonts).replace('/*TOKENS*/', css_tok).replace('/*STYLES*/', (S/'styles.css').read_text())
             .replace('<!--CONTENT-->', content).replace('/*JSON*/', json.dumps(tok)).replace('/*FONTFILES*/', json.dumps(fontfiles)).replace('/*FONTXML*/', json.dumps(fontxml)).replace('/*ICONS*/', (S/'icons.json').read_text())
-            .replace('/*JS*/', (S/'app.js').read_text().replace('/*SCREENS*/', (S/'screens.js').read_text()).replace('/*ICONS_UI*/', (S/'icons.js').read_text()).replace('/*SPECS*/', (S/'specs.js').read_text()).replace('/*TYPE*/', json.dumps(TYPE))))
+            .replace('/*JS*/', (S/'app.js').read_text().replace('/*SCREENS*/', (S/'screens.js').read_text()).replace('/*ICONS_UI*/', (S/'icons.js').read_text()).replace('/*SPECS*/', (S/'specs.js').read_text()).replace('/*AUDIT*/', (S/'audit.js').read_text()).replace('/*TYPE*/', json.dumps(TYPE))))
 (R/'index.html').write_text(html)
 print('index.html', len(html)//1024, 'KB')
 

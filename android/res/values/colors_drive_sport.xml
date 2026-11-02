@@ -49,8 +49,8 @@
     <color name="aurora_sport_surface_container_highest">#FF413033</color>
 
     <!-- Outline & inverse -->
-    <color name="aurora_sport_outline">#FFA58A8E</color>
-    <color name="aurora_sport_outline_variant">#FF574145</color>
+    <color name="aurora_sport_outline">#FFFF4D81</color>
+    <color name="aurora_sport_outline_variant">#FF90003B</color>
     <color name="aurora_sport_inverse_surface">#FFF7DCDF</color>
     <color name="aurora_sport_inverse_on_surface">#FF3C2C2F</color>
     <color name="aurora_sport_inverse_primary">#FFBC004F</color>
