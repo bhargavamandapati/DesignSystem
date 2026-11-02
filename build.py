@@ -6,9 +6,10 @@ def kebab(s): return re.sub(r'[A-Z]', lambda m: '-'+m.group(0).lower(), s)
 import subprocess, sys
 subprocess.run([sys.executable, str(R/'tools'/'icons_src.py')], check=True)
 tok = json.loads((S/'tokens.json').read_text())
-css_tok = ''.join(':root[data-theme="%s"]{color-scheme:%s;%s}\n' % (m, 'dark' if m=='night' else 'light',
-          ''.join('--c-%s:%s;' % (kebab(k), v) for k, v in tok[m].items())) for m in ('night','day'))
-css_tok = css_tok.replace(':root[data-theme="night"]', ':root,:root[data-theme="night"]')
+css_tok = ''
+for tid, t in tok['themes'].items():
+    sel = ':root,:root[data-theme="%s"]' % tid if tid == 'aurora-night' else ':root[data-theme="%s"]' % tid
+    css_tok += '%s{color-scheme:%s;%s}\n' % (sel, t['mode'], ''.join('--c-%s:%s;' % (kebab(k), v) for k, v in t['roles'].items()))
 fonts = ''
 for fam, fn, w in [('Roboto','roboto-latin-400-normal',400),('Roboto','roboto-latin-500-normal',500),
                    ('Roboto Mono','roboto-mono-latin-400-normal',400),('Roboto Mono','roboto-mono-latin-500-normal',500)]:

@@ -8,7 +8,7 @@
   <div class="card-d"><div class="big">AA+</div><p>contrast, day &amp; night</p></div>
   <div class="card-d"><div class="big">3</div><p>input modes: touch · rotary · voice</p></div>
  </div>
- <div class="callout"><b>How to use this page</b>It is one self-contained HTML file with no network dependencies — open it from disk, a USB stick or a car-lab laptop with no connectivity. Use the <b>Night / Day</b> toggle (top bar) to switch the whole system between themes, and the <b>Parked / Driving</b> toggle to see components and screens change under UX restrictions. Press <span class="kbd">/</span> to search the sidebar.</div>
+ <div class="callout"><b>How to use this page</b>It is one self-contained HTML file with no network dependencies — open it from disk, a USB stick or a car-lab laptop with no connectivity. Use the <b>Theme</b> dropdown (top bar) to switch the whole system between Aurora Night/Day and the drive-mode themes, and the <b>Parked / Driving</b> toggle to see components and screens change under UX restrictions. Press <span class="kbd">/</span> to search the sidebar.</div>
  <div class="callout warn"><b>Reference values</b>Dimensions are expressed in dp (1&nbsp;dp = 1&nbsp;px at 160&nbsp;dpi, the AAOS reference density) and are recommended defaults. OEMs tune them through Car&nbsp;UI&nbsp;Library resource overlays (RRO) per display size, viewing distance and regional regulation — always validate against your vehicle program's HMI requirements.</div>
  <h3>What's inside</h3>
  <div class="grid g4">
@@ -90,13 +90,22 @@
 </section>
 
 <!-- ============ FOUNDATIONS ============ -->
+<section class="sec" id="themes" data-title="Themes & drive modes" data-group="Foundations">
+ <div class="eyebrow">Foundations</div><h2>Themes &amp; drive modes</h2>
+ <p class="lead">Seven themes share one role structure, so every component, state and screen re-skins instantly. Pick one in the <b>Theme</b> dropdown (top bar) or click a card — the entire design system, including borders, bezels, specs and exports, then follows that theme only.</p>
+ <div class="themecards" id="themeCards"></div>
+ <h3>How drive-mode themes work</h3>
+ <ul class="t"><li><b>Same roles, different seeds.</b> Each drive-mode theme is a Material 3 scheme generated from its own seed color; component code only references roles (<code>primary</code>, <code>surfaceContainer</code>…), never hex.</li><li><b>Sizes, shapes and layout never change</b> between themes — only color. Driver muscle memory and touch geometry stay constant across modes.</li><li><b>Safety colors stay legible.</b> Error, warning and success keep their meaning in every theme (Sport uses a stronger red so errors never read as the pink accent).</li><li><b>Contrast floor.</b> Every theme keeps body text ≥ 4.5:1 and primary actions ≥ 4.5:1 — see the contrast checker for live values.</li><li><b>Switching.</b> The OEM maps the vehicle's drive-mode signal (and ambient light / headlamps for Day/Night) to a theme and applies it with a 300 ms cross-fade; the driver can't be asked to pick a theme while driving.</li></ul>
+ <div class="tw"><table class="tbl"><thead><tr><th>Theme</th><th>Group</th><th>Mode</th><th>Seed / primary</th><th>Intent</th></tr></thead><tbody id="themeTable"></tbody></table></div>
+</section>
+
 <section class="sec" id="color" data-title="Color" data-group="Foundations">
  <div class="eyebrow">Foundations</div><h2>Color</h2>
  <p class="lead">A purple Material&nbsp;3 scheme seeded from <code>#6750A4</code>. Night is the default for cabins; Day maintains the same role mapping with inverted tone.</p>
  <h3>Brand tonal palettes</h3>
  <div class="tw"><div id="tonalpal" style="padding:10px;min-width:920px"></div></div>
  <h3>Color roles <span class="pill" id="roleTheme">Night</span></h3>
- <p>Always reference <i>roles</i>, never raw hex. Roles remap automatically between Day and Night.</p>
+ <p>Always reference <i>roles</i>, never raw hex. Roles remap automatically for every theme in the dropdown.</p>
  <h4>Accent &amp; container</h4><div class="roles" id="roles-accent"></div>
  <h4>Status</h4><div class="roles" id="roles-status"></div>
  <h4>Surface &amp; outline</h4><div class="roles" id="roles-surface"></div>

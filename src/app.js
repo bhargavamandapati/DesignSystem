@@ -14,22 +14,29 @@ expandIcons();
 
 /* ---------- theme / driving ---------- */
 const root=document.documentElement;
-function setTheme(t){root.dataset.theme=t;store.set('aurora-theme',t);
- $('#themeBtn').innerHTML=(t==='night'?icon('moon'):icon('bright'))+' '+(t==='night'?'Night':'Day');
- $('#themeBtn').setAttribute('aria-pressed',t==='night');
- ['roleTheme','a11yTheme'].forEach(i=>{const e=$('#'+i);if(e)e.textContent=t==='night'?'Night':'Day'});
- renderRoles();renderContrast();renderExport();renderSpecs();}
+const THEMES=TOKENS.themes,TORDER=TOKENS.order;
+function renderThemeCards(){const cur=root.dataset.theme;$('#themeCards').innerHTML=TORDER.map(i=>{const t=THEMES[i],r=t.roles;return `<button class="themecard" data-t="${i}" aria-pressed="${i===cur}" style="background:${r.surface};color:${r.onSurface};border-color:${i===cur?r.primary:r.outlineVariant}"><span class="sws"><i style="background:${r.primary}"></i><i style="background:${r.primaryContainer}"></i><i style="background:${r.secondary}"></i><i style="background:${r.tertiary}"></i><i style="background:${r.surfaceContainerHigh}"></i></span><b>${t.name}</b><small style="color:${r.onSurfaceVariant}">${t.group} · ${t.mode}</small><span class="d" style="color:${r.onSurfaceVariant}">${t.desc}</span></button>`}).join('');
+ $$('#themeCards .themecard').forEach(b=>b.onclick=()=>setTheme(b.dataset.t));
+ $('#themeTable').innerHTML=TORDER.map(i=>{const t=THEMES[i];return `<tr><td><b>${t.name}</b></td><td>${t.group}</td><td>${t.mode}</td><td><span class="sw-c"><i style="background:${t.roles.primary}"></i><small>${t.roles.primary}</small></span></td><td>${t.desc}</td></tr>`}).join('')}
+const themeName=()=>THEMES[root.dataset.theme].name;
+function setTheme(t){if(!THEMES[t])t='aurora-night';root.dataset.theme=t;store.set('aurora-theme2',t);
+ const th=THEMES[t];$('#themeSel').value=t;$('#themeDot').style.background=th.roles.primary;
+ const m=document.querySelector('meta[name=theme-color]');if(m)m.content=th.roles.background;
+ $$('.themeName').forEach(e=>e.textContent=th.name);
+ $$('#roleTheme,#a11yTheme').forEach(e=>e.textContent=th.name);
+ renderThemeCards();renderTonal();renderRoles();renderContrast();renderExport();renderSpecs();}
+$('#themeSel').innerHTML=['Appearance','Drive mode'].map(g=>`<optgroup label="${g==='Drive mode'?'Drive modes':g}">`+TORDER.filter(i=>THEMES[i].group===g).map(i=>`<option value="${i}">${THEMES[i].name}</option>`).join('')+'</optgroup>').join('');
+$('#themeSel').onchange=e=>setTheme(e.target.value);
 function setDriving(d){document.body.dataset.driving=d;store.set('aurora-drv',d);
  $('#drvBtn').innerHTML=icon('car')+' '+(d?'Driving':'Parked');$('#drvBtn').setAttribute('aria-pressed',d);
  $$('.drvlabel').forEach(e=>e.textContent=d?'Driving':'Parked');}
-$('#themeBtn').onclick=()=>setTheme(root.dataset.theme==='night'?'day':'night');
 $('#drvBtn').onclick=()=>setDriving(document.body.dataset.driving!=='true');
 $('#menuBtn').onclick=()=>document.body.classList.toggle('nav-open');
 
 /* ---------- helpers ---------- */
 function lum(h){const c=[1,3,5].map(i=>parseInt(h.substr(i,2),16)/255).map(v=>v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4));return .2126*c[0]+.7152*c[1]+.0722*c[2]}
 function ratio(a,b){const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)}
-const T=()=>TOKENS[root.dataset.theme];
+const T=()=>THEMES[root.dataset.theme].roles;
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toast.i);toast.i=setTimeout(()=>t.classList.remove('show'),1500)}
 async function copy(txt){try{await navigator.clipboard.writeText(txt)}catch(e){const a=document.createElement('textarea');a.value=txt;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(_){}a.remove()}toast('Copied')}
 
@@ -37,9 +44,9 @@ async function copy(txt){try{await navigator.clipboard.writeText(txt)}catch(e){c
 $$('[data-spec]').forEach(e=>{e.classList.add('spec');e.innerHTML=e.dataset.spec.split(';').map(p=>{const [k,v]=p.split('|');return `<span><b>${k}</b>${v||''}</span>`}).join('')});
 
 /* ---------- color ---------- */
-(function(){const w=$('#tonalpal');let h='';
- for(const [name,steps] of Object.entries(TOKENS.tonal)){h+=`<div class="tonalrow"><div class="n">${name}</div>`+Object.entries(steps).map(([k,v])=>`<div class="sw" style="background:${v};color:${+k>=60?'#000':'#fff'}" title="${name} ${k} ${v}">${k}</div>`).join('')+'</div>'}
- w.innerHTML=h;})();
+function renderTonal(){const w=$('#tonalpal');let h='';
+ for(const [name,steps] of Object.entries(THEMES[root.dataset.theme].tonal)){h+=`<div class="tonalrow"><div class="n">${name}</div>`+Object.entries(steps).map(([k,v])=>`<div class="sw" style="background:${v};color:${+k>=60?'#000':'#fff'}" title="${name} ${k} ${v}">${k}</div>`).join('')+'</div>'}
+ w.innerHTML=h;}
 const ROLE_GROUPS={'roles-accent':['primary','onPrimary','primaryContainer','onPrimaryContainer','secondary','onSecondary','secondaryContainer','onSecondaryContainer','tertiary','onTertiary','tertiaryContainer','onTertiaryContainer'],
 'roles-status':['error','onError','errorContainer','onErrorContainer','success','onSuccess','successContainer','onSuccessContainer','warning','onWarning','warningContainer','onWarningContainer'],
 'roles-surface':['background','onBackground','surface','onSurface','surfaceVariant','onSurfaceVariant','surfaceContainerLowest','surfaceContainerLow','surfaceContainer','surfaceContainerHigh','surfaceContainerHighest','outline','outlineVariant','inverseSurface','inverseOnSurface','inversePrimary']};
@@ -80,14 +87,16 @@ $('#cfg').oninput=$('#cbg').oninput=customPair;customPair();
 /* ---------- export ---------- */
 let exp='xml';
 const hexA=h=>'#FF'+h.slice(1).toUpperCase();
+const TH=()=>THEMES[root.dataset.theme];
+const ROLES28=['primary','onPrimary','primaryContainer','onPrimaryContainer','secondary','onSecondary','secondaryContainer','onSecondaryContainer','tertiary','onTertiary','tertiaryContainer','onTertiaryContainer','error','onError','errorContainer','onErrorContainer','background','onBackground','surface','onSurface','surfaceVariant','onSurfaceVariant','outline','outlineVariant','inverseSurface','inverseOnSurface','inversePrimary','scrim'];
 const EX={
- xml:()=>['night','day'].map(m=>`<!-- res/values${m==='night'?'-night':''}/colors.xml -->\n<resources>\n`+Object.entries(TOKENS[m]).map(([k,v])=>`  <color name="aurora_${kebab(k).replace(/-/g,'_')}">${hexA(v)}</color>`).join('\n')+'\n</resources>').join('\n\n'),
- theme:()=>`<!-- res/values/themes.xml -->\n<style name="Theme.Aurora" parent="Theme.Material3.DayNight.NoActionBar">\n`+['primary','onPrimary','primaryContainer','onPrimaryContainer','secondary','onSecondary','secondaryContainer','onSecondaryContainer','tertiary','onTertiary','error','onError','background','onBackground','surface','onSurface','surfaceVariant','onSurfaceVariant','outline','outlineVariant'].map(k=>`  <item name="${k==='primary'||k==='background'||k==='surface'||k==='outline'||k==='outlineVariant'||k==='error'?'color'+k[0].toUpperCase()+k.slice(1):'color'+k[0].toUpperCase()+k.slice(1)}">@color/aurora_${kebab(k).replace(/-/g,'_')}</item>`).join('\n')+`\n  <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Aurora.Medium</item>\n  <item name="android:fontFamily">sans-serif</item>\n</style>\n\n<!-- Car UI Library RRO (res/values/car_ui_overlays.xml) -->\n<resources>\n  <dimen name="car_ui_touch_target_size">76dp</dimen>\n  <dimen name="car_ui_toolbar_height">96dp</dimen>\n  <dimen name="car_ui_list_item_height">96dp</dimen>\n  <dimen name="car_ui_primary_icon_size">40dp</dimen>\n  <bool name="car_ui_scrollbar_enable">true</bool>\n</resources>`,
- css:()=>['night','day'].map(m=>`:root[data-theme="${m}"]{\n`+Object.entries(TOKENS[m]).map(([k,v])=>`  --aurora-${kebab(k)}: ${v};`).join('\n')+'\n}').join('\n\n'),
- json:()=>JSON.stringify({$schema:'design-tokens',color:TOKENS,type:Object.fromEntries(TYPE.map(t=>[t[0],{size:t[2]+'sp',lineHeight:t[3]+'sp',weight:t[4],letterSpacing:t[5]}])),space:Object.fromEntries(SP.map(s=>[s[0],s[1]+'dp'])),shape:Object.fromEntries(SH.map(s=>[s[0],s[1]+'dp'])),touch:{min:'76dp',primary:'96dp'}},null,2),
- kt:()=>`// Aurora AAOS Compose theme\nval AuroraNight = darkColorScheme(\n`+['primary','onPrimary','primaryContainer','onPrimaryContainer','secondary','onSecondary','secondaryContainer','onSecondaryContainer','tertiary','onTertiary','tertiaryContainer','onTertiaryContainer','error','onError','errorContainer','onErrorContainer','background','onBackground','surface','onSurface','surfaceVariant','onSurfaceVariant','outline','outlineVariant','inverseSurface','inverseOnSurface','inversePrimary','scrim'].map(k=>`    ${k} = Color(${hexA(TOKENS.night[k]).replace('#','0x')}),`).join('\n')+`\n)\n\nval AuroraTypography = Typography(\n`+TYPE.filter(t=>t[0]!=='Display').map(t=>{const n=t[0].replace(/ (\w)/g,(m,c)=>c.toUpperCase());return `    ${n[0].toLowerCase()+n.slice(1)} = TextStyle(fontSize = ${t[2]}.sp, lineHeight = ${t[3]}.sp, fontWeight = FontWeight.W${t[4]}),`}).join('\n')+`\n)\n\n// Minimum touch size\nCompositionLocalProvider(LocalMinimumInteractiveComponentSize provides 76.dp) { content() }`
+ xml:()=>`<!-- Theme: ${TH().name} (${TH().group}) — place in res/values${TH().mode==='dark'?'-night':''}/colors.xml -->\n<resources>\n`+Object.entries(T()).map(([k,v])=>`  <color name="aurora_${kebab(k).replace(/-/g,'_')}">${hexA(v)}</color>`).join('\n')+'\n</resources>',
+ theme:()=>`<!-- res/values/themes.xml  (colors from the selected theme: ${TH().name}) -->\n<style name="Theme.Aurora" parent="Theme.Material3.${TH().mode==='dark'?'Dark':'Light'}.NoActionBar">\n`+['primary','onPrimary','primaryContainer','onPrimaryContainer','secondary','onSecondary','secondaryContainer','onSecondaryContainer','tertiary','onTertiary','error','onError','background','onBackground','surface','onSurface','surfaceVariant','onSurfaceVariant','outline','outlineVariant'].map(k=>`  <item name="color${k[0].toUpperCase()+k.slice(1)}">@color/aurora_${kebab(k).replace(/-/g,'_')}</item>`).join('\n')+`\n  <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Aurora.Medium</item>\n  <item name="android:fontFamily">sans-serif</item>\n</style>\n\n<!-- Car UI Library RRO (res/values/car_ui_overlays.xml) -->\n<resources>\n  <dimen name="car_ui_touch_target_size">76dp</dimen>\n  <dimen name="car_ui_toolbar_height">96dp</dimen>\n  <dimen name="car_ui_list_item_height">96dp</dimen>\n  <dimen name="car_ui_primary_icon_size">40dp</dimen>\n  <bool name="car_ui_scrollbar_enable">true</bool>\n</resources>`,
+ css:()=>TORDER.map(id=>`/* ${THEMES[id].name} — ${THEMES[id].desc} */\n:root[data-theme="${id}"]{\n  color-scheme: ${THEMES[id].mode};\n`+Object.entries(THEMES[id].roles).map(([k,v])=>`  --aurora-${kebab(k)}: ${v};`).join('\n')+'\n}').join('\n\n'),
+ json:()=>JSON.stringify({$schema:'design-tokens',themes:Object.fromEntries(TORDER.map(i=>[i,{name:THEMES[i].name,group:THEMES[i].group,mode:THEMES[i].mode,color:THEMES[i].roles}])),type:Object.fromEntries(TYPE.map(t=>[t[0],{size:t[2]+'sp',lineHeight:t[3]+'sp',weight:t[4],letterSpacing:t[5]}])),space:Object.fromEntries(SP.map(s=>[s[0],s[1]+'dp'])),shape:Object.fromEntries(SH.map(s=>[s[0],s[1]+'dp'])),touch:{min:'76dp',primary:'96dp'}},null,2),
+ kt:()=>`// Aurora AAOS Compose theme — ${TH().name}\nval Aurora${TH().name.replace(/[^A-Za-z]/g,'')} = ${TH().mode==='dark'?'dark':'light'}ColorScheme(\n`+ROLES28.map(k=>`    ${k} = Color(${hexA(T()[k]).replace('#','0x')}),`).join('\n')+`\n)\n\nval AuroraTypography = Typography(\n`+TYPE.filter(t=>t[0]!=='Display').map(t=>{const n=t[0].replace(/ (\w)/g,(m,c)=>c.toUpperCase());return `    ${n[0].toLowerCase()+n.slice(1)} = TextStyle(fontSize = ${t[2]}.sp, lineHeight = ${t[3]}.sp, fontWeight = FontWeight.W${t[4]}),`}).join('\n')+`\n)\n\n// Minimum touch size\nCompositionLocalProvider(LocalMinimumInteractiveComponentSize provides 76.dp) { content() }`
 };
-const EXN={xml:['Android colors.xml','xml'],theme:['themes.xml + RRO','xml'],css:['CSS variables','css'],json:['JSON tokens','json'],kt:['Compose','kt']};
+const EXN={xml:['Android colors.xml','xml'],theme:['themes.xml + RRO','xml'],css:['CSS (all themes)','css'],json:['JSON (all themes)','json'],kt:['Compose','kt']};
 function renderExport(){$('#exportTabs').innerHTML=Object.entries(EXN).map(([k,v])=>`<button aria-selected="${k===exp}" data-k="${k}">${v[0]}</button>`).join('');
  $$('#exportTabs button').forEach(b=>b.onclick=()=>{exp=b.dataset.k;renderExport()});
  $('#exportOut code').textContent=EX[exp]()}
@@ -144,7 +153,7 @@ const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){$$('a
 secs.forEach(s=>io.observe(s));
 
 /* ---------- init ---------- */
-setTheme(store.get('aurora-theme','night'));
+setTheme(store.get('aurora-theme2','aurora-night'));
 setDriving(store.get('aurora-drv','false')==='true');
 showScreen();
 requestAnimationFrame(fit);
