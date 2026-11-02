@@ -1,0 +1,227 @@
+<section class="sec hero" id="overview" data-title="Overview" data-group="Start">
+ <div class="eyebrow">Android Automotive OS · In-Vehicle Infotainment</div>
+ <h1>Aurora — the AAOS IVI Design System</h1>
+ <p class="lead">A complete, offline-first design system for Android Automotive OS infotainment. Purple-themed, built on Material&nbsp;3 and the Android for Cars design guidance, and shaped around one rule above all others: <b>the driver's eyes belong on the road</b>.</p>
+ <div class="stats">
+  <div class="card-d"><div class="big">76 dp</div><p>minimum touch target</p></div>
+  <div class="card-d"><div class="big">≤ 2 s</div><p>per glance, ≤ 12 s total</p></div>
+  <div class="card-d"><div class="big">AA+</div><p>contrast, day &amp; night</p></div>
+  <div class="card-d"><div class="big">3</div><p>input modes: touch · rotary · voice</p></div>
+ </div>
+ <div class="callout"><b>How to use this page</b>It is one self-contained HTML file with no network dependencies — open it from disk, a USB stick or a car-lab laptop with no connectivity. Use the <b>Night / Day</b> toggle (top bar) to switch the whole system between themes, and the <b>Parked / Driving</b> toggle to see components and screens change under UX restrictions. Press <span class="kbd">/</span> to search the sidebar.</div>
+ <div class="callout warn"><b>Reference values</b>Dimensions are expressed in dp (1&nbsp;dp = 1&nbsp;px at 160&nbsp;dpi, the AAOS reference density) and are recommended defaults. OEMs tune them through Car&nbsp;UI&nbsp;Library resource overlays (RRO) per display size, viewing distance and regional regulation — always validate against your vehicle program's HMI requirements.</div>
+ <h3>What's inside</h3>
+ <div class="grid g4">
+  <div class="card-d"><h5>1 · Principles &amp; safety</h5><p>Driver-distraction rules, UX restrictions, driving states.</p></div>
+  <div class="card-d"><h5>2 · Foundations</h5><p>Color, type, layout, shape, elevation, icons, motion, states.</p></div>
+  <div class="card-d"><h5>3 · Components</h5><p>30+ components at true size with specs, states and rules.</p></div>
+  <div class="card-d"><h5>4 · Automotive</h5><p>System bars, HVAC, media, navigation, alerts, voice.</p></div>
+  <div class="card-d"><h5>5 · Screens</h5><p>Home, Media, Navigation, Phone, Climate, Settings.</p></div>
+  <div class="card-d"><h5>6 · Interaction</h5><p>Touch, rotary, voice, steering wheel, focus model.</p></div>
+  <div class="card-d"><h5>7 · Accessibility</h5><p>Contrast checker, color-blind safety, scaling, timing.</p></div>
+  <div class="card-d"><h5>8 · Developers</h5><p>Themes, Car UI RRO, Compose, token export.</p></div>
+ </div>
+</section>
+
+<section class="sec" id="principles" data-title="Design principles" data-group="Start">
+ <div class="eyebrow">Principles</div><h2>Design principles</h2>
+ <p class="lead">Automotive UI is a secondary task. These principles override aesthetic preference whenever they conflict.</p>
+ <div class="grid g3">
+  <div class="card-d"><h5>Glanceable</h5><p>Key information is readable in under two seconds. One primary action per screen, large type, strong contrast, no dense paragraphs.</p></div>
+  <div class="card-d"><h5>Safe by default</h5><p>Every flow has a <i>driving</i> and a <i>parked</i> variant. Anything needing sustained attention, reading or typing is locked while the vehicle moves.</p></div>
+  <div class="card-d"><h5>Shallow &amp; predictable</h5><p>No more than three levels deep. Back is always in the same place. Same control, same behavior, everywhere.</p></div>
+  <div class="card-d"><h5>Multimodal</h5><p>Every task is reachable by touch, rotary/hardware keys and voice. No gesture-only or hover-only affordances.</p></div>
+  <div class="card-d"><h5>Large &amp; forgiving</h5><p>76&nbsp;dp targets, generous spacing, and no precision gestures — the car is moving and hands are reaching, not resting.</p></div>
+  <div class="card-d"><h5>Android-native</h5><p>Material&nbsp;3 shape, color roles and motion, adapted for distance viewing; consistent with Android Auto and Car&nbsp;UI&nbsp;Library behavior.</p></div>
+ </div>
+
+ <h3>Driver-distraction guardrails</h3>
+ <div class="tw"><table class="tbl"><thead><tr><th>Guideline</th><th>Source</th><th>What it means for design</th></tr></thead><tbody>
+  <tr><td><b>Glance ≤ 2 s</b>, total eyes-off-road ≤ <b>12 s</b> per task</td><td>NHTSA Visual-Manual Driver Distraction Guidelines (2013)</td><td>Tasks must be completable in ≤ 6 glances of ≤ 2 s. Split or lock tasks that can't.</td></tr>
+  <tr><td>Task completable in ≤ <b>15 s</b> static / ≤ 12 s eyes-off</td><td>SAE J2364 (15-second rule) · Alliance of Automobile Manufacturers principles</td><td>Destination entry, long lists and typing are <i>parked-only</i> or voice-only.</td></tr>
+  <tr><td>Legibility, contrast, character size</td><td>ISO 15008 · ISO 15007 (visual demand)</td><td>Min. character height ≈ 16–20 arcmin at viewing distance; calibrate sp to physical display size.</td></tr>
+  <tr><td>Limit content while driving</td><td>AAOS <code>CarUxRestrictions</code></td><td>Max <b>21</b> cumulative list items, <b>120</b> characters per string, content depth <b>3</b>; keyboard &amp; video blocked.</td></tr>
+  <tr><td>Driver-distraction-optimized (DO) activities</td><td>AAOS <code>distractionOptimized</code> manifest flag</td><td>Only activities that meet these guidelines may be shown while driving.</td></tr>
+ </tbody></table></div>
+
+ <h3>Driving states</h3>
+ <p>Use the global <b>Parked / Driving</b> toggle in the top bar. The components below respond live.</p>
+ <div class="stage col a-root pad"><span class="cap">Live · UX restrictions demo (driving state: <span class="drvlabel">Parked</span>)</span>
+  <div class="a-banner warn lock"><ic n="warn"></ic><span>Keyboard and long lists are unavailable while driving. Use voice.</span><button class="a-btn text">Voice</button></div>
+  <div class="a-list restrict" id="drvlist"></div>
+  <div class="park-only" style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+   <div class="a-tf" style="width:420px"><input placeholder=" " aria-label="Search"><label>Search all 24 songs</label></div>
+   <button class="a-btn tonal">Open keyboard</button>
+  </div>
+ </div>
+ <div class="tw"><table class="tbl"><thead><tr><th>Capability</th><th>Parked</th><th>Driving</th></tr></thead><tbody>
+  <tr><td>Text entry / keyboard</td><td><span class="pill ok">Allowed</span></td><td><span class="pill no">Blocked → voice</span></td></tr>
+  <tr><td>Lists</td><td>Unlimited (scroll)</td><td>≤ 6 visible, ≤ 21 total, no scroll-to-letter</td></tr>
+  <tr><td>Video / games / web</td><td><span class="pill ok">Allowed</span></td><td><span class="pill no">Blocked</span></td></tr>
+  <tr><td>Strings</td><td>Any length</td><td>≤ 120 characters, truncate with ellipsis</td></tr>
+  <tr><td>Animation</td><td>Full motion</td><td>Reduced; no looping decorative motion</td></tr>
+  <tr><td>Dialogs</td><td>Up to 3 actions</td><td>Max 2 actions, short body, no auto-dismiss of safety alerts</td></tr>
+  <tr><td>Settings changes</td><td>All</td><td>Only DO-flagged (volume, brightness, climate, media)</td></tr>
+ </tbody></table></div>
+</section>
+
+<section class="sec" id="platform" data-title="Platform & displays" data-group="Start">
+ <div class="eyebrow">Platform</div><h2>AAOS platform &amp; displays</h2>
+ <p>Android Automotive OS runs natively on the head unit — apps are installed on the car, not projected from a phone. System UI, the Car UI Library, <code>CarService</code> and templates are customized by the OEM via RROs.</p>
+ <h3>Anatomy of the home display</h3>
+ <div class="stage a-root pad" style="justify-content:center"><span class="cap">Reference layout 1280 × 720 dp</span>
+  <div class="frame-wrap anat" style="max-width:900px"><div class="frame a-root anat-f" style="--s:1">
+   <div class="a-status" style="outline:2px dashed var(--c-tertiary);outline-offset:-2px"><div class="g tmp">21°</div><div class="sp"></div><span class="tmp">10:42</span><div class="sp"></div><div class="g"><ic n="bt"></ic><ic n="wifi"></ic><ic n="mic"></ic></div></div>
+   <div class="body"><div class="pane map" style="outline:2px dashed var(--c-primary);outline-offset:-2px;display:grid;place-items:center;font-size:28px;color:var(--c-on-surface)">App canvas (activity window)</div></div>
+   <div class="a-dock" style="outline:2px dashed var(--c-secondary);outline-offset:-2px"><a href="#" aria-current="page"><span class="pl"><ic n="home"></ic></span>Home</a><a href="#"><span class="pl"><ic n="nav"></ic></span>Maps</a><a href="#"><span class="pl"><ic n="phone"></ic></span>Phone</a><a href="#"><span class="pl"><ic n="music"></ic></span>Media</a><a href="#"><span class="pl"><ic n="apps"></ic></span>Apps</a></div>
+  </div></div>
+ </div>
+ <div class="grid g3">
+  <div class="card-d"><h5><span class="pill">1</span> Status bar · 76 dp</h5><p>Driver climate, clock, connectivity, voice, user profile. Always visible, never app-controlled.</p></div>
+  <div class="card-d"><h5><span class="pill">2</span> App canvas</h5><p>Remaining area. Apps draw edge-to-edge but keep content within the safe area and clear of system bars.</p></div>
+  <div class="card-d"><h5><span class="pill">3</span> Navigation dock · 112 dp</h5><p>5–6 primary destinations with persistent Home. Position (bottom / side) is OEM-defined; use window insets, never hard-code.</p></div>
+ </div>
+ <h3>Display classes</h3>
+ <div class="tw"><table class="tbl"><thead><tr><th>Class</th><th>Typical px</th><th>Aspect</th><th>Layout strategy</th></tr></thead><tbody>
+  <tr><td>Landscape wide</td><td>1920 × 720 · 2160 × 720</td><td>≈ 8:3</td><td>Two- or three-pane; media + map side by side.</td></tr>
+  <tr><td>Landscape standard</td><td>1280 × 720 · 1920 × 1080</td><td>16:9</td><td>Reference. Two-pane with split controls.</td></tr>
+  <tr><td>Landscape compact</td><td>1280 × 800 · 1024 × 600</td><td>16:10 – 5:3</td><td>Single pane + sheet; keep 76 dp targets.</td></tr>
+  <tr><td>Portrait (center stack)</td><td>1080 × 1920 · 1200 × 1600</td><td>9:16 – 3:4</td><td>Stacked: map top, controls bottom; dock moves to bottom.</td></tr>
+  <tr><td>Passenger / rear</td><td>1920 × 1080</td><td>16:9</td><td>Multi-display zones: video &amp; games allowed (not driver zone).</td></tr>
+ </tbody></table></div>
+ <div class="callout"><b>Always design with insets</b>Use <code>WindowInsets</code>/<code>CarUiUtils</code> for system bars and cutouts. Never assume the dock is at the bottom — OEMs can place it on the leading edge or hide it in specific states.</div>
+</section>
+
+<!-- ============ FOUNDATIONS ============ -->
+<section class="sec" id="color" data-title="Color" data-group="Foundations">
+ <div class="eyebrow">Foundations</div><h2>Color</h2>
+ <p class="lead">A purple Material&nbsp;3 scheme seeded from <code>#6750A4</code>. Night is the default for cabins; Day maintains the same role mapping with inverted tone.</p>
+ <h3>Brand tonal palettes</h3>
+ <div class="tw"><div id="tonalpal" style="padding:10px;min-width:920px"></div></div>
+ <h3>Color roles <span class="pill" id="roleTheme">Night</span></h3>
+ <p>Always reference <i>roles</i>, never raw hex. Roles remap automatically between Day and Night.</p>
+ <h4>Accent &amp; container</h4><div class="roles" id="roles-accent"></div>
+ <h4>Status</h4><div class="roles" id="roles-status"></div>
+ <h4>Surface &amp; outline</h4><div class="roles" id="roles-surface"></div>
+ <h3>Usage</h3>
+ <div class="tw"><table class="tbl"><thead><tr><th>Role</th><th>Use for</th><th>Never use for</th></tr></thead><tbody>
+  <tr><td><code>primary</code></td><td>Primary actions (filled button), active slider, selected switch, key progress</td><td>Large background areas, body text</td></tr>
+  <tr><td><code>primaryContainer</code></td><td>Selected states, hero cards, now-playing, icon chips</td><td>Text on surface</td></tr>
+  <tr><td><code>secondaryContainer</code></td><td>Tonal buttons, selected nav/tab, filter chips</td><td>Status</td></tr>
+  <tr><td><code>tertiary</code></td><td>Focus ring (rotary), accent highlights, current-location marker</td><td>Primary CTAs</td></tr>
+  <tr><td><code>error</code> / container</td><td>Faults, destructive actions, blocking alerts</td><td>Brand emphasis</td></tr>
+  <tr><td><code>success</code> / <code>warning</code></td><td>Charging, connected, low fuel/range, cautions (always with icon + text)</td><td>Sole indicator — never color alone</td></tr>
+  <tr><td><code>surfaceContainer*</code></td><td>Elevation via tone: cards, lists, menus, sheets</td><td>Drop shadows as only separator</td></tr>
+ </tbody></table></div>
+ <h3>Automotive color rules</h3>
+ <ul class="t">
+  <li><b>Night first.</b> Backgrounds ≤ <code>#141218</code> luminance; avoid pure white text blocks (glare) — <code>onSurface</code> is tinted <code>#E6E0E9</code>.</li>
+  <li><b>No pure #000 panels on OLED</b> except <code>surfaceContainerLowest</code> system bars; keep subtle tone shifts for depth.</li>
+  <li><b>Red is reserved</b> for safety-relevant faults and destructive actions; don't use it for decoration. Keep telltale colors consistent with ISO 2575.</li>
+  <li><b>Auto day/night</b> follows ambient light / headlamp state via <code>UiModeManager</code>; transition with a 300&nbsp;ms cross-fade, never a hard flash.</li>
+  <li><b>Contrast:</b> text ≥ 4.5:1, large text &amp; icons ≥ 3:1 (WCAG&nbsp;2.2 AA); aim for ≥ 7:1 on driving-critical text. See the <a href="#a11y">contrast checker</a>.</li>
+ </ul>
+ <h3>State layers</h3>
+ <div class="tw"><table class="tbl"><thead><tr><th>State</th><th>Overlay opacity</th><th>Notes</th></tr></thead><tbody>
+  <tr><td>Hover (mouse / simulator)</td><td>8%</td><td>Rare in vehicle; supported for dev simulators.</td></tr>
+  <tr><td>Focused (rotary / keyboard)</td><td>12% + 6 dp ring</td><td>Ring uses <code>tertiary</code>, offset 4 dp. Must be visible on all surfaces.</td></tr>
+  <tr><td>Pressed</td><td>12%</td><td>Ripple radiates from touch point, ≤ 200 ms.</td></tr>
+  <tr><td>Dragged</td><td>16%</td><td>Sliders &amp; reorderable lists.</td></tr>
+  <tr><td>Disabled</td><td>content 38% · container 12%</td><td>Explain <i>why</i> (e.g. "Unavailable while driving").</td></tr>
+ </tbody></table></div>
+</section>
+
+<section class="sec" id="type" data-title="Typography" data-group="Foundations">
+ <div class="eyebrow">Foundations</div><h2>Typography</h2>
+ <p class="lead">Roboto (system default on AAOS; OEMs may supply a brand face via RRO). Scale is enlarged ~1.5–2× over phone defaults for 60–80&nbsp;cm viewing distance.</p>
+ <div id="typescale" class="a-root"></div>
+ <div class="grid g2">
+  <div class="card-d"><h5>Minimums</h5><p><b>24 sp</b> for anything the driver must read while moving. <b>20 sp</b> only for tertiary, non-critical meta (e.g. timestamps). Never below 20 sp.</p></div>
+  <div class="card-d"><h5>Physical check</h5><p>ISO 15008 targets ≈ 16–20 arcmin character height. At 750&nbsp;mm that is ≈ 3.5–4.4&nbsp;mm — verify on the real panel, since dp ≠ mm across displays.</p></div>
+  <div class="card-d"><h5>Weights</h5><p>Regular (400) for reading, Medium (500) for actions and labels. Avoid Light and Thin — they break up on automotive panels and in sunlight.</p></div>
+  <div class="card-d"><h5>Writing for glance</h5><p>Titles ≤ 25 characters, body ≤ 120 characters, sentence case, one idea per line. Truncate with ellipsis; never shrink text to fit.</p></div>
+ </div>
+ <h3>Specimen</h3>
+ <div class="stage col a-root pad"><span class="cap">Now playing — hierarchy example</span>
+  <div class="t-label-m" style="color:var(--c-primary)">NOW PLAYING</div>
+  <div class="t-headline-m">Midnight Violet Drive</div>
+  <div class="t-body-l" style="color:var(--c-on-surface-variant)">Neon Orchid · Amethyst Roads</div>
+  <div class="t-body-s" style="color:var(--c-on-surface-variant)">FM 98.4 · HD2 · 3:21 remaining</div>
+ </div>
+</section>
+
+<section class="sec" id="layout" data-title="Layout & spacing" data-group="Foundations">
+ <div class="eyebrow">Foundations</div><h2>Layout &amp; spacing</h2>
+ <p>All dimensions snap to an <b>8&nbsp;dp grid</b> (4&nbsp;dp for icon/text alignment). Touch geometry is the hard constraint; visual density follows from it.</p>
+ <h3>Spacing scale</h3><div id="spacescale"></div>
+ <h3>Touch &amp; hit targets</h3>
+ <div class="stage pad a-root"><span class="cap">Visual size vs hit area</span>
+  <div style="text-align:center"><div style="width:76px;height:76px;border:2px dashed var(--c-tertiary);border-radius:12px;display:grid;place-items:center"><div style="width:44px;height:44px;border-radius:50%;background:var(--c-primary)"></div></div><small>76 dp hit area</small></div>
+  <div style="text-align:center"><div style="display:flex;gap:16px"><div class="a-ib tonal"><ic n="home"></ic></div><div class="a-ib tonal"><ic n="search"></ic></div></div><small>≥ 16 dp gap</small></div>
+ </div>
+ <ul class="t"><li>Minimum target <b>76 × 76 dp</b>; primary driving actions <b>96 dp</b>. Visual element may be smaller, hit area may not.</li><li>Minimum <b>16 dp</b> between adjacent targets (8 dp absolute floor for dense toggle groups).</li><li>Place frequent controls in reach zone: toward the driver's side and lower half of the display.</li><li>No tiny close icons, drag handles, edge swipes or multi-finger gestures.</li></ul>
+ <h3>Grid &amp; margins</h3>
+ <div class="tw"><table class="tbl"><thead><tr><th>Window width</th><th>Columns</th><th>Margin</th><th>Gutter</th><th>Pattern</th></tr></thead><tbody>
+  <tr><td>&lt; 1100 dp</td><td>8</td><td>32 dp</td><td>24 dp</td><td>Single pane</td></tr>
+  <tr><td>1100 – 1600 dp</td><td>12</td><td>40 dp</td><td>24 dp</td><td>Two-pane (list + detail / map + card)</td></tr>
+  <tr><td>&gt; 1600 dp</td><td>12</td><td>48 dp</td><td>32 dp</td><td>Two- or three-pane; cap text lines at 60 ch</td></tr>
+ </tbody></table></div>
+ <div class="spec"><span><b>Safe area</b>respect system-bar insets + 16 dp</span><span><b>Content max</b>no full-width paragraphs</span><span><b>Z-order</b>app &lt; HUN &lt; voice &lt; safety alert</span></div>
+ <h3>Layout archetypes</h3>
+ <div class="grid g3">
+  <div class="card-d"><h5>Single list</h5><p>Toolbar + vertically scrolling list. Settings, contacts, apps.</p></div>
+  <div class="card-d"><h5>Master / detail</h5><p>Left 40% list, right 60% detail. Messaging, media browse.</p></div>
+  <div class="card-d"><h5>Map + panel</h5><p>Full-bleed map, 480 dp card on driver side. Navigation.</p></div>
+ </div>
+</section>
+
+<section class="sec" id="shape" data-title="Shape & elevation" data-group="Foundations">
+ <div class="eyebrow">Foundations</div><h2>Shape &amp; elevation</h2>
+ <h3>Corner radius</h3><div id="shapescale" class="stage a-root"></div>
+ <h3>Elevation (tonal)</h3>
+ <p>In dark environments, shadows are barely visible. Elevation is expressed primarily through <b>surface tone</b>, with a soft shadow only for floating layers.</p>
+ <div id="elev" class="stage a-root" style="background:var(--c-surface-container-lowest)"></div>
+</section>
+
+<section class="sec" id="icons" data-title="Iconography" data-group="Foundations">
+ <div class="eyebrow">Foundations</div><h2>Iconography</h2>
+ <p>Material Symbols (Rounded, weight 400–500, fill for selected). Inline SVG here so everything works offline. Click an icon to copy its name.</p>
+ <div class="icons" id="iconGrid"></div>
+ <div class="grid g3" style="margin-top:16px">
+  <div class="card-d"><h5>Sizes</h5><p>32&nbsp;dp inline/status, <b>40&nbsp;dp default</b>, 48&nbsp;dp dock &amp; FAB, 96&nbsp;dp+ hero. Optical padding included; hit area is always ≥ 76.</p></div>
+  <div class="card-d"><h5>Meaning</h5><p>Pair every critical icon with a text label. Don't reuse standard icons (home, phone, hazard) for other meanings; use ISO 2575 telltale symbols for vehicle functions.</p></div>
+  <div class="card-d"><h5>Selected state</h5><p>Outlined → filled, plus pill indicator. Never rely on color shift only.</p></div>
+ </div>
+</section>
+
+<section class="sec" id="motion" data-title="Motion" data-group="Foundations">
+ <div class="eyebrow">Foundations</div><h2>Motion</h2>
+ <p>Motion explains spatial relationships; it must never compete with driving. Keep it short, calm and interruptible.</p>
+ <div class="tw"><table class="tbl"><thead><tr><th>Token</th><th>Duration</th><th>Easing</th><th>Use</th></tr></thead><tbody>
+  <tr><td><code>motion.short</code></td><td>100–150 ms</td><td>standard <code>cubic-bezier(.2,0,0,1)</code></td><td>Press feedback, switch, chip</td></tr>
+  <tr><td><code>motion.medium</code></td><td>250–300 ms</td><td>emphasized-decelerate <code>(.05,.7,.1,1)</code></td><td>Menu, dialog, list item, day/night fade</td></tr>
+  <tr><td><code>motion.long</code></td><td>400–500 ms</td><td>emphasized <code>(.3,0,0,1)</code></td><td>Screen transitions, shared element</td></tr>
+  <tr><td><code>motion.exit</code></td><td>≈ 75% of enter</td><td>emphasized-accelerate <code>(.3,0,.8,.15)</code></td><td>Dismiss, collapse</td></tr>
+ </tbody></table></div>
+ <div class="stage a-root pad"><span class="cap">Demo — click to replay</span>
+  <button class="a-btn tonal" id="motionBtn">Replay</button>
+  <div style="width:360px;height:80px;background:var(--c-surface-container);border-radius:40px;position:relative;overflow:hidden"><div id="motionDot" style="position:absolute;left:8px;top:8px;width:64px;height:64px;border-radius:50%;background:var(--c-primary)"></div></div>
+ </div>
+ <ul class="t"><li>Honor <code>prefers-reduced-motion</code> / <code>Settings.Global.ANIMATOR_DURATION_SCALE</code> and reduce further while driving.</li><li>No parallax, auto-playing carousels, blinking, or flashing &gt; 3 Hz (photosensitivity).</li><li>Never animate safety alerts in ways that delay their legibility.</li></ul>
+</section>
+
+<section class="sec" id="states" data-title="Focus & rotary states" data-group="Foundations">
+ <div class="eyebrow">Foundations</div><h2>Focus &amp; interaction states</h2>
+ <p>Rotary controllers and steering-wheel keys depend on a clearly visible focus indicator. Touch users must also see focus when the input mode changes.</p>
+ <div class="stage a-root pad"><span class="cap">All states</span>
+  <div style="text-align:center"><button class="a-btn">Enabled</button><br><small>enabled</small></div>
+  <div style="text-align:center"><button class="a-btn pressed">Pressed</button><br><small>pressed</small></div>
+  <div style="text-align:center"><button class="a-btn focused">Focused</button><br><small>focused (rotary)</small></div>
+  <div style="text-align:center"><button class="a-btn" disabled>Disabled</button><br><small>disabled</small></div>
+ </div>
+ <div class="grid g3">
+  <div class="card-d"><h5>Focus ring</h5><p>6&nbsp;dp, <code>tertiary</code>, 4&nbsp;dp offset, rounded to the component shape. Contrast ≥ 3:1 vs. adjacent surfaces.</p></div>
+  <div class="card-d"><h5>Focus order</h5><p>Reading order (leading→trailing, top→bottom) with <code>nudge</code> shortcuts to jump between toolbar, content and dock.</p></div>
+  <div class="card-d"><h5>Default focus</h5><p>Restore last focus on return. On first entry focus the primary action or first list item, never a destructive button.</p></div>
+ </div>
+</section>

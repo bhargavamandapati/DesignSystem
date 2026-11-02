@@ -1,0 +1,211 @@
+<section class="sec" id="fonts" data-title="Fonts" data-group="Foundations">
+ <div class="eyebrow">Foundations</div><h2>Fonts</h2>
+ <p>Roboto (400, 500) and Roboto Mono (400, 500) are <b>embedded in this file</b> as WOFF2, so typography renders identically offline. Roboto is the AAOS system default; OEMs can swap in a brand family through <code>config_fontFamily</code> RRO.</p>
+ <div class="grid g2">
+  <div class="card-d a-root"><div style="font-size:64px;line-height:1.1">Aa</div><h5>Roboto — UI &amp; body</h5><p>Weights 400 Regular · 500 Medium. Open glyph shapes and tall x-height keep legibility at distance.</p><div style="font-size:26px;margin-top:10px">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 °C km/h ½ % &amp; @</div></div>
+  <div class="card-d a-root"><div style="font-size:64px;line-height:1.1;font-family:'Roboto Mono',monospace">Aa</div><h5>Roboto Mono — data &amp; code</h5><p>Diagnostics, tokens, VIN, tabular readouts only. Not for general UI.</p><div style="font-size:24px;margin-top:10px;font-family:'Roboto Mono',monospace">0123456789 12:45:09<br>WVWZZZ1KZAW123456<br>#6750A4 · 76dp · 28sp</div></div>
+ </div>
+ <h3>Font stack</h3>
+ <div class="codewrap"><button class="cp" data-copy="#stack">Copy</button><pre id="stack"><code>font-family: Roboto, "Google Sans", "Segoe UI", system-ui, sans-serif;   /* UI   */
+font-family: "Roboto Mono", ui-monospace, Menlo, Consolas, monospace;     /* data */</code></pre></div>
+ <div class="tw"><table class="tbl"><thead><tr><th>Concern</th><th>Guidance</th></tr></thead><tbody>
+  <tr><td>Numerals</td><td>Use tabular figures for clocks, speed, range, temperature so values don't jitter (<code>font-variant-numeric: tabular-nums</code> / <code>fontFeatureSettings="tnum"</code>).</td></tr>
+  <tr><td>Localization</td><td>Fallback to Noto for CJK, Arabic, Hebrew, Devanagari, Thai. Allow 40% text expansion (German) and mirror layout for RTL.</td></tr>
+  <tr><td>Scaling</td><td>Use <b>sp</b>. Support system font scale 1.0–1.3; layouts must reflow, not clip. Safety text is never scaled below 24 sp.</td></tr>
+  <tr><td>Rendering</td><td>Disable synthetic bold/italic; avoid italics and all-caps beyond short labels (≤ 12 characters).</td></tr>
+  <tr><td>Licensing</td><td>Roboto and Roboto Mono: Apache 2.0.</td></tr>
+ </tbody></table></div>
+</section>
+
+<!-- ============ COMPONENTS ============ -->
+<section class="sec" id="buttons" data-title="Buttons" data-group="Components">
+ <div class="eyebrow">Components</div><h2>Buttons</h2>
+ <p>Five emphasis levels. One <b>filled</b> button per screen region; the rest tonal, outlined or text.</p>
+ <div class="stage a-root pad"><span class="cap">Variants</span>
+  <button class="a-btn">Navigate</button>
+  <button class="a-btn has-i"><ic n="add"></ic>Add stop</button>
+  <button class="a-btn tonal">Call back</button>
+  <button class="a-btn elev">Elevated</button>
+  <button class="a-btn outlined">Dismiss</button>
+  <button class="a-btn text">Learn more</button>
+  <button class="a-btn danger">End call</button>
+  <button class="a-btn" disabled>Disabled</button>
+ </div>
+ <div class="spec" data-spec="Height|76dp;Min width|120dp;Padding|40dp (32 w/ icon);Radius|full (38dp);Label|Label Large 28sp/500;Icon|40dp, 12dp gap;Disabled|12% container · 38% content"></div>
+ <div class="dd"><div class="do"><b>Do</b>Use verbs: "Navigate", "Call", "Play". Max 2 buttons side by side while driving.</div><div class="dont"><b>Don't</b>Stack 3+ equal-weight filled buttons or use "OK"/"Yes" without context.</div></div>
+ <h3>Icon buttons &amp; FAB</h3>
+ <div class="stage a-root pad"><span class="cap">Icon button · filled · tonal · outlined · selected · FAB · extended FAB</span>
+  <button class="a-ib" aria-label="Menu"><ic n="menu"></ic></button>
+  <button class="a-ib filled" aria-label="Voice"><ic n="mic"></ic></button>
+  <button class="a-ib tonal" aria-label="Volume"><ic n="vol"></ic></button>
+  <button class="a-ib outlined" aria-label="Search"><ic n="search"></ic></button>
+  <button class="a-ib sel" aria-label="Favourite" aria-pressed="true"><ic n="fav"></ic></button>
+  <button class="a-fab" aria-label="Navigate"><ic n="nav"></ic></button>
+  <button class="a-fab"><ic n="nav"></ic>Start route</button>
+ </div>
+ <div class="spec" data-spec="Icon button|76×76dp, glyph 40dp;FAB|96×96dp, radius 28dp;Extended FAB|96dp high;One FAB per screen|primary driving action only"></div>
+</section>
+
+<section class="sec" id="selection" data-title="Switches, checks & sliders" data-group="Components">
+ <div class="eyebrow">Components</div><h2>Selection controls &amp; sliders</h2>
+ <div class="stage a-root col pad" style="gap:8px"><span class="cap">Interactive</span>
+  <div class="a-list">
+   <div class="a-li"><div class="tx"><div class="p">Bluetooth</div><div class="s">Connected to Pixel 9</div></div><button class="a-sw" role="switch" aria-checked="true" aria-label="Bluetooth"><i><ic n="check"></ic></i></button></div>
+   <div class="a-li"><div class="tx"><div class="p">Wi-Fi hotspot</div></div><button class="a-sw" role="switch" aria-checked="false" aria-label="Hotspot"><i><ic n="check"></ic></i></button></div>
+   <div class="a-li"><div class="tx"><div class="p">Auto day/night</div></div><button class="a-check" role="checkbox" aria-checked="true" aria-label="Auto day night"><ic n="check"></ic></button></div>
+   <div class="a-li"><div class="tx"><div class="p">Avoid tolls</div></div><button class="a-check" role="checkbox" aria-checked="false" aria-label="Avoid tolls"><ic n="check"></ic></button></div>
+   <div class="a-li" role="radiogroup"><div class="tx"><div class="p">Eco</div></div><button class="a-radio" role="radio" data-g="drive" aria-checked="true" aria-label="Eco"></button></div>
+   <div class="a-li"><div class="tx"><div class="p">Sport</div></div><button class="a-radio" role="radio" data-g="drive" aria-checked="false" aria-label="Sport"></button></div>
+  </div>
+  <div class="a-slider"><ic n="vol"></ic><input type="range" min="0" max="40" value="18" aria-label="Media volume"><output>18</output></div>
+  <div class="a-slider"><ic n="bright"></ic><input type="range" min="0" max="100" value="70" aria-label="Brightness"><output>70</output></div>
+ </div>
+ <div class="spec" data-spec="Switch|track 104×64dp, thumb 32→48dp;Check / Radio|44dp glyph, 76dp row hit;Slider|track 16dp, handle 12×64dp;List row|min 96dp"></div>
+ <ul class="t"><li>Switch and checkbox apply <b>immediately</b>; use buttons for "Apply" flows. Always show the check/icon on the "on" thumb — not color alone.</li><li>Sliders need ±/rotary stepping and show a numeric value; avoid fine-grained drag while driving (use step buttons for volume).</li></ul>
+</section>
+
+<section class="sec" id="chips" data-title="Chips & segmented" data-group="Components">
+ <div class="eyebrow">Components</div><h2>Chips &amp; segmented buttons</h2>
+ <div class="stage a-root pad"><span class="cap">Filter chips · segmented</span>
+  <button class="a-chip" aria-pressed="true"><ic n="check"></ic>Fastest</button>
+  <button class="a-chip" aria-pressed="false">Avoid tolls</button>
+  <button class="a-chip" aria-pressed="false">Avoid highways</button>
+  <div class="a-seg" role="group"><button aria-pressed="true">Auto</button><button aria-pressed="false">Cool</button><button aria-pressed="false">Heat</button></div>
+ </div>
+ <div class="spec" data-spec="Chip|64dp visual, 76dp hit, radius 16dp, label 24sp;Segmented|76dp high, 2–4 options;Max chips|6 visible; scroll horizontally only when parked"></div>
+</section>
+
+<section class="sec" id="fields" data-title="Text fields & keyboard" data-group="Components">
+ <div class="eyebrow">Components</div><h2>Text fields, search &amp; keyboard</h2>
+ <p>Typing is <b>parked-only</b>. While driving, replace the field with a voice button and explain why.</p>
+ <div class="stage a-root pad" style="align-items:flex-start"><span class="cap">Text field states</span>
+  <div class="a-tf"><input placeholder=" " id="tf1"><label for="tf1">Destination</label><div class="hint">Street, place or contact</div></div>
+  <div class="a-tf"><input placeholder=" " value="Alex M" id="tf2"><label for="tf2">Contact</label></div>
+  <div class="a-tf err"><input placeholder=" " value="123" id="tf3"><label for="tf3">Postcode</label><div class="hint e">Enter a 5-digit postcode</div></div>
+  <div class="a-search"><ic n="search"></ic><span>Search music, places, contacts</span><ic n="mic"></ic></div>
+ </div>
+ <div class="stage a-root col pad"><span class="cap">On-screen keyboard (parked)</span>
+  <div class="a-kb"><div><button>q</button><button>w</button><button>e</button><button>r</button><button>t</button><button>y</button><button>u</button><button>i</button><button>o</button><button>p</button></div><div><button>a</button><button>s</button><button>d</button><button>f</button><button>g</button><button>h</button><button>j</button><button>k</button><button>l</button></div><div><button class="w">⇧</button><button>z</button><button>x</button><button>c</button><button>v</button><button>b</button><button>n</button><button>m</button><button class="w">⌫</button></div><div><button class="w">?123</button><button class="w"><ic n="mic"></ic></button><button class="sp">space</button><button class="w go">Go</button></div></div>
+ </div>
+ <div class="spec" data-spec="Field|88dp high, radius 12dp, 2dp outline;Input|28sp;Label|28sp → 20sp floating;Key|76dp min, 8dp gap"></div>
+</section>
+
+<section class="sec" id="lists" data-title="Lists & cards" data-group="Components">
+ <div class="eyebrow">Components</div><h2>Lists &amp; cards</h2>
+ <div class="grid g2">
+  <div class="a-root"><div class="a-list">
+   <div class="a-li hdr">Recent</div>
+   <div class="a-li click" tabindex="0"><div class="lead-i"><ic n="phone"></ic></div><div class="tx"><div class="p">Alex Morgan</div><div class="s">Mobile · 9:41 AM</div></div><div class="tr"><ic n="chev"></ic></div></div>
+   <div class="a-li click sel" tabindex="0"><div class="lead-i"><ic n="nav"></ic></div><div class="tx"><div class="p">Home</div><div class="s">18 min · 12.4 km</div></div><div class="tr"><ic n="check"></ic></div></div>
+   <div class="a-li click two" tabindex="0"><div class="lead-i"><ic n="music"></ic></div><div class="tx"><div class="p">Daily Mix 3</div><div class="s">Playlist · 42 tracks</div></div><div class="tr">3:21</div></div>
+  </div><p style="font-size:13px;color:var(--c-on-surface-variant)">One-, two-line rows, header, selected and trailing content.</p></div>
+  <div class="a-root" style="display:grid;gap:16px">
+   <div class="a-card pri"><h6>Charging complete</h6><p>Battery 80% · 312 km range</p></div>
+   <div class="a-card click filled" tabindex="0"><h6>Next: Fuel stop</h6><p>In 6.2 km · Tap for details</p></div>
+   <div class="a-card outlined"><h6>Tire pressure</h6><p>All tires normal · 2.4 bar</p></div>
+  </div>
+ </div>
+ <div class="spec" data-spec="Row 1-line|96dp;2-line|120dp;3-line|144dp;Row padding|32dp H / 12dp V;Leading avatar|64dp;Card|radius 24dp, padding 28×32dp;Dividers|1dp outlineVariant"></div>
+ <div class="callout warn"><b>Driving limits</b>Lists show ≤ 6 rows without scrolling and ≤ 21 total. Use paging buttons (↑ ↓ 96&nbsp;dp), never fast-scroll or alphabet jump while moving.</div>
+</section>
+
+<section class="sec" id="tabs" data-title="Tabs, toolbar & nav" data-group="Components">
+ <div class="eyebrow">Components</div><h2>Toolbar, tabs &amp; navigation</h2>
+ <h3>Car UI toolbar</h3>
+ <div class="stage a-root col pad" style="padding:20px"><span class="cap">Toolbar with title, tabs, actions</span>
+  <div class="a-bar"><button class="a-ib" aria-label="Back"><ic n="back"></ic></button><div class="ttl">Settings</div><button class="a-ib" aria-label="Search"><ic n="search"></ic></button><button class="a-ib" aria-label="More"><ic n="more"></ic></button></div>
+  <div class="a-bar"><button class="a-ib" aria-label="Back"><ic n="back"></ic></button><div class="tabs a-tabs" style="border:0;width:auto;flex:none"><button class="a-tab" aria-selected="true" style="flex:none">Songs</button><button class="a-tab" aria-selected="false" style="flex:none">Albums</button><button class="a-tab" aria-selected="false" style="flex:none">Artists</button></div><div style="flex:1"></div><button class="a-ib filled"><ic n="mic"></ic></button></div>
+ </div>
+ <div class="spec" data-spec="Toolbar|96dp high;Title|Headline Medium 36sp, one line;Actions|max 3 + overflow;Back|always leading, 76dp;Tabs|max 4"></div>
+ <h3>Tabs &amp; side navigation</h3>
+ <div class="stage a-root pad" style="align-items:flex-start"><span class="cap">Tabs · navigation rail</span>
+  <div style="flex:1;min-width:420px"><div class="a-tabs"><button class="a-tab" aria-selected="true"><ic n="music"></ic>Library</button><button class="a-tab" aria-selected="false"><ic n="fav"></ic>Favourites</button><button class="a-tab" aria-selected="false"><ic n="search"></ic>Browse</button></div></div>
+  <nav class="a-nav" aria-label="Settings"><a href="#" aria-current="page"><ic n="bt"></ic>Connected devices</a><a href="#"><ic n="vol"></ic>Sound</a><a href="#"><ic n="bright"></ic>Display</a><a href="#"><ic n="car"></ic>Vehicle</a></nav>
+ </div>
+ <div class="spec" data-spec="Tab|88dp high, 6dp indicator;Tabs|2–4, never scrollable;Nav item|88dp, radius full;Selected|pill + weight + color"></div>
+</section>
+
+<section class="sec" id="dialogs" data-title="Dialogs, menus & snackbars" data-group="Components">
+ <div class="eyebrow">Components</div><h2>Dialogs, menus, snackbars</h2>
+ <div class="stage a-root pad" style="align-items:flex-start"><span class="cap">Dialog · menu · snackbar</span>
+  <div class="a-scrim" style="flex:1;min-width:560px"><div class="a-dialog"><div class="ic"><ic n="phone"></ic></div><h6>Forget Pixel 9?</h6><p>You'll need to pair again to use Bluetooth calling and media.</p><div class="act"><button class="a-btn text">Cancel</button><button class="a-btn">Forget</button></div></div></div>
+  <ul class="a-menu" role="menu"><li role="menuitem"><ic n="nav"></ic>Share ETA</li><li role="menuitem" class="sel"><ic n="check"></ic>Avoid tolls</li><li role="menuitem"><ic n="settings"></ic>Route options</li><hr><li role="menuitem" style="color:var(--c-error)"><ic n="close"></ic>Cancel route</li></ul>
+  <div style="display:grid;gap:16px;width:640px;max-width:100%"><div class="a-snack"><span>Route updated · 4 min faster</span><button class="a-btn text">Undo</button></div><div class="a-snack"><span>Message sent</span></div><button class="a-btn tonal" id="snackBtn">Show snackbar</button></div>
+ </div>
+ <div class="spec" data-spec="Dialog|width 640dp, radius 28dp, padding 40dp;Actions|≤ 2 driving, ≤ 3 parked;Menu|row 76dp, width 320–560dp;Snackbar|min 80dp, 5–8 s, no action while driving"></div>
+ <div class="dd"><div class="do"><b>Do</b>Title is a question or statement; body ≤ 120 characters; destructive action named explicitly ("Forget").</div><div class="dont"><b>Don't</b>Stack dialogs, show non-critical dialogs over navigation, or auto-dismiss ones that need a decision.</div></div>
+</section>
+
+<section class="sec" id="progress" data-title="Progress & badges" data-group="Components">
+ <div class="eyebrow">Components</div><h2>Progress, badges &amp; banners</h2>
+ <div class="stage a-root pad" style="gap:28px"><span class="cap">Progress · badge · banners</span>
+  <div style="width:320px"><div class="a-lin"><i style="width:62%"></i></div></div>
+  <div style="width:320px"><div class="a-lin ind"><i></i></div></div>
+  <div class="a-cir" role="progressbar" aria-label="Loading"></div>
+  <span style="position:relative;display:inline-block"><button class="a-ib tonal"><ic n="bell"></ic></button><span class="a-badge" style="position:absolute;right:-4px;top:-4px">3</span></span>
+  <span style="position:relative;display:inline-block"><button class="a-ib tonal"><ic n="bell"></ic></button><span class="a-badge dot" style="position:absolute;right:10px;top:10px"></span></span>
+ </div>
+ <div class="stage a-root col"><div class="a-banner err"><ic n="warn"></ic><span>Low tire pressure — front left</span><button class="a-btn text" style="color:inherit">Details</button></div><div class="a-banner warn"><ic n="warn"></ic><span>Range 42 km — find charger?</span><button class="a-btn text" style="color:inherit">Find</button></div><div class="a-banner ok"><ic n="check"></ic><span>Phone connected</span></div><div class="a-banner info"><ic n="info"></ic><span>Software update available</span></div></div>
+ <div class="spec" data-spec="Linear|8dp;Circular|72dp, 8dp stroke;Badge|32dp number / 16dp dot;Banner|radius 20dp, icon + text + ≤ 1 action"></div>
+</section>
+
+<!-- ============ AUTOMOTIVE ============ -->
+<section class="sec" id="sysbars" data-title="Status bar & dock" data-group="Automotive">
+ <div class="eyebrow">Automotive components</div><h2>System status bar &amp; navigation dock</h2>
+ <div class="stage a-root col pad" style="padding:20px;gap:0"><span class="cap">System UI</span>
+  <div class="a-status"><div class="g tmp"><ic n="seat"></ic>21°</div><div class="sp"></div><span class="tmp">10:42</span><div class="sp"></div><div class="g"><ic n="bt"></ic><ic n="wifi"></ic><ic n="signal"></ic><ic n="mic"></ic><span style="width:36px;height:36px;border-radius:50%;background:var(--c-primary-container);color:var(--c-on-primary-container);display:grid;place-items:center;font-size:20px">AM</span></div></div>
+  <div style="height:80px"></div>
+  <div class="a-dock"><a href="#" aria-current="page"><span class="pl"><ic n="home"></ic></span>Home</a><a href="#"><span class="pl"><ic n="nav"></ic></span>Maps</a><a href="#"><span class="pl"><ic n="phone"></ic></span>Phone</a><a href="#"><span class="pl"><ic n="music"></ic></span>Media</a><a href="#"><span class="pl"><ic n="car"></ic></span>Vehicle</a><a href="#"><span class="pl"><ic n="apps"></ic></span>Apps</a></div>
+ </div>
+ <div class="spec" data-spec="Status bar|76dp;Dock|112dp;Dock item|150×96dp, indicator 112×56dp;Destinations|5–6, always Home;Label|Label Small 20sp always visible"></div>
+</section>
+
+<section class="sec" id="hvac" data-title="Climate (HVAC)" data-group="Automotive">
+ <div class="eyebrow">Automotive components</div><h2>Climate control (HVAC)</h2>
+ <p>HVAC must be reachable in one touch from every screen — usually a persistent bar or the status area — with large steppers and no hidden menus.</p>
+ <div class="stage a-root col pad"><span class="cap">Interactive</span>
+  <div class="a-hvac" id="hvacCtl">
+   <div class="a-temp"><button class="a-ib tonal" data-t="-" aria-label="Cooler"><ic n="minus"></ic></button><div class="v"><span id="tv">21.0</span><small>°C</small></div><button class="a-ib tonal" data-t="+" aria-label="Warmer"><ic n="add"></ic></button></div>
+   <div class="a-fan"><button class="a-ib" data-f="-" aria-label="Fan down"><ic n="minus"></ic></button><ic n="fan"></ic><span id="fanbars" style="display:flex;gap:6px;align-items:flex-end;height:44px"></span><button class="a-ib" data-f="+" aria-label="Fan up"><ic n="add"></ic></button></div>
+   <div style="display:flex;gap:12px"><button class="a-tgl" aria-pressed="true"><ic n="snow"></ic>A/C</button><button class="a-tgl" aria-pressed="false"><ic n="seat"></ic>Seat</button><button class="a-tgl" aria-pressed="false"><ic n="defrost"></ic>Defrost</button></div>
+  </div>
+ </div>
+ <div class="spec" data-spec="Stepper|76dp buttons, 0.5° steps;Value|Display 56sp tabular;Toggle tile|112×112dp, radius 28dp;Feedback|haptic + audible tick (OEM)"></div>
+</section>
+
+<section class="sec" id="mediactl" data-title="Media player" data-group="Automotive">
+ <div class="eyebrow">Automotive components</div><h2>Media player</h2>
+ <div class="stage a-root pad"><span class="cap">Now playing</span>
+  <div class="a-media"><div class="art"><ic n="music"></ic></div><div class="info"><div class="t-label-m" style="color:var(--c-primary)">AMETHYST FM</div><div class="t-headline-m">Midnight Violet Drive</div><div class="t-body-l" style="color:var(--c-on-surface-variant)">Neon Orchid</div>
+   <div class="a-prog"><span>1:12</span><div class="a-lin"><i style="width:34%"></i></div><span>3:21</span></div>
+   <div class="ctl"><button class="a-ib" aria-label="Shuffle"><ic n="shuffle"></ic></button><button class="a-ib" aria-label="Previous"><ic n="prev"></ic></button><button class="a-ib filled big" id="playBtn" aria-label="Play/Pause" data-playing="true"><ic n="pause"></ic></button><button class="a-ib" aria-label="Next"><ic n="next"></ic></button><button class="a-ib" aria-label="Favourite"><ic n="fav"></ic></button></div></div></div>
+ </div>
+ <div class="spec" data-spec="Artwork|220dp (96dp compact), radius 24dp;Play/Pause|96dp filled;Transport|76dp;Track title|Headline Medium, 1 line;Progress|10dp, non-seekable by drag while driving"></div>
+</section>
+
+<section class="sec" id="alerts" data-title="Notifications & alerts" data-group="Automotive">
+ <div class="eyebrow">Automotive components</div><h2>Notifications, alerts &amp; voice</h2>
+ <h3>Heads-up notification (HUN)</h3>
+ <div class="stage a-root pad"><span class="cap">HUN with reply actions</span>
+  <div class="a-hun"><div class="lead-i"><ic n="bell"></ic></div><div class="ti">Alex Morgan</div><div class="bo">Running 10 minutes late — start without me</div><div class="act"><button class="a-btn tonal">Play</button><button class="a-btn outlined">Reply</button></div></div>
+ </div>
+ <ul class="t"><li>Shown ≤ 8 s, max 2 actions, <b>read aloud</b> via TTS (Play) instead of requiring reading. Never covers the active turn instruction.</li><li>Priority: safety alert &gt; navigation instruction &gt; phone call &gt; message &gt; media/info. Lower priority is queued, not stacked.</li><li>Notification center shows ≤ 6 items while driving; messages can't be typed in while driving.</li></ul>
+ <h3>Quick controls panel</h3>
+ <div class="stage a-root pad"><span class="cap">Pull-down / always-reachable</span>
+  <div class="a-qc"><button class="a-tgl" aria-pressed="true"><ic n="wifi"></ic>Wi-Fi</button><button class="a-tgl" aria-pressed="true"><ic n="bt"></ic>Bluetooth</button><button class="a-tgl" aria-pressed="false"><ic n="moon"></ic>Night</button><button class="a-tgl" aria-pressed="false"><ic n="bright"></ic>Dim</button></div>
+ </div>
+ <h3>Voice assistant overlay</h3>
+ <div class="stage a-root pad"><span class="cap">Listening</span>
+  <div class="a-voice"><div class="orb"><ic n="mic"></ic></div><div class="t-headline-s">"Navigate to the nearest charger"</div><div class="t-body-m" style="color:var(--c-on-surface-variant);margin-top:6px">Listening… Try "Call Alex" or "Play jazz"</div></div>
+ </div>
+ <div class="spec" data-spec="HUN|760dp, radius 28dp, 8 s;Alert banner|full width, icon + text;Voice orb|120dp;Voice overlay|non-modal, keeps map visible"></div>
+</section>
+
+<section class="sec" id="rotary" data-title="Rotary & focus demo" data-group="Automotive">
+ <div class="eyebrow">Automotive components</div><h2>Rotary controller &amp; focus model</h2>
+ <p>Click the grid, then use <span class="kbd">←</span><span class="kbd">→</span><span class="kbd">↑</span><span class="kbd">↓</span> (rotary nudge), <span class="kbd">Enter</span> (center press) and <span class="kbd">Tab</span> to simulate a rotary controller.</p>
+ <div class="stage a-root col pad"><span class="cap">Focus simulator</span>
+  <div class="rot-grid" id="rotgrid"></div>
+  <div class="t-body-m" style="color:var(--c-on-surface-variant)" id="rotout">Focus: —</div>
+ </div>
+</section>
