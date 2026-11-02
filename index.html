@@ -24,7 +24,7 @@ code,pre,.mono{font-family:"Roboto Mono",ui-monospace,SFMono-Regular,Menlo,Conso
 code{font-size:.88em;background:var(--c-surface-container-high);padding:.1em .4em;border-radius:6px}
 pre{background:var(--c-surface-container-lowest);border:1px solid var(--c-outline-variant);border-radius:12px;padding:16px;overflow:auto;font-size:13px;line-height:1.55;margin:0}
 pre code{background:none;padding:0}
-svg.i{width:1em;height:1em;fill:currentColor;flex:none;display:inline-block;vertical-align:middle}
+svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;display:inline-block;vertical-align:middle}
 :focus-visible{outline:3px solid var(--c-tertiary);outline-offset:3px;border-radius:6px}
 .skip{position:absolute;left:-999px;top:8px;background:var(--c-primary);color:var(--c-on-primary);padding:8px 14px;border-radius:8px;z-index:100}
 .skip:focus{left:8px}
@@ -401,6 +401,148 @@ footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--c-outline-var
 }
 @media print{.top,nav.side{display:none}main{margin:0;padding:0}}
 
+/* ===== 10" 1920x1080 @1.5x => 1280x720dp system layout: top status, right app rail, bottom HVAC ===== */
+.a-status{height:56px;padding:0 24px;font-size:24px}
+.a-status svg.i{font-size:32px}
+.frame .mid{flex:1;display:flex;min-height:0}
+.frame .app{flex:1;min-width:0;display:flex;position:relative;overflow:hidden}
+.frame .app>.pane,.frame .app>.map{flex:1}
+.a-rail{width:120px;flex:none;background:var(--c-surface-container-lowest);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.a-rail a{position:relative;width:112px;height:88px;border-radius:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:var(--c-on-surface-variant);text-decoration:none;font-size:20px;line-height:24px;font-weight:500}
+.a-rail a::after{content:"";position:absolute;inset:0;border-radius:inherit;background:currentColor;opacity:0}
+.a-rail a:hover::after{opacity:.08}.a-rail a:active::after{opacity:.12}
+.a-rail a:focus-visible{outline:6px solid var(--c-tertiary);outline-offset:-6px}
+.a-rail a .pl{width:88px;height:44px;border-radius:22px;display:grid;place-items:center}
+.a-rail a .pl svg.i{font-size:36px}
+.a-rail a[aria-current=page]{color:var(--c-on-surface)}
+.a-rail a[aria-current=page] .pl{background:var(--c-secondary-container);color:var(--c-on-secondary-container)}
+.a-hvbar{height:96px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 24px;background:var(--c-surface-container-lowest);color:var(--c-on-surface)}
+.a-hvbar .grp{display:flex;align-items:center;gap:4px}
+.a-hvbar .tv{font-size:36px;line-height:44px;font-weight:500;min-width:104px;text-align:center;font-variant-numeric:tabular-nums}
+.a-hvbar .tv small{font-size:20px;color:var(--c-on-surface-variant);font-weight:400}
+.a-hvbar .fv{display:flex;align-items:center;gap:6px;min-width:84px;justify-content:center;font-size:28px;font-weight:500}
+.a-hvbar .fv svg.i{font-size:36px;color:var(--c-on-surface-variant)}
+.a-ib[aria-pressed=true]{background:var(--c-primary-container);color:var(--c-on-primary-container)}
+.a-ib.sm{width:64px;height:64px}
+.frame.fs .a-status,.frame.fs .a-rail,.frame.fs .a-hvbar{display:none}
+.fs-exit{position:absolute;right:24px;top:24px;z-index:6;display:none}
+.frame.fs .fs-exit{display:inline-grid;box-shadow:0 4px 12px rgba(0,0,0,.5)}
+.anno{outline:3px dashed var(--c-tertiary);outline-offset:-3px}
+.anno-l{position:absolute;z-index:7;background:var(--c-tertiary);color:var(--c-on-tertiary);font:700 26px/1 Roboto,sans-serif;border-radius:50%;width:44px;height:44px;display:grid;place-items:center}
+.viewbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.viewbar .tbtn{height:38px}
+
+/* icon library */
+.ictools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.ictools input[type=search]{height:40px;border-radius:20px;border:1px solid var(--c-outline);background:var(--c-surface);color:var(--c-on-surface);padding:0 16px;font:inherit;font-size:14px;min-width:240px}
+.ictools select{height:40px;border-radius:12px;border:1px solid var(--c-outline);background:var(--c-surface);color:var(--c-on-surface);padding:0 10px;font:inherit;font-size:14px}
+.iccat{margin:22px 0 8px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--c-primary);font-weight:700}
+.icons{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+.icdetail{position:sticky;bottom:12px;z-index:5;display:none;background:var(--c-surface-container-high);border:1px solid var(--c-outline-variant);border-radius:18px;padding:14px 18px;gap:18px;align-items:center;flex-wrap:wrap;box-shadow:0 8px 24px rgba(0,0,0,.4);margin-top:14px}
+.icdetail.on{display:flex}
+.icdetail .big{width:96px;height:96px;border-radius:20px;background:var(--c-surface-container-lowest);display:grid;place-items:center;color:var(--c-on-surface)}
+.icdetail .big svg{font-size:64px}
+
+/* spec tables */
+.specblock{margin:26px 0 6px;border-top:1px dashed var(--c-outline-variant);padding-top:6px}
+.specblock h4{margin:18px 0 6px;color:var(--c-primary);text-transform:none;letter-spacing:0;font-size:16px}
+.specblock .sz{font-size:13.5px;margin:2px 0 8px;color:var(--c-on-surface-variant)}
+.specblock .sz b{color:var(--c-on-surface)}
+.sw-c{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.sw-c i{width:22px;height:22px;border-radius:6px;border:1px solid var(--c-outline);display:inline-block;flex:none}
+.sw-c small{font-family:"Roboto Mono",monospace;font-size:11.5px;color:var(--c-on-surface-variant)}
+.sw-c span{font-size:12.5px}
+table.tbl.sp td{padding:6px 10px}
+
+/* additional components */
+.a-select{position:relative;width:420px;max-width:100%}
+.a-select .fld{height:88px;border-radius:12px;border:2px solid var(--c-outline);display:flex;align-items:center;justify-content:space-between;padding:0 20px;font-size:28px;cursor:pointer;background:transparent;color:var(--c-on-surface);width:100%;font-family:inherit;text-align:left}
+.a-select .fld small{position:absolute;left:22px;top:8px;font-size:20px;color:var(--c-on-surface-variant)}
+.a-select .fld span{padding-top:22px}
+.a-picker{display:flex;gap:0;background:var(--c-surface-container);border-radius:24px;padding:12px 20px;position:relative;width:420px}
+.a-picker::before{content:"";position:absolute;left:12px;right:12px;top:50%;height:76px;transform:translateY(-50%);background:var(--c-secondary-container);border-radius:20px;opacity:.7}
+.a-picker .col{flex:1;position:relative;display:flex;flex-direction:column;align-items:center}
+.a-picker .col div{height:76px;line-height:76px;font-size:32px;color:var(--c-on-surface-variant);opacity:.55}
+.a-picker .col div.s{color:var(--c-on-secondary-container);font-weight:500;opacity:1;font-size:40px}
+.a-sheet{width:520px;max-width:100%;background:var(--c-surface-container-low);border-radius:28px 0 0 28px;padding:28px 32px;display:grid;gap:12px;box-shadow:-8px 0 24px rgba(0,0,0,.4)}
+.a-sheet .hd{display:flex;align-items:center;justify-content:space-between;font-size:32px;font-weight:500}
+.a-pager{display:flex;flex-direction:column;gap:12px;align-items:center}
+.a-pager .trk{width:8px;height:150px;border-radius:4px;background:var(--c-secondary-container);position:relative}
+.a-pager .trk i{position:absolute;left:0;right:0;top:10%;height:35%;border-radius:4px;background:var(--c-primary)}
+.a-dots{display:flex;gap:12px;align-items:center}
+.a-dots i{width:12px;height:12px;border-radius:6px;background:var(--c-outline-variant);display:block}
+.a-dots i.on{width:36px;background:var(--c-primary)}
+.a-skel{display:grid;gap:14px;width:100%}
+.a-skel div{height:96px;border-radius:20px;background:linear-gradient(90deg,var(--c-surface-container-high) 25%,var(--c-surface-container-highest) 50%,var(--c-surface-container-high) 75%);background-size:200% 100%;animation:shim 1.6s linear infinite}
+@keyframes shim{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.a-skel div{animation:none}}
+.a-empty{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:32px;width:100%}
+.a-empty .ill{width:144px;height:144px;border-radius:50%;background:var(--c-primary-container);color:var(--c-on-primary-container);display:grid;place-items:center}
+.a-empty .ill svg.i{font-size:72px}
+.a-empty.err .ill{background:var(--c-error-container);color:var(--c-on-error-container)}
+.a-empty.warn .ill{background:var(--c-warning-container);color:var(--c-on-warning-container)}
+.a-empty.ok .ill{background:var(--c-success-container);color:var(--c-on-success-container)}
+.a-empty.sec .ill{background:var(--c-secondary-container);color:var(--c-on-secondary-container)}
+.a-empty h6{margin:0;font-size:32px;line-height:40px;font-weight:500}
+.a-empty p{margin:0;font-size:24px;line-height:32px;color:var(--c-on-surface-variant);max-width:520px}
+.a-call{background:var(--c-surface-container);border-radius:28px;padding:32px;display:flex;flex-direction:column;align-items:center;gap:8px;width:520px;max-width:100%}
+.a-call .av{width:160px;height:160px;border-radius:50%;background:var(--c-primary-container);color:var(--c-on-primary-container);display:grid;place-items:center;font-size:64px;font-weight:500}
+.a-call .row{display:flex;gap:20px;margin-top:20px}
+.a-call .row .a-ib{width:96px;height:96px}.a-call .row .a-ib svg.i{font-size:44px}
+.a-gauge{width:240px;height:240px;border-radius:50%;background:conic-gradient(var(--c-primary) calc(var(--p)*1%),var(--c-secondary-container) 0);display:grid;place-items:center;position:relative}
+.a-gauge::before{content:"";position:absolute;inset:20px;background:var(--c-surface-container);border-radius:50%}
+.a-gauge div{position:relative;text-align:center}
+.a-gauge b{font-size:56px;font-weight:400;line-height:1;display:block}
+.a-gauge small{font-size:22px;color:var(--c-on-surface-variant)}
+.a-apps{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;width:100%}
+.a-app{display:flex;flex-direction:column;align-items:center;gap:10px;padding:12px;border-radius:28px;font-size:22px;font-weight:500;color:var(--c-on-surface);background:transparent;border:0;font-family:inherit;cursor:pointer;position:relative}
+.a-app:hover{background:color-mix(in srgb,var(--c-on-surface) 8%,transparent)}
+.a-app:focus-visible{outline:6px solid var(--c-tertiary);outline-offset:2px}
+.a-app .ic{width:96px;height:96px;border-radius:28px;display:grid;place-items:center;background:var(--c-primary-container);color:var(--c-on-primary-container)}
+.a-app .ic svg.i{font-size:52px}
+.a-app:nth-child(3n+2) .ic{background:var(--c-secondary-container);color:var(--c-on-secondary-container)}
+.a-app:nth-child(3n) .ic{background:var(--c-tertiary-container);color:var(--c-on-tertiary-container)}
+.a-users{display:flex;gap:28px;align-items:flex-start}
+.a-user{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:24px;width:140px}
+.a-user .av{width:96px;height:96px;border-radius:50%;background:var(--c-secondary-container);color:var(--c-on-secondary-container);display:grid;place-items:center;font-size:36px;font-weight:500}
+.a-user.sel .av{background:var(--c-primary);color:var(--c-on-primary);box-shadow:0 0 0 6px var(--c-surface),0 0 0 10px var(--c-primary)}
+.a-volp{width:760px;max-width:100%;background:var(--c-surface-container-high);border-radius:28px;padding:20px 28px;display:grid;gap:0;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.a-volp .a-slider{min-width:0}
+.a-volp .lb{width:150px;font-size:24px;color:var(--c-on-surface-variant)}
+.a-volp .rw{display:flex;align-items:center;gap:12px}
+.a-guide{display:flex;gap:24px;align-items:center;background:var(--c-primary-container);color:var(--c-on-primary-container);border-radius:24px;padding:20px 28px;width:520px;max-width:100%}
+.a-guide svg.i{font-size:80px}
+.a-stat{background:var(--c-surface-container);border-radius:24px;padding:20px 24px;display:flex;align-items:center;gap:20px;min-width:260px}
+.a-stat .ic{width:72px;height:72px;border-radius:20px;background:var(--c-surface-container-highest);display:grid;place-items:center;color:var(--c-on-surface-variant)}
+.a-stat.ok .ic{background:var(--c-success-container);color:var(--c-on-success-container)}
+.a-stat.wn .ic{background:var(--c-warning-container);color:var(--c-on-warning-container)}
+.a-stat.er .ic{background:var(--c-error-container);color:var(--c-on-error-container)}
+.a-stat .ic svg.i{font-size:40px}
+.a-stat b{display:block;font-size:28px;font-weight:500}.a-stat span{font-size:22px;color:var(--c-on-surface-variant)}
+.a-lvl{display:inline-flex;gap:6px;align-items:center;background:var(--c-surface-container-highest);border-radius:28px;padding:6px 14px 6px 6px;color:var(--c-on-surface-variant);cursor:pointer;border:0;font:inherit}
+.a-lvl .ib{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:var(--c-primary-container);color:var(--c-on-primary-container)}
+.a-lvl .ib svg.i{font-size:36px}
+.a-lvl i{width:10px;border-radius:3px;background:var(--c-outline-variant);display:block}
+.a-lvl i.on{background:var(--c-primary)}
+.a-tuner{background:var(--c-surface-container);border-radius:28px;padding:28px 32px;width:100%;display:grid;gap:18px}
+.a-tuner .fr{display:flex;align-items:center;justify-content:center;gap:24px}
+.a-tuner .fr b{font-size:96px;line-height:1;font-weight:400;font-variant-numeric:tabular-nums;min-width:300px;text-align:center}
+.a-tuner .fr small{font-size:32px;color:var(--c-on-surface-variant)}
+.a-tuner .pr{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.a-tuner .pr .a-btn{padding:0 8px;min-width:0;font-size:24px}
+.a-tuner .scale{height:44px;position:relative;background:repeating-linear-gradient(90deg,var(--c-outline) 0 2px,transparent 2px 20px);mask:linear-gradient(transparent 40%,#000 40%);-webkit-mask:linear-gradient(transparent 40%,#000 40%)}
+.a-tuner .scale i{position:absolute;left:46%;top:0;bottom:0;width:6px;background:var(--c-primary);border-radius:3px}
+.vs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:18px}
+.vs{border:1px solid var(--c-outline-variant);border-radius:20px;background:var(--c-surface);padding:14px;display:flex;flex-direction:column;gap:10px}
+.vs>b{font-size:14px;padding:0 6px}
+.vs .a-empty{padding:16px}.vs .a-empty .ill{width:110px;height:110px}.vs .a-empty .ill svg.i{font-size:54px}
+.vs .a-empty h6{font-size:28px}.vs .a-empty p{font-size:22px}
+.icons svg{font-size:var(--ics,40px)!important}
+.icons button[aria-pressed=true]{background:var(--c-primary-container);color:var(--c-on-primary-container);outline:2px solid var(--c-primary)}
+.a-rail a.focused{outline:6px solid var(--c-tertiary);outline-offset:-6px}
+#anatomy .a-status,#anatomy .a-rail,#anatomy .a-hvbar{outline:3px dashed var(--c-tertiary);outline-offset:-3px}
+#anatomy .app{outline:3px dashed var(--c-primary);outline-offset:-3px}
+
 </style>
 </head>
 <body data-driving="false">
@@ -481,31 +623,28 @@ footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--c-outline-var
  </tbody></table></div>
 </section>
 
-<section class="sec" id="platform" data-title="Platform & displays" data-group="Start">
- <div class="eyebrow">Platform</div><h2>AAOS platform &amp; displays</h2>
- <p>Android Automotive OS runs natively on the head unit — apps are installed on the car, not projected from a phone. System UI, the Car UI Library, <code>CarService</code> and templates are customized by the OEM via RROs.</p>
- <h3>Anatomy of the home display</h3>
- <div class="stage a-root pad" style="justify-content:center"><span class="cap">Reference layout 1280 × 720 dp</span>
-  <div class="frame-wrap anat" style="max-width:900px"><div class="frame a-root anat-f" style="--s:1">
-   <div class="a-status" style="outline:2px dashed var(--c-tertiary);outline-offset:-2px"><div class="g tmp">21°</div><div class="sp"></div><span class="tmp">10:42</span><div class="sp"></div><div class="g"><ic n="bt"></ic><ic n="wifi"></ic><ic n="mic"></ic></div></div>
-   <div class="body"><div class="pane map" style="outline:2px dashed var(--c-primary);outline-offset:-2px;display:grid;place-items:center;font-size:28px;color:var(--c-on-surface)">App canvas (activity window)</div></div>
-   <div class="a-dock" style="outline:2px dashed var(--c-secondary);outline-offset:-2px"><a href="#" aria-current="page"><span class="pl"><ic n="home"></ic></span>Home</a><a href="#"><span class="pl"><ic n="nav"></ic></span>Maps</a><a href="#"><span class="pl"><ic n="phone"></ic></span>Phone</a><a href="#"><span class="pl"><ic n="music"></ic></span>Media</a><a href="#"><span class="pl"><ic n="apps"></ic></span>Apps</a></div>
-  </div></div>
- </div>
- <div class="grid g3">
-  <div class="card-d"><h5><span class="pill">1</span> Status bar · 76 dp</h5><p>Driver climate, clock, connectivity, voice, user profile. Always visible, never app-controlled.</p></div>
-  <div class="card-d"><h5><span class="pill">2</span> App canvas</h5><p>Remaining area. Apps draw edge-to-edge but keep content within the safe area and clear of system bars.</p></div>
-  <div class="card-d"><h5><span class="pill">3</span> Navigation dock · 112 dp</h5><p>5–6 primary destinations with persistent Home. Position (bottom / side) is OEM-defined; use window insets, never hard-code.</p></div>
- </div>
- <h3>Display classes</h3>
- <div class="tw"><table class="tbl"><thead><tr><th>Class</th><th>Typical px</th><th>Aspect</th><th>Layout strategy</th></tr></thead><tbody>
-  <tr><td>Landscape wide</td><td>1920 × 720 · 2160 × 720</td><td>≈ 8:3</td><td>Two- or three-pane; media + map side by side.</td></tr>
-  <tr><td>Landscape standard</td><td>1280 × 720 · 1920 × 1080</td><td>16:9</td><td>Reference. Two-pane with split controls.</td></tr>
-  <tr><td>Landscape compact</td><td>1280 × 800 · 1024 × 600</td><td>16:10 – 5:3</td><td>Single pane + sheet; keep 76 dp targets.</td></tr>
-  <tr><td>Portrait (center stack)</td><td>1080 × 1920 · 1200 × 1600</td><td>9:16 – 3:4</td><td>Stacked: map top, controls bottom; dock moves to bottom.</td></tr>
-  <tr><td>Passenger / rear</td><td>1920 × 1080</td><td>16:9</td><td>Multi-display zones: video &amp; games allowed (not driver zone).</td></tr>
+<section class="sec" id="platform" data-title="Display & layout" data-group="Start">
+ <div class="eyebrow">Platform</div><h2>Target display &amp; system layout</h2>
+ <p>Android Automotive OS runs natively on the head unit. This system targets one display: a <b>10-inch, 1920 × 1080 px</b> landscape center-stack panel.</p>
+ <div class="tw"><table class="tbl"><thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead><tbody>
+  <tr><td>Panel</td><td>10.1″ · 1920 × 1080 px · 16:9 · ≈ 218 ppi</td><td>Landscape, touch + rotary</td></tr>
+  <tr><td>Density bucket</td><td><b>1.5×</b> (240 dpi) → design viewport <b>1280 × 720 dp</b></td><td>All specs in this document are in dp / sp</td></tr>
+  <tr><td>Physical size of 76 dp target</td><td>76 × 1.5 = 114 px ≈ <b>13 mm</b></td><td>Meets 10–15 mm automotive touch-target guidance</td></tr>
+  <tr><td>Window size class</td><td>Expanded width (≥ 840 dp), medium height</td><td>12-column grid, two-pane layouts</td></tr>
  </tbody></table></div>
- <div class="callout"><b>Always design with insets</b>Use <code>WindowInsets</code>/<code>CarUiUtils</code> for system bars and cutouts. Never assume the dock is at the bottom — OEMs can place it on the leading edge or hide it in specific states.</div>
+ <h3>Standard system layout</h3>
+ <p>Three persistent system bars frame the app area. They are owned by System UI — apps never draw into them.</p>
+ <div class="stage a-root pad" style="justify-content:center"><span class="cap">1280 × 720 dp (1920 × 1080 px)</span><div class="frame-wrap anat" id="anatomy" style="max-width:1000px"></div></div>
+ <div class="tw"><table class="tbl"><thead><tr><th>#</th><th>Region</th><th>Size (dp)</th><th>Contents</th><th>Colors</th></tr></thead><tbody>
+  <tr><td><span class="pill">1</span></td><td><b>Status bar</b> (top)</td><td>1280 × <b>56</b></td><td>Clock, outside temp, user avatar, Bluetooth, Wi-Fi, signal, voice. Icons 32 dp, text Label Medium 24 sp.</td><td>surfaceContainerLowest · onSurface · icons onSurfaceVariant</td></tr>
+  <tr><td><span class="pill">2</span></td><td><b>App area</b></td><td>1160 × <b>568</b></td><td>The only region apps draw into. Edge-to-edge content stays 16 dp inside.</td><td>surface</td></tr>
+  <tr><td><span class="pill">3</span></td><td><b>App bar</b> (right rail)</td><td><b>120</b> × 568 · item 112 × 88</td><td>6 destinations: Home, Maps, Phone, Media, Vehicle, Apps. Icon 36 dp + 20 sp label.</td><td>surfaceContainerLowest · active pill 88×44 secondaryContainer</td></tr>
+  <tr><td><span class="pill">4</span></td><td><b>HVAC bar</b> (bottom)</td><td>1280 × <b>96</b></td><td>Driver seat heat + temp, fan, A/C, Auto, Defrost, passenger temp + seat heat. 76 dp targets.</td><td>surfaceContainerLowest · toggles primaryContainer when on</td></tr>
+ </tbody></table></div>
+ <h3>Full-screen (immersive) mode</h3>
+ <p>Apps such as maps, camera and parked video can request <b>full screen</b>: the status bar, app bar and HVAC bar are all dismissed and the app area grows to <b>1280 × 720 dp</b>. Use the <b>Full screen</b> toggle in the reference screens below to see it.</p>
+ <ul class="t"><li><b>Enter:</b> explicit user action (76 dp full-screen button) or by app policy (reverse camera, parked video). Never auto-enter while an alert is active.</li><li><b>Exit:</b> a persistent 76 dp <i>Exit full screen</i> button at the top-trailing corner (24 dp inset), the hardware Back/Home key, or any system alert.</li><li><b>Always still shown:</b> heads-up notifications, safety alerts, voice overlay and incoming-call UI draw above full-screen content.</li><li><b>Hardware independent:</b> hazard, volume and HVAC hardware keys keep working; the volume panel and a compact HVAC toast appear over the content.</li><li><b>Transition:</b> 300 ms fade + 24 dp slide, <code>motion.medium</code>; reduced motion → instant.</li><li><b>Driving:</b> video and games are never entered while driving; navigation and camera are the only full-screen apps allowed.</li></ul>
+ <div class="callout"><b>Design with insets</b>Use <code>WindowInsets</code> to get status/app/HVAC bar sizes. Never hard-code 56/120/96 — OEMs change bar sizes through Car UI RROs and the app area must reflow.</div>
 </section>
 
 <!-- ============ FOUNDATIONS ============ -->
@@ -577,10 +716,9 @@ footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--c-outline-var
  </div>
  <ul class="t"><li>Minimum target <b>76 × 76 dp</b>; primary driving actions <b>96 dp</b>. Visual element may be smaller, hit area may not.</li><li>Minimum <b>16 dp</b> between adjacent targets (8 dp absolute floor for dense toggle groups).</li><li>Place frequent controls in reach zone: toward the driver's side and lower half of the display.</li><li>No tiny close icons, drag handles, edge swipes or multi-finger gestures.</li></ul>
  <h3>Grid &amp; margins</h3>
- <div class="tw"><table class="tbl"><thead><tr><th>Window width</th><th>Columns</th><th>Margin</th><th>Gutter</th><th>Pattern</th></tr></thead><tbody>
-  <tr><td>&lt; 1100 dp</td><td>8</td><td>32 dp</td><td>24 dp</td><td>Single pane</td></tr>
-  <tr><td>1100 – 1600 dp</td><td>12</td><td>40 dp</td><td>24 dp</td><td>Two-pane (list + detail / map + card)</td></tr>
-  <tr><td>&gt; 1600 dp</td><td>12</td><td>48 dp</td><td>32 dp</td><td>Two- or three-pane; cap text lines at 60 ch</td></tr>
+ <div class="tw"><table class="tbl"><thead><tr><th>Area</th><th>Size</th><th>Columns</th><th>Margin</th><th>Gutter</th><th>Pattern</th></tr></thead><tbody>
+  <tr><td>App area (bars shown)</td><td>1160 × 568 dp</td><td>12</td><td>32 dp</td><td>24 dp</td><td>Two-pane (list + detail, map + card)</td></tr>
+  <tr><td>Full screen</td><td>1280 × 720 dp</td><td>12</td><td>40 dp</td><td>24 dp</td><td>Immersive: map, camera, video</td></tr>
  </tbody></table></div>
  <div class="spec"><span><b>Safe area</b>respect system-bar insets + 16 dp</span><span><b>Content max</b>no full-width paragraphs</span><span><b>Z-order</b>app &lt; HUN &lt; voice &lt; safety alert</span></div>
  <h3>Layout archetypes</h3>
@@ -601,12 +739,26 @@ footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--c-outline-var
 
 <section class="sec" id="icons" data-title="Iconography" data-group="Foundations">
  <div class="eyebrow">Foundations</div><h2>Iconography</h2>
- <p>Material Symbols (Rounded, weight 400–500, fill for selected). Inline SVG here so everything works offline. Click an icon to copy its name.</p>
- <div class="icons" id="iconGrid"></div>
+ <p class="lead"><b id="icCount">196</b> automotive IVI icons in seven families — system, connectivity, media, phone, navigation, climate and vehicle. One consistent style: 24 dp grid, 2 dp stroke, round caps and joins, fill used only for play/transport glyphs and dots.</p>
+ <div class="ictools"><input type="search" id="icq" placeholder="Search icons (name or family)" aria-label="Search icons"><select id="iccat" aria-label="Family"></select><select id="icsize" aria-label="Preview size"><option value="32">32 dp</option><option value="40" selected>40 dp</option><option value="48">48 dp</option><option value="64">64 dp</option></select><button class="tbtn" id="icZip">Download all SVG (.zip)</button><button class="tbtn" id="icZipA">Download Android XML (.zip)</button></div>
+ <p style="font-size:13px;color:var(--c-on-surface-variant);margin:0">Click an icon to select it. Then <b>Download SVG</b>, <b>Copy SVG</b> or <b>Copy Android VectorDrawable</b>. The same files are in the repo under <code>icons/</code> and <code>icons/android/</code>.</p>
+ <div id="iconGrid"></div>
+ <div class="icdetail" id="icDetail" aria-live="polite"><div class="big" id="icBig"></div><div><div class="t-title-m" id="icName" style="font:600 20px Roboto,sans-serif"></div><div id="icMeta" style="font-size:13px;color:var(--c-on-surface-variant)"></div></div><div style="flex:1"></div><button class="tbtn" id="icDl">Download SVG</button><button class="tbtn" id="icCp">Copy SVG</button><button class="tbtn" id="icAn">Copy Android XML</button></div>
+ <h3>Icon sizes</h3>
+ <div class="stage a-root pad" style="gap:36px"><span class="cap">Sizes in dp</span>
+  <div style="text-align:center"><svg class="i" style="font-size:24px"><use href="#i-nav"/></svg><br><small>24 · dense meta</small></div>
+  <div style="text-align:center"><svg class="i" style="font-size:32px"><use href="#i-nav"/></svg><br><small>32 · status bar</small></div>
+  <div style="text-align:center"><svg class="i" style="font-size:36px"><use href="#i-nav"/></svg><br><small>36 · app bar, HVAC bar</small></div>
+  <div style="text-align:center"><svg class="i" style="font-size:40px"><use href="#i-nav"/></svg><br><small>40 · default</small></div>
+  <div style="text-align:center"><svg class="i" style="font-size:48px"><use href="#i-nav"/></svg><br><small>48 · FAB, banners</small></div>
+  <div style="text-align:center"><svg class="i" style="font-size:72px"><use href="#i-nav"/></svg><br><small>72 · empty state</small></div>
+ </div>
+ <div class="spec" data-spec="Grid|24×24 viewport;Stroke|2 (scales: 40dp→3.3dp);Caps / joins|round;Keyline|20×20 live area, 2dp padding;Hit area|always ≥ 76×76dp;Format|SVG + Android VectorDrawable"></div>
+ <div id="iconsSpecHost"></div>
  <div class="grid g3" style="margin-top:16px">
-  <div class="card-d"><h5>Sizes</h5><p>32&nbsp;dp inline/status, <b>40&nbsp;dp default</b>, 48&nbsp;dp dock &amp; FAB, 96&nbsp;dp+ hero. Optical padding included; hit area is always ≥ 76.</p></div>
-  <div class="card-d"><h5>Meaning</h5><p>Pair every critical icon with a text label. Don't reuse standard icons (home, phone, hazard) for other meanings; use ISO 2575 telltale symbols for vehicle functions.</p></div>
-  <div class="card-d"><h5>Selected state</h5><p>Outlined → filled, plus pill indicator. Never rely on color shift only.</p></div>
+  <div class="card-d"><h5>Meaning</h5><p>Pair every critical icon with a text label. Don't reuse standard icons (home, phone, hazard) for other meanings; vehicle telltales must follow ISO&nbsp;2575 where legally required — the vehicle family here is for infotainment status, not instrument-cluster telltales.</p></div>
+  <div class="card-d"><h5>Selected state</h5><p>Inactive = onSurfaceVariant. Active = onSecondaryContainer inside a secondaryContainer pill (app bar) or onPrimaryContainer on primaryContainer (toggle). Never color alone — the container shape also changes.</p></div>
+  <div class="card-d"><h5>Mirroring (RTL)</h5><p>Mirror directional icons (back, forward, chevrons, turn arrows, route). Do <b>not</b> mirror media transport, clock, phone, volume or compass.</p></div>
  </div>
 </section>
 
@@ -637,7 +789,7 @@ footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--c-outline-var
  </div>
  <div class="grid g3">
   <div class="card-d"><h5>Focus ring</h5><p>6&nbsp;dp, <code>tertiary</code>, 4&nbsp;dp offset, rounded to the component shape. Contrast ≥ 3:1 vs. adjacent surfaces.</p></div>
-  <div class="card-d"><h5>Focus order</h5><p>Reading order (leading→trailing, top→bottom) with <code>nudge</code> shortcuts to jump between toolbar, content and dock.</p></div>
+  <div class="card-d"><h5>Focus order</h5><p>Reading order (leading→trailing, top→bottom) with <code>nudge</code> shortcuts to jump between toolbar, content and the app bar.</p></div>
   <div class="card-d"><h5>Default focus</h5><p>Restore last focus on return. On first entry focus the primary action or first list item, never a destructive button.</p></div>
  </div>
 </section>
@@ -793,14 +945,24 @@ font-family: "Roboto Mono", ui-monospace, Menlo, Consolas, monospace;     /* dat
 </section>
 
 <!-- ============ AUTOMOTIVE ============ -->
-<section class="sec" id="sysbars" data-title="Status bar & dock" data-group="Automotive">
- <div class="eyebrow">Automotive components</div><h2>System status bar &amp; navigation dock</h2>
- <div class="stage a-root col pad" style="padding:20px;gap:0"><span class="cap">System UI</span>
-  <div class="a-status"><div class="g tmp"><ic n="seat"></ic>21°</div><div class="sp"></div><span class="tmp">10:42</span><div class="sp"></div><div class="g"><ic n="bt"></ic><ic n="wifi"></ic><ic n="signal"></ic><ic n="mic"></ic><span style="width:36px;height:36px;border-radius:50%;background:var(--c-primary-container);color:var(--c-on-primary-container);display:grid;place-items:center;font-size:20px">AM</span></div></div>
-  <div style="height:80px"></div>
-  <div class="a-dock"><a href="#" aria-current="page"><span class="pl"><ic n="home"></ic></span>Home</a><a href="#"><span class="pl"><ic n="nav"></ic></span>Maps</a><a href="#"><span class="pl"><ic n="phone"></ic></span>Phone</a><a href="#"><span class="pl"><ic n="music"></ic></span>Media</a><a href="#"><span class="pl"><ic n="car"></ic></span>Vehicle</a><a href="#"><span class="pl"><ic n="apps"></ic></span>Apps</a></div>
+<section class="sec" id="sysbars" data-title="System bars" data-group="Automotive">
+ <div class="eyebrow">Automotive components</div><h2>System bars: status, app bar, HVAC bar</h2>
+ <p>Shown at true size (1 dp = 1 px here). In the product the bars are drawn by System UI; apps only receive insets.</p>
+ <h3>Status bar · 1280 × 56 dp</h3>
+ <div class="stage a-root col pad" style="padding:20px"><span class="cap">Top</span><div data-slot="status" style="width:1280px;max-width:none"></div></div>
+ <div class="spec" data-spec="Height|56dp;Padding|24dp H;Text|Label Medium 24sp tabular;Icons|32dp, 20dp gap;Tap targets|avatar & voice 76dp hit"></div>
+ <h3>App bar (right rail) · 120 × 568 dp</h3>
+ <div class="stage a-root pad" style="align-items:flex-start;gap:32px"><span class="cap">Right rail — Home active · Maps active (hover) · focus</span>
+  <div data-slot="rail" style="height:568px;width:120px"></div>
+  <div data-slot="rail:2" style="height:568px;width:120px"></div>
+  <div class="card-d" style="max-width:440px"><h5>Rules</h5><ul class="t" style="margin:0;padding-left:18px"><li>6 fixed destinations; Home is always first and returns to launcher state.</li><li>Active item: filled pill 88 × 44 dp, label in onSurface. Inactive: icon + label in onSurfaceVariant.</li><li>Order is stable — never re-sort by usage.</li><li>Badge (32 dp, error) allowed on Phone / Messages only.</li><li>Hidden in full-screen mode.</li></ul></div>
  </div>
- <div class="spec" data-spec="Status bar|76dp;Dock|112dp;Dock item|150×96dp, indicator 112×56dp;Destinations|5–6, always Home;Label|Label Small 20sp always visible"></div>
+ <div class="spec" data-spec="Width|120dp;Item|112×88dp, radius 28dp;Active pill|88×44dp, radius 22dp;Icon|36dp;Label|20sp/24 w500;Gap|4dp;Items|6 (max)"></div>
+ <h3>HVAC bar · 1280 × 96 dp</h3>
+ <div class="stage a-root col pad" style="padding:20px"><span class="cap">Bottom — interactive</span><div data-slot="hvbar" style="width:1280px;max-width:none"></div></div>
+ <div class="spec" data-spec="Height|96dp;Targets|76dp, 4dp gaps;Temp value|Title 36sp tabular, 0.5° steps;Zones|driver · fan/modes · passenger;Toggle on|primaryContainer / onPrimaryContainer"></div>
+ <h3>Full-screen (all bars dismissed)</h3>
+ <div class="stage a-root pad"><span class="cap">Compare — bars shown vs. dismissed</span><div id="fsCompare" style="display:flex;gap:24px;flex-wrap:wrap;width:100%"></div></div>
 </section>
 
 <section class="sec" id="hvac" data-title="Climate (HVAC)" data-group="Automotive">
@@ -852,71 +1014,80 @@ font-family: "Roboto Mono", ui-monospace, Menlo, Consolas, monospace;     /* dat
   <div class="t-body-m" style="color:var(--c-on-surface-variant)" id="rotout">Focus: —</div>
  </div>
 </section>
+<section class="sec" id="more-ui" data-title="More UI components" data-group="Components">
+ <div class="eyebrow">Components</div><h2>Select, picker, sheets, paging &amp; loading</h2>
+ <h3>Dropdown (select) &amp; time picker</h3>
+ <div class="stage a-root pad" style="align-items:flex-start"><span class="cap">Parked-first controls</span>
+  <div class="a-select"><button class="fld" aria-haspopup="listbox"><small>Units</small><span>Kilometres</span><ic n="chev-down"></ic></button></div>
+  <ul class="a-menu" role="listbox" style="width:420px"><li role="option" class="sel"><ic n="check"></ic>Kilometres</li><li role="option">Miles</li></ul>
+  <div class="a-picker"><div class="col"><div>07</div><div>08</div><div class="s">09</div><div>10</div><div>11</div></div><div class="col"><div>40</div><div>41</div><div class="s">42</div><div>43</div><div>44</div></div><div class="col"><div></div><div>AM</div><div class="s">PM</div><div></div><div></div></div></div>
+ </div>
+ <h3>Side sheet, scroll paging &amp; page dots</h3>
+ <div class="stage a-root pad" style="align-items:flex-start;gap:36px"><span class="cap">Side sheet · pager · dots</span>
+  <div class="a-sheet"><div class="hd">Route options<button class="a-ib" aria-label="Close"><ic n="close"></ic></button></div><div class="a-li" style="padding:0"><div class="tx"><div class="p">Avoid tolls</div></div><button class="a-sw" role="switch" aria-checked="true"><i><ic n="check"></ic></i></button></div><div class="a-li" style="padding:0"><div class="tx"><div class="p">Avoid highways</div></div><button class="a-sw" role="switch" aria-checked="false"><i><ic n="check"></ic></i></button></div><button class="a-btn">Apply</button></div>
+  <div class="a-pager"><button class="a-ib tonal" aria-label="Page up"><ic n="chev-up"></ic></button><div class="trk"><i></i></div><button class="a-ib tonal" aria-label="Page down"><ic n="chev-down"></ic></button></div>
+  <div style="display:grid;gap:20px"><div class="a-dots"><i class="on"></i><i></i><i></i><i></i></div><small>Page indicator (max 6 pages)</small></div>
+ </div>
+ <h3>Loading skeleton</h3>
+ <div class="stage a-root pad"><span class="cap">Shimmer ≤ 1.6 s loop · static if reduced motion</span><div class="a-skel"><div></div><div></div><div></div></div></div>
+ <div class="callout"><b>Not used in vehicles</b>Tooltips and hover cards (no hover), right-click / long-press context menus, drag-and-drop reordering, swipe-to-dismiss, pull-to-refresh, horizontal carousels, date-range pickers and rich-text editors. Use buttons, sheets and voice instead.</div>
+</section>
+
+<section class="sec" id="auto-more" data-title="More automotive components" data-group="Automotive">
+ <div class="eyebrow">Automotive components</div><h2>Calls, charging, status, audio &amp; launcher</h2>
+ <h3>In-call UI</h3>
+ <div class="stage a-root pad" style="align-items:flex-start"><span class="cap">Active call</span>
+  <div class="a-call"><div class="av">AM</div><div class="t-headline-m">Alex Morgan</div><div class="t-body-l" style="color:var(--c-on-surface-variant)">Mobile · 02:41</div><div class="row"><button class="a-ib tonal" aria-label="Mute"><ic n="mic-off"></ic></button><button class="a-ib tonal" aria-label="Speaker"><ic n="vol"></ic></button><button class="a-ib tonal" aria-label="Keypad"><ic n="dialpad"></ic></button><button class="a-ib" style="background:var(--c-error);color:var(--c-on-error)" aria-label="End call"><ic n="phone-end"></ic></button></div></div>
+  <div class="a-hun" style="width:560px"><div class="lead-i"><ic n="phone-in"></ic></div><div class="ti">Incoming call</div><div class="bo">Alex Morgan · Mobile</div><div class="act"><button class="a-btn" style="background:var(--c-success);color:var(--c-on-success)">Answer</button><button class="a-btn danger">Decline</button></div></div>
+ </div>
+ <h3>Range, charging &amp; vehicle status</h3>
+ <div class="stage a-root pad" style="align-items:flex-start"><span class="cap">Gauge · status tiles</span>
+  <div class="a-gauge" style="--p:80"><div><b>312</b><small>km · 80%</small></div></div>
+  <div style="display:grid;gap:14px"><div class="a-stat ok"><div class="ic"><ic n="battery-charging"></ic></div><div><b>Charging</b><span>11 kW · 42 min left</span></div></div><div class="a-stat wn"><div class="ic"><ic n="tire-pressure"></ic></div><div><b>Tire pressure</b><span>Front left 1.9 bar</span></div></div><div class="a-stat er"><div class="ic"><ic n="door"></ic></div><div><b>Door open</b><span>Rear right</span></div></div><div class="a-stat"><div class="ic"><ic n="lock"></ic></div><div><b>Locked</b><span>All doors</span></div></div></div>
+ </div>
+ <h3>Volume panel &amp; seat comfort</h3>
+ <div class="stage a-root pad" style="align-items:flex-start"><span class="cap">Per-stream volume · seat levels</span>
+  <div class="a-volp"><div class="rw"><span class="lb">Media</span><div class="a-slider"><ic n="music"></ic><input type="range" min="0" max="40" value="18" aria-label="Media"><output>18</output></div></div><div class="rw"><span class="lb">Navigation</span><div class="a-slider"><ic n="nav"></ic><input type="range" min="0" max="40" value="24" aria-label="Navigation"><output>24</output></div></div><div class="rw"><span class="lb">Call</span><div class="a-slider"><ic n="phone"></ic><input type="range" min="0" max="40" value="30" aria-label="Call"><output>30</output></div></div></div>
+  <div style="display:grid;gap:14px"><button class="a-lvl" aria-label="Driver seat heat"><span class="ib"><ic n="seat-heat"></ic></span><i class="on" style="height:16px"></i><i class="on" style="height:26px"></i><i style="height:36px"></i></button><button class="a-lvl" aria-label="Seat ventilation"><span class="ib" style="background:var(--c-surface-container-low);color:var(--c-on-surface-variant)"><ic n="seat-vent"></ic></span><i style="height:16px"></i><i style="height:26px"></i><i style="height:36px"></i></button></div>
+ </div>
+ <h3>Radio tuner &amp; turn guidance</h3>
+ <div class="stage a-root pad" style="align-items:flex-start"><span class="cap">FM tuner · guidance card</span>
+  <div style="flex:1;min-width:560px"><div class="a-tuner"><div class="fr"><button class="a-ib tonal" aria-label="Seek down"><ic n="prev"></ic></button><b>98.4</b><small>FM · HD2</small><button class="a-ib tonal" aria-label="Seek up"><ic n="next"></ic></button></div><div class="scale"><i></i></div><div class="pr"><button class="a-btn tonal">P1</button><button class="a-btn">P2</button><button class="a-btn tonal">P3</button><button class="a-btn tonal">P4</button><button class="a-btn tonal">P5</button></div></div></div>
+  <div class="a-guide"><ic n="turn-right"></ic><div><div class="t-display" style="font-size:48px;line-height:56px">400 m</div><div class="t-title-m">Turn right onto Violet Ave</div></div></div>
+ </div>
+ <h3>App launcher &amp; user switcher</h3>
+ <div class="stage a-root pad" style="align-items:flex-start"><span class="cap">Launcher grid · profiles</span>
+  <div class="a-apps" style="max-width:820px"><button class="a-app"><span class="ic"><ic n="nav"></ic></span>Maps</button><button class="a-app"><span class="ic"><ic n="music"></ic></span>Music</button><button class="a-app"><span class="ic"><ic n="phone"></ic></span>Phone</button><button class="a-app"><span class="ic"><ic n="radio"></ic></span>Radio</button><button class="a-app"><span class="ic"><ic n="weather"></ic></span>Weather</button><button class="a-app"><span class="ic"><ic n="calendar"></ic></span>Calendar</button><button class="a-app"><span class="ic"><ic n="podcast"></ic></span>Podcasts</button><button class="a-app"><span class="ic"><ic n="video"></ic></span>Video</button><button class="a-app"><span class="ic"><ic n="settings"></ic></span>Settings</button><button class="a-app"><span class="ic"><ic n="service"></ic></span>Service</button></div>
+  <div class="a-users"><div class="a-user sel"><div class="av">AM</div>Alex</div><div class="a-user"><div class="av">PS</div>Priya</div><div class="a-user"><div class="av"><ic n="user"></ic></div>Guest</div></div>
+ </div>
+</section>
+
+<section class="sec" id="viewstates" data-title="View states" data-group="View states">
+ <div class="eyebrow">View states</div><h2>Screen-level view states</h2>
+ <p>Every screen must define these states. Each is built from the same pattern — an illustration circle, a title, one line of body and at most one primary action — so drivers learn it once.</p>
+ <div class="vs-grid a-root">
+  <div class="vs"><b>Loading</b><div class="a-empty sec"><div class="a-cir" role="progressbar" aria-label="Loading"></div><h6>Loading</h6><p>Getting your music…</p></div></div>
+  <div class="vs"><b>Loading (skeleton)</b><div class="a-skel"><div style="height:72px"></div><div style="height:72px"></div></div></div>
+  <div class="vs"><b>Empty</b><div class="a-empty"><div class="ill"><ic n="music"></ic></div><h6>No music yet</h6><p>Connect a phone or sign in to start listening.</p><button class="a-btn">Connect phone</button></div></div>
+  <div class="vs"><b>Error</b><div class="a-empty err"><div class="ill"><ic n="error"></ic></div><h6>Can't load this</h6><p>Something went wrong. Try again.</p><button class="a-btn tonal">Retry</button></div></div>
+  <div class="vs"><b>Offline</b><div class="a-empty warn"><div class="ill"><ic n="wifi-off"></ic></div><h6>No connection</h6><p>Showing saved maps and downloads.</p><button class="a-btn tonal">Connection settings</button></div></div>
+  <div class="vs"><b>Restricted while driving</b><div class="a-empty sec"><div class="ill"><ic n="lock"></ic></div><h6>Unavailable while driving</h6><p>Park to use the keyboard — or use voice.</p><button class="a-btn has-i"><ic n="mic"></ic>Use voice</button></div></div>
+  <div class="vs"><b>Permission needed</b><div class="a-empty"><div class="ill"><ic n="shield-check"></ic></div><h6>Allow location?</h6><p>Maps needs your location to route you.</p><div style="display:flex;gap:12px"><button class="a-btn text">Not now</button><button class="a-btn">Allow</button></div></div></div>
+  <div class="vs"><b>Success / confirmation</b><div class="a-empty ok"><div class="ill"><ic n="check"></ic></div><h6>Phone connected</h6><p>Pixel 9 is ready for calls and media.</p></div></div>
+  <div class="vs"><b>Connecting</b><div class="a-empty sec"><div class="ill"><ic n="bt"></ic></div><h6>Connecting to Pixel 9…</h6><div class="a-lin ind" style="max-width:360px"><i></i></div></div></div>
+  <div class="vs"><b>Low battery alert</b><div class="a-banner warn"><ic n="battery"></ic><span>Range 42 km — find a charger?</span><button class="a-btn text" style="color:inherit">Find</button></div></div>
+ </div>
+ <p style="margin-top:14px">Other system-level views: <b>Full screen</b> (see reference screens), <b>Reverse camera</b> (full screen, overrides everything but safety alerts), <b>Day / Night</b> (300 ms cross-fade), <b>Parked / Driving</b> (toggle in the top bar), <b>Focused / Pressed / Hover / Disabled / Selected</b> (state matrix in each component's spec).</p>
+ <div id="viewstatesSpecHost"></div>
+</section>
+
 <!-- ============ SCREENS ============ -->
 <section class="sec" id="screens" data-title="Reference screens" data-group="Screens">
  <div class="eyebrow">Screens &amp; patterns</div><h2>Reference screens</h2>
- <p>Complete templates composed from the components above, rendered at 1280 × 720 dp and scaled to fit. They honor the Parked / Driving toggle and the Night / Day theme.</p>
- <div class="tabs-d" role="tablist" id="screenTabs"></div>
-
- <!-- HOME -->
- <div class="frame-wrap" data-screen="Home"><div class="frame a-root">
-  <div class="a-status"><div class="g tmp"><ic n="seat"></ic>21°</div><div class="sp"></div><span class="tmp">10:42</span><div class="sp"></div><div class="g"><ic n="bt"></ic><ic n="wifi"></ic><ic n="mic"></ic></div></div>
-  <div class="body"><div class="pane map" style="flex:1.5;position:relative"><div class="route"></div><div class="me"><ic n="nav"></ic></div>
-    <div class="a-card" style="position:absolute;left:32px;top:28px;width:420px;background:var(--c-surface-container-high)"><div class="t-label-m" style="color:var(--c-primary)">HOME · 18 MIN</div><div class="t-headline-s">Via Violet Ave</div><div class="t-body-m" style="color:var(--c-on-surface-variant)">12.4 km · Light traffic</div></div></div>
-   <div class="pane" style="flex:1;display:flex;flex-direction:column;gap:16px">
-    <div class="a-media" style="padding:20px;gap:20px"><div class="art" style="width:120px;height:120px"><ic n="music"></ic></div><div class="info"><div class="t-title-m">Midnight Violet Drive</div><div class="t-body-m" style="color:var(--c-on-surface-variant)">Neon Orchid</div><div class="ctl" style="margin-top:8px;gap:8px"><button class="a-ib"><ic n="prev"></ic></button><button class="a-ib filled"><ic n="pause"></ic></button><button class="a-ib"><ic n="next"></ic></button></div></div></div>
-    <div class="a-card click filled"><h6>Alex Morgan</h6><p>Running late — tap to play message</p></div>
-    <div class="a-card pri"><h6>312 km range</h6><p>Battery 80% · Charge at home tonight</p></div></div></div>
-  <div class="a-dock"><a href="#" aria-current="page"><span class="pl"><ic n="home"></ic></span>Home</a><a href="#"><span class="pl"><ic n="nav"></ic></span>Maps</a><a href="#"><span class="pl"><ic n="phone"></ic></span>Phone</a><a href="#"><span class="pl"><ic n="music"></ic></span>Media</a><a href="#"><span class="pl"><ic n="car"></ic></span>Vehicle</a><a href="#"><span class="pl"><ic n="apps"></ic></span>Apps</a></div>
- </div></div>
-
- <!-- MEDIA -->
- <div class="frame-wrap" data-screen="Media"><div class="frame a-root">
-  <div class="a-status"><div class="g tmp"><ic n="seat"></ic>21°</div><div class="sp"></div><span class="tmp">10:42</span><div class="sp"></div><div class="g"><ic n="bt"></ic><ic n="mic"></ic></div></div>
-  <div class="a-bar"><button class="a-ib"><ic n="back"></ic></button><div class="ttl">Amethyst Music</div><button class="a-ib"><ic n="search"></ic></button></div>
-  <div class="body"><div class="pane" style="flex:1.2;display:flex;flex-direction:column;justify-content:center;gap:20px"><div class="art" style="width:300px;height:300px;align-self:center;border-radius:32px"><ic n="music"></ic></div><div style="text-align:center"><div class="t-headline-m">Midnight Violet Drive</div><div class="t-body-l" style="color:var(--c-on-surface-variant)">Neon Orchid — Amethyst Roads</div></div><div class="a-prog"><span>1:12</span><div class="a-lin"><i style="width:34%"></i></div><span>3:21</span></div><div class="ctl" style="display:flex;justify-content:center;gap:24px"><button class="a-ib"><ic n="shuffle"></ic></button><button class="a-ib"><ic n="prev"></ic></button><button class="a-ib filled" style="width:96px;height:96px"><ic n="pause"></ic></button><button class="a-ib"><ic n="next"></ic></button><button class="a-ib sel"><ic n="fav"></ic></button></div></div>
-   <div class="pane"><div class="a-list restrict"><div class="a-li hdr">Up next</div><div class="a-li click sel"><div class="lead-i"><ic n="music"></ic></div><div class="tx"><div class="p">Midnight Violet Drive</div><div class="s">Neon Orchid</div></div><div class="tr">3:21</div></div><div class="a-li click"><div class="lead-i"><ic n="music"></ic></div><div class="tx"><div class="p">Lavender Haze</div><div class="s">Night Ride</div></div><div class="tr">4:02</div></div><div class="a-li click"><div class="lead-i"><ic n="music"></ic></div><div class="tx"><div class="p">Indigo Skyline</div><div class="s">Dusk Theory</div></div><div class="tr">2:58</div></div><div class="a-li click"><div class="lead-i"><ic n="music"></ic></div><div class="tx"><div class="p">Plum Highway</div><div class="s">The Orchids</div></div><div class="tr">3:44</div></div></div></div></div>
-  <div class="a-dock"><a href="#"><span class="pl"><ic n="home"></ic></span>Home</a><a href="#"><span class="pl"><ic n="nav"></ic></span>Maps</a><a href="#"><span class="pl"><ic n="phone"></ic></span>Phone</a><a href="#" aria-current="page"><span class="pl"><ic n="music"></ic></span>Media</a><a href="#"><span class="pl"><ic n="car"></ic></span>Vehicle</a><a href="#"><span class="pl"><ic n="apps"></ic></span>Apps</a></div>
- </div></div>
-
- <!-- NAV -->
- <div class="frame-wrap" data-screen="Navigation"><div class="frame a-root">
-  <div class="a-status"><div class="g tmp"><ic n="seat"></ic>21°</div><div class="sp"></div><span class="tmp">10:42</span><div class="sp"></div><div class="g"><ic n="signal"></ic><ic n="mic"></ic></div></div>
-  <div class="body map" style="position:relative"><div class="route"></div><div class="me"><ic n="nav"></ic></div>
-   <div style="position:absolute;left:32px;top:24px;width:460px;display:grid;gap:12px">
-    <div class="a-card pri" style="display:flex;gap:20px;align-items:center"><ic n="nav" ></ic><div><div class="t-display" style="font-size:48px;line-height:56px">400 m</div><div class="t-title-m">Turn right onto Violet Ave</div></div></div>
-    <div class="a-banner warn"><ic n="warn"></ic><span>Heavy traffic ahead</span></div></div>
-   <div style="position:absolute;right:32px;top:24px;display:grid;gap:12px"><button class="a-ib tonal"><ic n="add"></ic></button><button class="a-ib tonal"><ic n="minus"></ic></button><button class="a-ib tonal"><ic n="vol"></ic></button></div>
-   <div class="a-card" style="position:absolute;left:32px;right:32px;bottom:24px;display:flex;align-items:center;gap:32px;background:var(--c-surface-container-high)"><div><div class="t-headline-m">18 min</div><div class="t-body-m" style="color:var(--c-on-surface-variant)">12.4 km · 11:00 AM</div></div><div style="flex:1"></div><button class="a-btn tonal"><ic n="more"></ic>Route</button><button class="a-btn danger">End</button></div></div>
- </div></div>
-
- <!-- PHONE -->
- <div class="frame-wrap" data-screen="Phone"><div class="frame a-root">
-  <div class="a-status"><div class="g tmp"><ic n="seat"></ic>21°</div><div class="sp"></div><span class="tmp">10:42</span><div class="sp"></div><div class="g"><ic n="bt"></ic><ic n="signal"></ic></div></div>
-  <div class="a-bar"><div class="a-tabs" style="border:0;width:auto"><button class="a-tab" aria-selected="true" style="flex:none">Recents</button><button class="a-tab" aria-selected="false" style="flex:none">Favourites</button><button class="a-tab" aria-selected="false" style="flex:none">Contacts</button><button class="a-tab" aria-selected="false" style="flex:none">Dialpad</button></div></div>
-  <div class="body"><div class="pane"><div class="a-list restrict"><div class="a-li click two"><div class="lead-i"><ic n="phone"></ic></div><div class="tx"><div class="p">Alex Morgan</div><div class="s">Mobile · 9:41 AM</div></div><button class="a-ib filled"><ic n="phone"></ic></button></div><div class="a-li click two"><div class="lead-i"><ic n="phone"></ic></div><div class="tx"><div class="p">Home</div><div class="s">Missed · Yesterday</div></div><button class="a-ib filled"><ic n="phone"></ic></button></div><div class="a-li click two"><div class="lead-i"><ic n="phone"></ic></div><div class="tx"><div class="p">Priya Shah</div><div class="s">Outgoing · Mon</div></div><button class="a-ib filled"><ic n="phone"></ic></button></div><div class="a-li click two"><div class="lead-i"><ic n="phone"></ic></div><div class="tx"><div class="p">Dealer Service</div><div class="s">Incoming · Sun</div></div><button class="a-ib filled"><ic n="phone"></ic></button></div></div></div>
-   <div class="pane" style="flex:.6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px"><div class="t-headline-m">Call Alex?</div><div class="dialpad park-only"><button>1</button><button>2</button><button>3</button><button>4</button><button>5</button><button>6</button><button>7</button><button>8</button><button>9</button><button>*</button><button>0</button><button>#</button></div></div></div>
-  <div class="a-dock"><a href="#"><span class="pl"><ic n="home"></ic></span>Home</a><a href="#"><span class="pl"><ic n="nav"></ic></span>Maps</a><a href="#" aria-current="page"><span class="pl"><ic n="phone"></ic></span>Phone</a><a href="#"><span class="pl"><ic n="music"></ic></span>Media</a><a href="#"><span class="pl"><ic n="car"></ic></span>Vehicle</a><a href="#"><span class="pl"><ic n="apps"></ic></span>Apps</a></div>
- </div></div>
-
- <!-- CLIMATE -->
- <div class="frame-wrap" data-screen="Climate"><div class="frame a-root">
-  <div class="a-status"><div class="g tmp"><ic n="seat"></ic>21°</div><div class="sp"></div><span class="tmp">10:42</span><div class="sp"></div><div class="g"><ic n="mic"></ic></div></div>
-  <div class="a-bar"><button class="a-ib"><ic n="back"></ic></button><div class="ttl">Climate</div><div class="a-seg"><button aria-pressed="true">Dual</button><button aria-pressed="false">Sync</button></div></div>
-  <div class="body" style="padding:24px 32px;gap:24px"><div class="a-hvac" style="flex-direction:column;flex:1;justify-content:center"><div class="t-label-m" style="color:var(--c-primary)">DRIVER</div><div class="a-temp"><button class="a-ib tonal"><ic n="minus"></ic></button><div class="v">21.0<small>°C</small></div><button class="a-ib tonal"><ic n="add"></ic></button></div><div style="display:flex;gap:12px"><button class="a-tgl" aria-pressed="true"><ic n="seat"></ic>Heat 2</button><button class="a-tgl" aria-pressed="false"><ic n="seat"></ic>Vent</button></div></div>
-   <div class="a-hvac" style="flex-direction:column;flex:1;justify-content:center"><div class="t-label-m" style="color:var(--c-primary)">AIRFLOW</div><div class="a-fan"><button class="a-ib"><ic n="minus"></ic></button><ic n="fan"></ic><span style="display:flex;gap:6px;align-items:flex-end;height:44px"><i style="width:14px;height:12px;background:var(--c-primary);border-radius:4px"></i><i style="width:14px;height:20px;background:var(--c-primary);border-radius:4px"></i><i style="width:14px;height:28px;background:var(--c-primary);border-radius:4px"></i><i style="width:14px;height:36px;background:var(--c-secondary-container);border-radius:4px"></i><i style="width:14px;height:44px;background:var(--c-secondary-container);border-radius:4px"></i></span><button class="a-ib"><ic n="add"></ic></button></div><div style="display:flex;gap:12px"><button class="a-tgl" aria-pressed="true"><ic n="snow"></ic>A/C</button><button class="a-tgl" aria-pressed="false"><ic n="defrost"></ic>Defrost</button><button class="a-tgl" aria-pressed="false"><ic n="car"></ic>Recirc</button></div></div>
-   <div class="a-hvac" style="flex-direction:column;flex:1;justify-content:center"><div class="t-label-m" style="color:var(--c-primary)">PASSENGER</div><div class="a-temp"><button class="a-ib tonal"><ic n="minus"></ic></button><div class="v">22.5<small>°C</small></div><button class="a-ib tonal"><ic n="add"></ic></button></div><div style="display:flex;gap:12px"><button class="a-tgl" aria-pressed="false"><ic n="seat"></ic>Heat</button><button class="a-tgl" aria-pressed="false"><ic n="seat"></ic>Vent</button></div></div></div>
-  <div class="a-dock"><a href="#"><span class="pl"><ic n="home"></ic></span>Home</a><a href="#"><span class="pl"><ic n="nav"></ic></span>Maps</a><a href="#"><span class="pl"><ic n="phone"></ic></span>Phone</a><a href="#"><span class="pl"><ic n="music"></ic></span>Media</a><a href="#" aria-current="page"><span class="pl"><ic n="car"></ic></span>Vehicle</a><a href="#"><span class="pl"><ic n="apps"></ic></span>Apps</a></div>
- </div></div>
-
- <!-- SETTINGS -->
- <div class="frame-wrap" data-screen="Settings"><div class="frame a-root">
-  <div class="a-status"><div class="g tmp"><ic n="seat"></ic>21°</div><div class="sp"></div><span class="tmp">10:42</span><div class="sp"></div><div class="g"><ic n="bt"></ic><ic n="mic"></ic></div></div>
-  <div class="a-bar"><button class="a-ib"><ic n="back"></ic></button><div class="ttl">Settings</div><button class="a-ib"><ic n="search"></ic></button></div>
-  <div class="body" style="padding:8px 32px 24px;gap:32px"><nav class="a-nav" style="flex:none"><a href="#"><ic n="wifi"></ic>Network</a><a href="#" aria-current="page"><ic n="bt"></ic>Bluetooth</a><a href="#"><ic n="vol"></ic>Sound</a><a href="#"><ic n="bright"></ic>Display</a><a href="#"><ic n="car"></ic>Vehicle</a><a href="#"><ic n="info"></ic>System</a></nav>
-   <div style="flex:1"><div class="a-list"><div class="a-li hdr">Bluetooth</div><div class="a-li"><div class="tx"><div class="p">Bluetooth</div><div class="s">Visible as "Aurora Car"</div></div><button class="a-sw" role="switch" aria-checked="true"><i><ic n="check"></ic></i></button></div><div class="a-li hdr">Paired devices</div><div class="a-li click"><div class="lead-i"><ic n="phone"></ic></div><div class="tx"><div class="p">Pixel 9</div><div class="s">Connected · Calls, media</div></div><div class="tr"><ic n="settings"></ic></div></div><div class="a-li click"><div class="lead-i"><ic n="phone"></ic></div><div class="tx"><div class="p">Alex's iPhone</div><div class="s">Not connected</div></div><div class="tr"><ic n="settings"></ic></div></div></div><div style="margin-top:20px"><button class="a-btn tonal has-i park-only"><ic n="add"></ic>Pair new device</button></div></div></div>
-  <div class="a-dock"><a href="#"><span class="pl"><ic n="home"></ic></span>Home</a><a href="#"><span class="pl"><ic n="nav"></ic></span>Maps</a><a href="#"><span class="pl"><ic n="phone"></ic></span>Phone</a><a href="#"><span class="pl"><ic n="music"></ic></span>Media</a><a href="#"><span class="pl"><ic n="car"></ic></span>Vehicle</a><a href="#" aria-current="page"><span class="pl"><ic n="settings"></ic></span>Settings</a></div>
- </div></div>
+ <p>Nine complete screens on the 10″ 1920 × 1080 display (1280 × 720 dp), each in the standard layout — status bar on top, app bar on the right, HVAC bar at the bottom. Toggle <b>Full screen</b> to dismiss all bars. They follow the Night/Day and Parked/Driving toggles.</p>
+ <div class="viewbar"><div class="tabs-d" role="tablist" id="screenTabs" style="margin:0"></div><button class="tbtn" id="fsBtn" aria-pressed="false">Full screen: off</button></div>
+ <div class="frame-wrap" id="screenHost" style="max-width:1160px"></div>
+ <div id="screenSpec"></div>
 </section>
 
 <!-- ============ INTERACTION ============ -->
@@ -1017,6 +1188,7 @@ carUx.registerListener { r -&gt;
 <div class="toast-d" id="toast" role="status"></div>
 <script>
 const TOKENS={"night": {"primary": "#D0BCFF", "onPrimary": "#381E72", "primaryContainer": "#4F378B", "onPrimaryContainer": "#EADDFF", "secondary": "#CCC2DC", "onSecondary": "#332D41", "secondaryContainer": "#4A4458", "onSecondaryContainer": "#E8DEF8", "tertiary": "#EFB8C8", "onTertiary": "#492532", "tertiaryContainer": "#633B48", "onTertiaryContainer": "#FFD8E4", "error": "#F2B8B5", "onError": "#601410", "errorContainer": "#8C1D18", "onErrorContainer": "#F9DEDC", "success": "#7DDB95", "onSuccess": "#00391C", "successContainer": "#115229", "onSuccessContainer": "#99F8AF", "warning": "#FFB870", "onWarning": "#4A2800", "warningContainer": "#6A3C00", "onWarningContainer": "#FFDCBC", "background": "#141218", "onBackground": "#E6E0E9", "surface": "#141218", "onSurface": "#E6E0E9", "surfaceVariant": "#49454F", "onSurfaceVariant": "#CAC4D0", "surfaceContainerLowest": "#0F0D13", "surfaceContainerLow": "#1D1B20", "surfaceContainer": "#211F26", "surfaceContainerHigh": "#2B2930", "surfaceContainerHighest": "#36343B", "outline": "#938F99", "outlineVariant": "#49454F", "inverseSurface": "#E6E0E9", "inverseOnSurface": "#322F35", "inversePrimary": "#6750A4", "scrim": "#000000"}, "day": {"primary": "#6750A4", "onPrimary": "#FFFFFF", "primaryContainer": "#EADDFF", "onPrimaryContainer": "#21005D", "secondary": "#625B71", "onSecondary": "#FFFFFF", "secondaryContainer": "#E8DEF8", "onSecondaryContainer": "#1D192B", "tertiary": "#7D5260", "onTertiary": "#FFFFFF", "tertiaryContainer": "#FFD8E4", "onTertiaryContainer": "#31111D", "error": "#B3261E", "onError": "#FFFFFF", "errorContainer": "#F9DEDC", "onErrorContainer": "#410E0B", "success": "#1B6E3A", "onSuccess": "#FFFFFF", "successContainer": "#B7F4C6", "onSuccessContainer": "#00210D", "warning": "#8A5100", "onWarning": "#FFFFFF", "warningContainer": "#FFDCBC", "onWarningContainer": "#2C1600", "background": "#FEF7FF", "onBackground": "#1D1B20", "surface": "#FEF7FF", "onSurface": "#1D1B20", "surfaceVariant": "#E7E0EC", "onSurfaceVariant": "#49454F", "surfaceContainerLowest": "#FFFFFF", "surfaceContainerLow": "#F7F2FA", "surfaceContainer": "#F3EDF7", "surfaceContainerHigh": "#ECE6F0", "surfaceContainerHighest": "#E6E0E9", "outline": "#79747E", "outlineVariant": "#CAC4D0", "inverseSurface": "#322F35", "inverseOnSurface": "#F5EFF7", "inversePrimary": "#D0BCFF", "scrim": "#000000"}, "tonal": {"Primary": {"0": "#000000", "10": "#21005D", "20": "#381E72", "30": "#4F378B", "40": "#6750A4", "50": "#7F67BE", "60": "#9A82DB", "70": "#B69DF8", "80": "#D0BCFF", "90": "#EADDFF", "95": "#F6EDFF", "99": "#FFFBFE", "100": "#FFFFFF"}, "Secondary": {"0": "#000000", "10": "#1D192B", "20": "#332D41", "30": "#4A4458", "40": "#625B71", "50": "#7A7289", "60": "#958DA5", "70": "#B0A7C0", "80": "#CCC2DC", "90": "#E8DEF8", "95": "#F6EDFF", "99": "#FFFBFE", "100": "#FFFFFF"}, "Tertiary": {"0": "#000000", "10": "#31111D", "20": "#492532", "30": "#633B48", "40": "#7D5260", "50": "#986977", "60": "#B58392", "70": "#D29DAC", "80": "#EFB8C8", "90": "#FFD8E4", "95": "#FFECF1", "99": "#FFFBFA", "100": "#FFFFFF"}, "Neutral": {"0": "#000000", "10": "#1D1B20", "20": "#322F35", "30": "#48464C", "40": "#605D64", "50": "#79767D", "60": "#938F96", "70": "#AEA9B1", "80": "#CAC5CD", "90": "#E6E0E9", "95": "#F5EFF7", "99": "#FFFBFE", "100": "#FFFFFF"}, "Neutral Variant": {"0": "#000000", "10": "#1D1A22", "20": "#322F37", "30": "#49454F", "40": "#605D66", "50": "#79747E", "60": "#938F99", "70": "#AEA9B4", "80": "#CAC4D0", "90": "#E7E0EC", "95": "#F5EEFA", "99": "#FFFBFE", "100": "#FFFFFF"}, "Error": {"0": "#000000", "10": "#410E0B", "20": "#601410", "30": "#8C1D18", "40": "#B3261E", "50": "#DC362E", "60": "#E46962", "70": "#EC928E", "80": "#F2B8B5", "90": "#F9DEDC", "95": "#FCEEEE", "99": "#FFFBF9", "100": "#FFFFFF"}}};
+const ICONLIB={"order":["System","Connectivity","Media","Phone","Navigation","Climate","Vehicle"],"icons":[{"n":"accessibility","c":"System","p":[["M10 4.5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z",0],["M4 8.5h16M12 8.5V14M8 21l4-7 4 7",0]]},{"n":"add","c":"System","p":[["M12 5v14M5 12h14",0]]},{"n":"apps","c":"System","p":[["M5.5 4h3.0a1.5 1.5 0 0 1 1.5 1.5v3.0a1.5 1.5 0 0 1 -1.5 1.5h-3.0a1.5 1.5 0 0 1 -1.5 -1.5v-3.0a1.5 1.5 0 0 1 1.5 -1.5z",0],["M15.5 4h3.0a1.5 1.5 0 0 1 1.5 1.5v3.0a1.5 1.5 0 0 1 -1.5 1.5h-3.0a1.5 1.5 0 0 1 -1.5 -1.5v-3.0a1.5 1.5 0 0 1 1.5 -1.5z",0],["M5.5 14h3.0a1.5 1.5 0 0 1 1.5 1.5v3.0a1.5 1.5 0 0 1 -1.5 1.5h-3.0a1.5 1.5 0 0 1 -1.5 -1.5v-3.0a1.5 1.5 0 0 1 1.5 -1.5z",0],["M15.5 14h3.0a1.5 1.5 0 0 1 1.5 1.5v3.0a1.5 1.5 0 0 1 -1.5 1.5h-3.0a1.5 1.5 0 0 1 -1.5 -1.5v-3.0a1.5 1.5 0 0 1 1.5 -1.5z",0]]},{"n":"back","c":"System","p":[["M19 12H5M11 6l-6 6 6 6",0]]},{"n":"bell","c":"System","p":[["M6 17v-6a6 6 0 0 1 12 0v6l2 2H4z",0],["M10 21a2 2 0 0 0 4 0",0]]},{"n":"bell-off","c":"System","p":[["M6 17v-6a6 6 0 0 1 8-5.6M18 11v6l2 2H4M10 21a2 2 0 0 0 4 0M3 3l18 18",0]]},{"n":"bright","c":"System","p":[["M8 12a4 4 0 1 0 8 0a4 4 0 1 0 -8 0z",0],["M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9L7 7M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1",0]]},{"n":"calendar","c":"System","p":[["M6 5h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2z",0],["M4 10h16M8 3v4M16 3v4",0]]},{"n":"check","c":"System","p":[["M5 12.5l4.5 4.5L19 7.5",0]]},{"n":"chev","c":"System","p":[["M9 5l7 7-7 7",0]]},{"n":"chev-down","c":"System","p":[["M5 9l7 7 7-7",0]]},{"n":"chev-left","c":"System","p":[["M15 5l-7 7 7 7",0]]},{"n":"chev-up","c":"System","p":[["M5 15l7-7 7 7",0]]},{"n":"clock","c":"System","p":[["M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0z",0],["M12 7v5l3 2",0]]},{"n":"close","c":"System","p":[["M6 6l12 12M18 6L6 18",0]]},{"n":"display","c":"System","p":[["M5 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2z",0],["M8 21h8M12 17v4",0]]},{"n":"down","c":"System","p":[["M12 5v14M6 13l6 6 6-6",0]]},{"n":"edit","c":"System","p":[["M4 20l1-4L16 5l3 3L8 19z",0]]},{"n":"error","c":"System","p":[["M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0z",0],["M12 7.5v5",0],["M11 16.2a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1]]},{"n":"eye","c":"System","p":[["M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z",0],["M9 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z",0]]},{"n":"eye-off","c":"System","p":[["M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM3 3l18 18",0]]},{"n":"fav","c":"System","p":[["M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z",0]]},{"n":"filter","c":"System","p":[["M4 5h16l-6 8v6l-4-2v-4z",0]]},{"n":"folder","c":"System","p":[["M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z",0]]},{"n":"forward","c":"System","p":[["M5 12h14M13 6l6 6-6 6",0]]},{"n":"fullscreen","c":"System","p":[["M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5",0]]},{"n":"fullscreen-exit","c":"System","p":[["M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5",0]]},{"n":"gamepad","c":"System","p":[["M6 8h12a4 4 0 0 1 4 4v1a3 3 0 0 1-5 2l-1-1H8l-1 1a3 3 0 0 1-5-2v-1a4 4 0 0 1 4-4z",0],["M8 10v3M6.5 11.5h3",0],["M15 11a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1],["M17 13a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1]]},{"n":"globe","c":"System","p":[["M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0z",0],["M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18",0]]},{"n":"help","c":"System","p":[["M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0z",0],["M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 1-1 1.7",0],["M11 16.8a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1]]},{"n":"home","c":"System","p":[["M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z",0]]},{"n":"image","c":"System","p":[["M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2z",0],["M7 10a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z",0],["M21 16l-5-5-8 8",0]]},{"n":"info","c":"System","p":[["M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0z",0],["M12 11v5",0],["M11 7.8a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1]]},{"n":"lock","c":"System","p":[["M7 11h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2z",0],["M8 11V8a4 4 0 0 1 8 0v3",0]]},{"n":"menu","c":"System","p":[["M4 6h16M4 12h16M4 18h16",0]]},{"n":"minus","c":"System","p":[["M5 12h14",0]]},{"n":"moon","c":"System","p":[["M20 14.5A8 8 0 1 1 9.5 4a6.500 6.500 0 0 0 10.500 10.500z",0]]},{"n":"more","c":"System","p":[["M10.5 5a1.5 1.5 0 1 0 3.0 0a1.5 1.5 0 1 0 -3.0 0z",1],["M10.5 12a1.5 1.5 0 1 0 3.0 0a1.5 1.5 0 1 0 -3.0 0z",1],["M10.5 19a1.5 1.5 0 1 0 3.0 0a1.5 1.5 0 1 0 -3.0 0z",1]]},{"n":"more-h","c":"System","p":[["M3.5 12a1.5 1.5 0 1 0 3.0 0a1.5 1.5 0 1 0 -3.0 0z",1],["M10.5 12a1.5 1.5 0 1 0 3.0 0a1.5 1.5 0 1 0 -3.0 0z",1],["M17.5 12a1.5 1.5 0 1 0 3.0 0a1.5 1.5 0 1 0 -3.0 0z",1]]},{"n":"power","c":"System","p":[["M12 3v9M6.5 6.5a8 8 0 1 0 11 0",0]]},{"n":"privacy","c":"System","p":[["M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z",0]]},{"n":"recent","c":"System","p":[["M3 12a9 9 0 1 0 3-6.7M3 4v5h5M12 8v4l3 2",0]]},{"n":"refresh","c":"System","p":[["M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7",0]]},{"n":"search","c":"System","p":[["M5 11a6 6 0 1 0 12 0a6 6 0 1 0 -12 0z",0],["M20 20l-4.5-4.5",0]]},{"n":"settings","c":"System","p":[["M9 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z",0],["M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9L7 7M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1",0],["M5.5 12a6.5 6.5 0 1 0 13.0 0a6.5 6.5 0 1 0 -13.0 0z",0]]},{"n":"share","c":"System","p":[["M3.5 12a2.5 2.5 0 1 0 5.0 0a2.5 2.5 0 1 0 -5.0 0z",0],["M15.5 6a2.5 2.5 0 1 0 5.0 0a2.5 2.5 0 1 0 -5.0 0z",0],["M15.5 18a2.5 2.5 0 1 0 5.0 0a2.5 2.5 0 1 0 -5.0 0z",0],["M8.2 10.8l7.600-3.600M8.200 13.200l7.600 3.600",0]]},{"n":"shield-check","c":"System","p":[["M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z",0],["M8.500 12l2.500 2.500 4.500-5",0]]},{"n":"sort","c":"System","p":[["M7 4v16M3 16l4 4 4-4M17 20V4M13 8l4-4 4 4",0]]},{"n":"star","c":"System","p":[["M12 3l2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.600 2.900 1.100-6.200L3 9.600l6.200-.9z",0]]},{"n":"storage","c":"System","p":[["M4 6c0-1.5 3.5-3 8-3s8 1.5 8 3-3.5 3-8 3-8-1.5-8-3zM4 6v12c0 1.5 3.5 3 8 3s8-1.5 8-3V6M4 12c0 1.5 3.5 3 8 3s8-1.5 8-3",0]]},{"n":"trash","c":"System","p":[["M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13",0]]},{"n":"unlock","c":"System","p":[["M7 11h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2z",0],["M8 11V8a4 4 0 0 1 7.5-2",0]]},{"n":"up","c":"System","p":[["M12 19V5M6 11l6-6 6 6",0]]},{"n":"user","c":"System","p":[["M8 8a4 4 0 1 0 8 0a4 4 0 1 0 -8 0z",0],["M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7",0]]},{"n":"users","c":"System","p":[["M5.5 8a3.5 3.5 0 1 0 7.0 0a3.5 3.5 0 1 0 -7.0 0z",0],["M2 20c0-3.5 3-6 7-6s7 2.5 7 6",0],["M14 9a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z",0],["M17 14c3 0 5 2 5 5",0]]},{"n":"video","c":"System","p":[["M5 6h14a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-8a2 2 0 0 1 2 -2z",0],["M10 9.5v5l4.500-2.500z",1]]},{"n":"voice-assistant","c":"System","p":[["M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z",0]]},{"n":"voice-wave","c":"System","p":[["M4 11v2M8 8v8M12 4v16M16 8v8M20 11v2",0]]},{"n":"warn","c":"System","p":[["M12 3l10 18H2z",0],["M12 10v4.5",0],["M11 17.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1]]},{"n":"weather","c":"System","p":[["M7 18a4 4 0 0 1-.5-8A6 6 0 0 1 18 9.500a4 4 0 0 1-1 8.500z",0],["M5 5l1 1.500M2 9l1.500.5",0]]},{"n":"airplane","c":"Connectivity","p":[["M21 15l-8-5V4a1.500 1.500 0 0 0-3 0v6l-8 5v2l8-2v4l-2 1.500V22l3.500-1 3.500 1v-1.500L13 18v-4l8 2z",0]]},{"n":"bt","c":"Connectivity","p":[["M7 7l10 10-5 5V2l5 5L7 17",0]]},{"n":"cloud","c":"Connectivity","p":[["M7 18a4 4 0 0 1-.5-8A6 6 0 0 1 18 9a4.500 4.500 0 0 1 0 9z",0]]},{"n":"download","c":"Connectivity","p":[["M12 4v11M7 10l5 5 5-5M5 20h14",0]]},{"n":"gps","c":"Connectivity","p":[["M8 12a4 4 0 1 0 8 0a4 4 0 1 0 -8 0z",0],["M4 12a8 8 0 1 0 16 0a8 8 0 1 0 -16 0z",0],["M12 2v2M12 20v2M2 12h2M20 12h2",0]]},{"n":"hotspot","c":"Connectivity","p":[["M10 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z",1],["M8 8a5.700 5.700 0 0 0 0 8M16 8a5.700 5.700 0 0 1 0 8M5 5a10 10 0 0 0 0 14M19 5a10 10 0 0 1 0 14",0]]},{"n":"link","c":"Connectivity","p":[["M10 14a4 4 0 0 0 5.700 0l3-3a4 4 0 0 0-5.700-5.700l-1 1M14 10a4 4 0 0 0-5.700 0l-3 3a4 4 0 0 0 5.700 5.700l1-1",0]]},{"n":"nfc","c":"Connectivity","p":[["M6 8a8 8 0 0 1 0 8M10 6a12 12 0 0 1 0 12M14 4a16 16 0 0 1 0 16",0]]},{"n":"phone-link","c":"Connectivity","p":[["M9 2h6a2 2 0 0 1 2 2v16a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2v-16a2 2 0 0 1 2 -2z",0],["M10 18h4",0]]},{"n":"signal","c":"Connectivity","p":[["M4 20v-3M9 20v-6M14 20V9M19 20V4",0]]},{"n":"sync","c":"Connectivity","p":[["M4 12a8 8 0 0 1 14-5M20 4v4h-4M20 12a8 8 0 0 1-14 5M4 20v-4h4",0]]},{"n":"upload","c":"Connectivity","p":[["M12 20V9M7 14l5-5 5 5M5 4h14",0]]},{"n":"usb","c":"Connectivity","p":[["M12 3v14M9 6l3-3 3 3",0],["M10.5 19.5a1.5 1.5 0 1 0 3.0 0a1.5 1.5 0 1 0 -3.0 0z",0],["M12 12l4-2v-2M12 14l-4-2v-2",0],["M15 6h2v2h-2z",0],["M6.8 8a1.2 1.2 0 1 0 2.4 0a1.2 1.2 0 1 0 -2.4 0z",0]]},{"n":"wifi","c":"Connectivity","p":[["M2 9a15 15 0 0 1 20 0M5 12.500a10.500 10.500 0 0 1 14 0M8.500 16a6 6 0 0 1 7 0",0],["M11 19.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1]]},{"n":"wifi-off","c":"Connectivity","p":[["M2 9a15 15 0 0 1 20 0M5 12.500a10.500 10.500 0 0 1 14 0M8.500 16a6 6 0 0 1 7 0M3 3l18 18",0],["M11 19.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1]]},{"n":"album","c":"Media","p":[["M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0z",0],["M9.5 12a2.5 2.5 0 1 0 5.0 0a2.5 2.5 0 1 0 -5.0 0z",0]]},{"n":"aux","c":"Media","p":[["M12 2v6M9 4v4h6V4M8 10h8v4l-2 3v5h-4v-5l-2-3z",0]]},{"n":"cast","c":"Media","p":[["M3 8V6a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-5M3 12a8 8 0 0 1 8 8M3 16a4 4 0 0 1 4 4",0],["M2.5 20a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1]]},{"n":"equalizer","c":"Media","p":[["M5 20V11M12 20V4M19 20v-6",0]]},{"n":"ff","c":"Media","p":[["M3 6v12l8-6zM12 6v12l8-6z",1]]},{"n":"headphones","c":"Media","p":[["M4 15v-3a8 8 0 0 1 16 0v3",0],["M4.5 14h1.0a1.5 1.5 0 0 1 1.5 1.5v4.0a1.5 1.5 0 0 1 -1.5 1.5h-1.0a1.5 1.5 0 0 1 -1.5 -1.5v-4.0a1.5 1.5 0 0 1 1.5 -1.5z",0],["M18.5 14h1.0a1.5 1.5 0 0 1 1.5 1.5v4.0a1.5 1.5 0 0 1 -1.5 1.5h-1.0a1.5 1.5 0 0 1 -1.5 -1.5v-4.0a1.5 1.5 0 0 1 1.5 -1.5z",0]]},{"n":"mic","c":"Media","p":[["M12 3h0a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h0a3 3 0 0 1 -3 -3v-6a3 3 0 0 1 3 -3z",0],["M5 11a7 7 0 0 0 14 0M12 18v3",0]]},{"n":"mic-off","c":"Media","p":[["M12 3h0a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h0a3 3 0 0 1 -3 -3v-6a3 3 0 0 1 3 -3z",0],["M5 11a7 7 0 0 0 14 0M12 18v3M3 3l18 18",0]]},{"n":"music","c":"Media","p":[["M9 18V6l11-2v12",0],["M3 18a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z",0],["M14 16a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z",0]]},{"n":"mute","c":"Media","p":[["M4 9v6h4l5 4V5L8 9z",0],["M16 9l5 6M21 9l-5 6",0]]},{"n":"next","c":"Media","p":[["M6 5v14l9-7z",1],["M18 5v14",0]]},{"n":"pause","c":"Media","p":[["M7 5h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-12a1 1 0 0 1 1 -1z",1],["M15 5h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-12a1 1 0 0 1 1 -1z",1]]},{"n":"play","c":"Media","p":[["M8 5v14l11-7z",1]]},{"n":"playlist","c":"Media","p":[["M4 6h12M4 11h12M4 16h6",0],["M18 20V12l3-1",0],["M14 20a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z",0]]},{"n":"podcast","c":"Media","p":[["M9.5 10a2.5 2.5 0 1 0 5.0 0a2.5 2.5 0 1 0 -5.0 0z",0],["M8 14a6 6 0 1 1 8 0M5 17a10 10 0 1 1 14 0M12 14v7",0]]},{"n":"prev","c":"Media","p":[["M18 5v14L9 12z",1],["M6 5v14",0]]},{"n":"queue","c":"Media","p":[["M4 7h12M4 12h12M4 17h8",0],["M18 13l4 3-4 3z",0]]},{"n":"radio","c":"Media","p":[["M5 8h14a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-8a2 2 0 0 1 2 -2z",0],["M7 8l11-5",0],["M5.5 14a2.5 2.5 0 1 0 5.0 0a2.5 2.5 0 1 0 -5.0 0z",0],["M14 12.500h4M14 15.500h4",0]]},{"n":"repeat","c":"Media","p":[["M17 3l3 3-3 3M4 11V9a3 3 0 0 1 3-3h13M7 21l-3-3 3-3M20 13v2a3 3 0 0 1-3 3H4",0]]},{"n":"repeat-one","c":"Media","p":[["M17 3l3 3-3 3M4 11V9a3 3 0 0 1 3-3h13M7 21l-3-3 3-3M20 13v2a3 3 0 0 1-3 3H4M11 10l1.500-1v6",0]]},{"n":"rw","c":"Media","p":[["M21 6v12l-8-6zM12 6v12l-8-6z",1]]},{"n":"shuffle","c":"Media","p":[["M3 7h4c4 0 5 10 9 10h5M3 17h4c1.500 0 2.500-1.500 3.500-3M14 8.500C15 7.500 15.500 7 17 7h4M18 4l3 3-3 3M18 14l3 3-3 3",0]]},{"n":"speaker","c":"Media","p":[["M8 3h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2z",0],["M8.5 15a3.5 3.5 0 1 0 7.0 0a3.5 3.5 0 1 0 -7.0 0z",0],["M10.8 7a1.2 1.2 0 1 0 2.4 0a1.2 1.2 0 1 0 -2.4 0z",0]]},{"n":"stop","c":"Media","p":[["M7.5 6h9.0a1.5 1.5 0 0 1 1.5 1.5v9.0a1.5 1.5 0 0 1 -1.5 1.5h-9.0a1.5 1.5 0 0 1 -1.5 -1.5v-9.0a1.5 1.5 0 0 1 1.5 -1.5z",1]]},{"n":"thumb-up","c":"Media","p":[["M7 11v9H4v-9zM7 11l4-8c1.500 0 2.500 1 2.500 2.500V9H19a2 2 0 0 1 2 2.300l-1 6A2 2 0 0 1 18 19H7",0]]},{"n":"tuner","c":"Media","p":[["M2 12h3l2-6 3 12 3-9 2 3h7",0]]},{"n":"vol","c":"Media","p":[["M4 9v6h4l5 4V5L8 9z",0],["M16.500 9.500a4 4 0 0 1 0 5M19 7a8 8 0 0 1 0 10",0]]},{"n":"vol-low","c":"Media","p":[["M4 9v6h4l5 4V5L8 9z",0],["M16.500 9.500a4 4 0 0 1 0 5",0]]},{"n":"contacts","c":"Phone","p":[["M7 3h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H7zM7 3v18M4 7h3M4 12h3M4 17h3",0],["M11.5 10a2.5 2.5 0 1 0 5.0 0a2.5 2.5 0 1 0 -5.0 0z",0],["M10 17c.5-2 2-3 4-3s3.500 1 4 3",0]]},{"n":"dialpad","c":"Phone","p":[["M5 5.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1],["M11 5.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1],["M17 5.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1],["M5 10.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1],["M11 10.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1],["M17 10.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1],["M5 15.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1],["M11 15.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1],["M17 15.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1],["M11 20.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1]]},{"n":"message","c":"Phone","p":[["M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-5 4V6a1 1 0 0 1 1-1z",0]]},{"n":"phone","c":"Phone","p":[["M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z",0]]},{"n":"phone-end","c":"Phone","p":[["M3 14c0-2 4-4 9-4s9 2 9 4v1.500a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1v-1.500c-1.500-.5-4-.5-6 0v1.500a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z",0]]},{"n":"phone-in","c":"Phone","p":[["M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z",0],["M21 3l-6 6M15 4v5h5",0]]},{"n":"phone-missed","c":"Phone","p":[["M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z",0],["M15 3l5 5M20 3l-5 5",0]]},{"n":"voicemail","c":"Phone","p":[["M3.5 12a3.5 3.5 0 1 0 7.0 0a3.5 3.5 0 1 0 -7.0 0z",0],["M13.5 12a3.5 3.5 0 1 0 7.0 0a3.5 3.5 0 1 0 -7.0 0z",0],["M7 15.500h10",0]]},{"n":"compass","c":"Navigation","p":[["M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0z",0],["M15.500 8.500l-2 5-5 2 2-5z",0]]},{"n":"destination","c":"Navigation","p":[["M5 21V4M5 4h12l-2 4 2 4H5",0]]},{"n":"ev-station","c":"Navigation","p":[["M9 3v5M15 3v5M7 8h10v4a5 5 0 0 1-10 0zM12 17v4",0]]},{"n":"exit-ramp","c":"Navigation","p":[["M8 21V9a4 4 0 0 1 4-4h7M16 2l3 3-3 3",0]]},{"n":"fuel","c":"Navigation","p":[["M5 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16M3 21h14M5 10h10M15 8h2a2 2 0 0 1 2 2v6a1.500 1.500 0 0 0 3 0V9l-3-3",0]]},{"n":"layers","c":"Navigation","p":[["M12 3l9 5-9 5-9-5zM3 13l9 5 9-5",0]]},{"n":"locate","c":"Navigation","p":[["M9 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z",1],["M5 12a7 7 0 1 0 14 0a7 7 0 1 0 -14 0z",0],["M12 2v3M12 19v3M2 12h3M19 12h3",0]]},{"n":"map","c":"Navigation","p":[["M9 4L3 6v14l6-2 6 2 6-2V4l-6 2zM9 4v14M15 6v14",0]]},{"n":"merge","c":"Navigation","p":[["M7 21v-6a5 5 0 0 1 5-5 5 5 0 0 0 5-5V4M13 7l4-4 4 4",0]]},{"n":"nav","c":"Navigation","p":[["M12 3l7 17-7-4-7 4z",0]]},{"n":"parking","c":"Navigation","p":[["M7 4h10a3 3 0 0 1 3 3v10a3 3 0 0 1 -3 3h-10a3 3 0 0 1 -3 -3v-10a3 3 0 0 1 3 -3z",0],["M10 17V7h3.500a3 3 0 0 1 0 6H10",0]]},{"n":"pin","c":"Navigation","p":[["M12 21s-7-6.500-7-11.500a7 7 0 0 1 14 0C19 14.500 12 21 12 21z",0],["M9.5 9.5a2.5 2.5 0 1 0 5.0 0a2.5 2.5 0 1 0 -5.0 0z",0]]},{"n":"roundabout","c":"Navigation","p":[["M8 12a4 4 0 1 0 8 0a4 4 0 1 0 -8 0z",0],["M12 21v-5M12 8V3M9.500 5.500L12 3l2.500 2.500",0]]},{"n":"route","c":"Navigation","p":[["M3.5 18a2.5 2.5 0 1 0 5.0 0a2.5 2.5 0 1 0 -5.0 0z",0],["M15.5 6a2.5 2.5 0 1 0 5.0 0a2.5 2.5 0 1 0 -5.0 0z",0],["M8.500 18H15a3.500 3.500 0 0 0 0-7H9a3.500 3.500 0 0 1 0-7h6.500",0]]},{"n":"toll","c":"Navigation","p":[["M5 8h14a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2z",0],["M3 12h18M12 8v10",0]]},{"n":"traffic","c":"Navigation","p":[["M11 2h2a3 3 0 0 1 3 3v14a3 3 0 0 1 -3 3h-2a3 3 0 0 1 -3 -3v-14a3 3 0 0 1 3 -3z",0],["M11 7a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1],["M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1],["M11 17a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1]]},{"n":"turn-left","c":"Navigation","p":[["M17 20v-9a4 4 0 0 0-4-4H5M9 3L5 7l4 4",0]]},{"n":"turn-right","c":"Navigation","p":[["M7 20v-9a4 4 0 0 1 4-4h8M15 3l4 4-4 4",0]]},{"n":"u-turn","c":"Navigation","p":[["M7 20V9a5 5 0 0 1 10 0v4M13 10l4 4 4-4",0]]},{"n":"zoom-in","c":"Navigation","p":[["M5 11a6 6 0 1 0 12 0a6 6 0 1 0 -12 0z",0],["M20 20l-4.500-4.500M8 11h6M11 8v6",0]]},{"n":"zoom-out","c":"Navigation","p":[["M5 11a6 6 0 1 0 12 0a6 6 0 1 0 -12 0z",0],["M20 20l-4.500-4.500M8 11h6",0]]},{"n":"air-quality","c":"Climate","p":[["M3 8h10a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7",0]]},{"n":"airflow-face","c":"Climate","p":[["M4.5 6a2.5 2.5 0 1 0 5.0 0a2.5 2.5 0 1 0 -5.0 0z",0],["M4 21v-7a3 3 0 0 1 3-3 3 3 0 0 1 3 3v7M14 8h7M14 12h7M14 16h7",0]]},{"n":"airflow-feet","c":"Climate","p":[["M7 3v9l-2 9h5M14 14h7M14 18h7M14 22h7",0]]},{"n":"airflow-windshield","c":"Climate","p":[["M4 17l2-9h12l2 9zM12 22v-3M8 22v-3M16 22v-3",0]]},{"n":"auto","c":"Climate","p":[["M5 20l7-16 7 16M8 14.500h8",0]]},{"n":"defrost","c":"Climate","p":[["M4 16l2-9h12l2 9z",0],["M9 9.500c-1 1 1 2 0 3.500M12 9.500c-1 1 1 2 0 3.500M15 9.500c-1 1 1 2 0 3.500M3 20h18",0]]},{"n":"defrost-rear","c":"Climate","p":[["M6 6h12a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-8a2 2 0 0 1 2 -2z",0],["M9 9.500c-1 1 1 2 0 3.500M12 9.500c-1 1 1 2 0 3.500M15 9.500c-1 1 1 2 0 3.500",0]]},{"n":"fan","c":"Climate","p":[["M10.8 12a1.2 1.2 0 1 0 2.4 0a1.2 1.2 0 1 0 -2.4 0z",1],["M12.0 12.0C10.5 8.5 11.5 4.0 15.5 3.5C17.0 6.5 15.5 10.0 12.0 12.0z",0],["M12.0 12.0C15.78 12.45 19.18 15.57 17.61 19.28C14.26 19.08 11.98 16.03 12.0 12.0z",0],["M12.0 12.0C9.72 15.05 5.32 16.43 2.89 13.22C4.74 10.42 8.52 9.97 12.0 12.0z",0]]},{"n":"heat","c":"Climate","p":[["M8 3c-1.500 2 1.500 3.500 0 6M12 3c-1.500 2 1.500 3.500 0 6M16 3c-1.500 2 1.500 3.500 0 6M4 14h16M6 18h12",0]]},{"n":"leaf","c":"Climate","p":[["M5 19C5 10 10 5 20 4c0 9-4 15-12 15M5 19c2-5 5-8 9-10",0]]},{"n":"recirc","c":"Climate","p":[["M4 17l1.500-5h11L18 17v3h-2.500v-1.500h-9V20H4z",0],["M9 8c1-2 5-2 6 0M14.500 5l.500 3-3 .500",0],["M6 14.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1],["M14.5 14.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1]]},{"n":"seat","c":"Climate","p":[["M7 3a2 2 0 0 1 2 1.700L10.500 13H17a3 3 0 0 1 3 3v2H9.500a2 2 0 0 1-2-1.700L5 4.500A1.500 1.500 0 0 1 7 3z",0],["M11 21h8",0]]},{"n":"seat-heat","c":"Climate","p":[["M6 4a2 2 0 0 1 2 1.700L9.500 14H15a3 3 0 0 1 3 3v2H8.500a2 2 0 0 1-2-1.700L4 5.500A1.500 1.500 0 0 1 6 4z",0],["M13 2c-1 1 1 2 0 3.500M17 2c-1 1 1 2 0 3.500M21 2c-1 1 1 2 0 3.500",0]]},{"n":"seat-vent","c":"Climate","p":[["M6 4a2 2 0 0 1 2 1.700L9.500 14H15a3 3 0 0 1 3 3v2H8.500a2 2 0 0 1-2-1.700L4 5.500A1.500 1.500 0 0 1 6 4z",0],["M13 2v4M17 2v4M21 2v4",0]]},{"n":"snow","c":"Climate","p":[["M12 2v20M3.300 7l17.400 10M3.300 17L20.700 7",0]]},{"n":"steering","c":"Climate","p":[["M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0z",0],["M10 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z",0],["M3 12h7M14 12h7M12 14v7",0]]},{"n":"steering-heat","c":"Climate","p":[["M5 14a7 7 0 1 0 14 0a7 7 0 1 0 -14 0z",0],["M10.5 14a1.5 1.5 0 1 0 3.0 0a1.5 1.5 0 1 0 -3.0 0z",0],["M5 14h5.500M13.500 14H19M12 15.500V21",0],["M8 2c-1 1 1 2 0 3M12 2c-1 1 1 2 0 3M16 2c-1 1 1 2 0 3",0]]},{"n":"temp","c":"Climate","p":[["M10 14.500V5a2 2 0 0 1 4 0v9.500a4 4 0 1 1-4 0z",0]]},{"n":"zone-dual","c":"Climate","p":[["M5 5h4a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-4a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2z",0],["M15 5h4a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-4a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2z",0]]},{"n":"airbag","c":"Vehicle","p":[["M5.5 6a2.5 2.5 0 1 0 5.0 0a2.5 2.5 0 1 0 -5.0 0z",0],["M6 21v-8a3 3 0 0 1 3-3",0],["M13 14a4 4 0 1 0 8 0a4 4 0 1 0 -8 0z",0]]},{"n":"battery","c":"Vehicle","p":[["M5 8h12a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2z",0],["M21 11v4",0],["M6 11v4M9 11v4M12 11v4",0]]},{"n":"battery-charging","c":"Vehicle","p":[["M5 8h12a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2z",0],["M21 11v4",0],["M11 9.500l-2 3h4l-2 3",0]]},{"n":"bolt","c":"Vehicle","p":[["M13 2L4 14h7l-1 8 9-12h-7z",0]]},{"n":"brake","c":"Vehicle","p":[["M7 12a5 5 0 1 0 10 0a5 5 0 1 0 -10 0z",0],["M5 7a9 9 0 0 0 0 10M19 7a9 9 0 0 1 0 10",0],["M12 9.500v3",0],["M11 15a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1]]},{"n":"camera","c":"Vehicle","p":[["M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z",0],["M8.5 13a3.5 3.5 0 1 0 7.0 0a3.5 3.5 0 1 0 -7.0 0z",0]]},{"n":"camera-360","c":"Vehicle","p":[["M11 8h2a2 2 0 0 1 2 2v5a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2v-5a2 2 0 0 1 2 -2z",0],["M3 12a9 9 0 0 1 4-7.500M21 12a9 9 0 0 1-4 7.500M3 12l-1-2M21 12l1 2",0]]},{"n":"camera-rear","c":"Vehicle","p":[["M5 5h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2z",0],["M8 19l2-8h4l2 8M9 15h6",0]]},{"n":"car","c":"Vehicle","p":[["M4 12l2-6h12l2 6v6h-3v-2H7v2H4zM4 12h16",0],["M6.5 14.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1],["M15.5 14.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1]]},{"n":"car-lock","c":"Vehicle","p":[["M3 13l1.500-4.500h8L14 13v4H3zM3 13h11",0],["M16.5 14h4.0a1.5 1.5 0 0 1 1.5 1.5v3.0a1.5 1.5 0 0 1 -1.5 1.5h-4.0a1.5 1.5 0 0 1 -1.5 -1.5v-3.0a1.5 1.5 0 0 1 1.5 -1.5z",0],["M17 14v-1.500a1.500 1.500 0 0 1 3 0V14",0]]},{"n":"car-unlock","c":"Vehicle","p":[["M3 13l1.500-4.500h8L14 13v4H3zM3 13h11",0],["M16.5 14h4.0a1.5 1.5 0 0 1 1.5 1.5v3.0a1.5 1.5 0 0 1 -1.5 1.5h-4.0a1.5 1.5 0 0 1 -1.5 -1.5v-3.0a1.5 1.5 0 0 1 1.5 -1.5z",0],["M17 14v-1.500a1.500 1.500 0 0 1 2.800-.7",0]]},{"n":"charge-port","c":"Vehicle","p":[["M8 3h8a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-8a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 3 -3z",0],["M11 8a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1],["M8 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1],["M14 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1],["M8 16a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1],["M14 16a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1]]},{"n":"child-lock","c":"Vehicle","p":[["M6.5 6a2.5 2.5 0 1 0 5.0 0a2.5 2.5 0 1 0 -5.0 0z",0],["M4 20v-5a5 5 0 0 1 8-4",0],["M15.5 14h5.0a1.5 1.5 0 0 1 1.5 1.5v4.0a1.5 1.5 0 0 1 -1.5 1.5h-5.0a1.5 1.5 0 0 1 -1.5 -1.5v-4.0a1.5 1.5 0 0 1 1.5 -1.5z",0],["M16 14v-1.500a2 2 0 0 1 4 0V14",0]]},{"n":"coolant","c":"Vehicle","p":[["M10 14V4a2 2 0 0 1 4 0v10a4 4 0 1 1-4 0z",0],["M17 6h4M17 10h4",0]]},{"n":"cruise","c":"Vehicle","p":[["M4 17a8 8 0 1 1 16 0M12 17l3-5M8 21h8",0]]},{"n":"door","c":"Vehicle","p":[["M5 21V6a2 2 0 0 1 2-2h8l4 4v13zM13 12h3",0]]},{"n":"drive-mode","c":"Vehicle","p":[["M10 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z",0],["M12 7v6M5 20v-4a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v4zM9 17h6",0]]},{"n":"eco","c":"Vehicle","p":[["M5 19C5 10 10 5 20 4c0 9-4 15-12 15M5 19c2-5 5-8 9-10",0]]},{"n":"engine","c":"Vehicle","p":[["M4 9v7h2v2h8v-2h3v-3h3V9h-3V7h-3V5H9v2H6v2zM9 11h5",0]]},{"n":"fog-light","c":"Vehicle","p":[["M10 6a6 6 0 0 0 0 12h1V6z",0],["M15 8l5 1M15 12l5 1M15 16l5 1M2 21c1-1 2-1 3 0s2 1 3 0 2-1 3 0",0]]},{"n":"hazard","c":"Vehicle","p":[["M12 3l10 18H2z",0],["M12 9l4.500 8h-9z",0]]},{"n":"headlight","c":"Vehicle","p":[["M10 6a6 6 0 0 0 0 12h1V6z",0],["M15 8l6 2M15 12l6 2M15 16l6 2",0]]},{"n":"high-beam","c":"Vehicle","p":[["M10 6a6 6 0 0 0 0 12h1V6z",0],["M15 8h6M15 12h6M15 16h6",0]]},{"n":"hood","c":"Vehicle","p":[["M4 20v-8l2-5h12l2 5v8M4 12h16M7 17h2M15 17h2M5 5l7-3 7 3",0]]},{"n":"key","c":"Vehicle","p":[["M4 15a4 4 0 1 0 8 0a4 4 0 1 0 -8 0z",0],["M11 12l9-9M16 7l3 3M14 9l2 2",0]]},{"n":"lane","c":"Vehicle","p":[["M6 21L9 3M18 21L15 3M12 6v3M12 12v3M12 18v3",0]]},{"n":"mirror","c":"Vehicle","p":[["M5 14a5 5 0 0 1 5-8h8a1 1 0 0 1 1 1v6a2 2 0 0 1-2 2zM12 18v3",0]]},{"n":"odometer","c":"Vehicle","p":[["M5 7h14a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2z",0],["M8.500 7v10M13.500 7v10",0]]},{"n":"oil","c":"Vehicle","p":[["M3 11h5l2-3h5l2 3M3 11v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5M19 14c0 1.500 2 2 2 3.500a2 2 0 0 1-4 0c0-1.500 2-2 2-3.500z",0]]},{"n":"parking-sensor","c":"Vehicle","p":[["M10 11h4a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-4a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2z",0],["M6 5a8 8 0 0 1 12 0M8.500 8a4.500 4.500 0 0 1 7 0",0]]},{"n":"radar","c":"Vehicle","p":[["M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0z",0],["M7.5 12a4.5 4.5 0 1 0 9.0 0a4.5 4.5 0 1 0 -9.0 0z",0],["M12 12l6-6",0]]},{"n":"range","c":"Vehicle","p":[["M4 18a9 9 0 1 1 16 0M12 14l4-5",0],["M11 14a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1]]},{"n":"regen","c":"Vehicle","p":[["M4 12a8 8 0 0 1 14-5M20 4v4h-4M20 12a8 8 0 0 1-14 5M4 20v-4h4",0],["M12.500 9.500l-2 3h3l-1 3",0]]},{"n":"seatbelt","c":"Vehicle","p":[["M10 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z",0],["M7 21l1-9a4 4 0 0 1 8 0l1 9M8 11l9 7",0]]},{"n":"service","c":"Vehicle","p":[["M21 6.500a5 5 0 0 1-7 6.500L6 21a2 2 0 0 1-3-3l8-8a5 5 0 0 1 6.500-7l-3 3 .5 3 3 .5z",0]]},{"n":"speed","c":"Vehicle","p":[["M4 17a8 8 0 1 1 16 0M12 17l3.500-5",0]]},{"n":"speed-limit","c":"Vehicle","p":[["M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0z",0],["M6.5 12a5.5 5.5 0 1 0 11.0 0a5.5 5.5 0 1 0 -11.0 0z",0]]},{"n":"sport","c":"Vehicle","p":[["M6 6l6 6-6 6M12 6l6 6-6 6",0]]},{"n":"sunroof","c":"Vehicle","p":[["M7 6h10a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h-10a3 3 0 0 1 -3 -3v-6a3 3 0 0 1 3 -3z",0],["M9 9h6a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1z",0]]},{"n":"tire-pressure","c":"Vehicle","p":[["M6 5c-2 2-3 4-3 7s1 5 3 7h12c2-2 3-4 3-7s-1-5-3-7z",0],["M12 8v5",0],["M11 16a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z",1]]},{"n":"trailer","c":"Vehicle","p":[["M3 8h11a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-11a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1z",0],["M15 12h5",0],["M5.2 19a1.8 1.8 0 1 0 3.6 0a1.8 1.8 0 1 0 -3.6 0z",0],["M10.2 19a1.8 1.8 0 1 0 3.6 0a1.8 1.8 0 1 0 -3.6 0z",0]]},{"n":"trip","c":"Vehicle","p":[["M4 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z",0],["M16 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z",0],["M8 6h6a3 3 0 0 1 0 6h-4a3 3 0 0 0 0 6h6",0]]},{"n":"trunk","c":"Vehicle","p":[["M5 20v-9l2-5h10l2 5v9M5 14h14M9 11h6M9 4l3-2 3 2",0]]},{"n":"window","c":"Vehicle","p":[["M5 20V8l3-3h9a2 2 0 0 1 2 2v13zM8 5v7h11",0]]},{"n":"wiper","c":"Vehicle","p":[["M3 18a14 14 0 0 1 18 0M12 18l7-9",0]]}]};
 </script>
 <script>
 (function(){
@@ -1025,41 +1197,11 @@ const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelect
 const kebab=s=>s.replace(/[A-Z]/g,m=>'-'+m.toLowerCase());
 const store={get(k,d){try{return localStorage.getItem(k)||d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
 
-/* ---------- icons ---------- */
-const ICONS={
-home:'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z',menu:'M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z',
-play:'M8 5v14l11-7z',pause:'M6 19h4V5H6v14zm8-14v14h4V5h-4z',next:'M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z',prev:'M6 6h2v12H6zm3.5 6l8.5 6V6z',
-search:'M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z',
-phone:'M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z',
-nav:'M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z',
-mic:'M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z',
-vol:'M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z',
-close:'M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z',
-check:'M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z',chev:'M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z',
-back:'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z',add:'M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z',minus:'M19 13H5v-2h14z',
-bt:'M17.71 7.71L12 2h-1v7.59L6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 11 14.41V22h1l5.71-5.71-4.3-4.29 4.3-4.29zM13 5.83l1.88 1.88L13 9.59V5.83zm1.88 10.46L13 18.17v-3.76l1.88 1.88z',
-wifi:'M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3a4.24 4.24 0 0 0-6 0zm-4-4l2 2a7.07 7.07 0 0 1 10 0l2-2C15.14 9.14 8.87 9.14 5 13z',
-music:'M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z',
-bell:'M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z',
-settings:'M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z',
-car:'M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z',
-snow:'M22 11h-4.17l3.24-3.24-1.41-1.42L15 11h-2V9l4.66-4.66-1.42-1.41L13 6.17V2h-2v4.17L7.76 2.93 6.34 4.34 11 9v2H9L4.34 6.34 2.93 7.76 6.17 11H2v2h4.17l-3.24 3.24 1.41 1.42L9 13h2v2l-4.66 4.66 1.42 1.41L11 17.83V22h2v-4.17l3.24 3.24 1.42-1.41L13 15v-2h2l4.66 4.66 1.41-1.42L17.83 13H22z',
-fav:'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z',
-more:'M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z',
-warn:'M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z',
-info:'M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z',
-shuffle:'M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z',
-bright:'M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z',
-moon:'M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z',
-seat:'M4 18v3h3v-3h10v3h3v-6H4zm15-8h3v3h-3zM2 10h3v3H2zm13-8H9C7.9 2 7 2.9 7 4v7c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z',
-signal:'M2 22h20V2z',
-apps:'M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z',
-fan:'M12 11a1 1 0 100 2 1 1 0 000-2zM12 2c3 0 4.5 2 4.5 4.5S13.5 10.5 12 11c-1-3-2-6 0-9zM22 12c0 3-2 4.5-4.5 4.5S13.5 13.5 13 12c3-1 6-2 9 0zM12 22c-3 0-4.5-2-4.5-4.5S10.5 13.5 12 13c1 3 2 6 0 9zM2 12c0-3 2-4.5 4.5-4.5S10.5 10.5 11 12c-3 1-6 2-9 0z',
-defrost:'M5 6h14l2 9v2H3v-2l2-9zm1.600 2L5.200 14h13.600L17.400 8H6.600zM8 19h2v2H8zm3 0h2v2h-2zm3 0h2v2h-2z'
-};
-const sprite='<svg width="0" height="0" style="position:absolute" aria-hidden="true">'+Object.entries(ICONS).map(([k,d])=>`<symbol id="i-${k}" viewBox="0 0 24 24"><path d="${d}"/></symbol>`).join('')+'</svg>';
-document.body.insertAdjacentHTML('afterbegin',sprite);
-const icon=n=>`<svg class="i" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+/* ---------- icons (Aurora set, generated from tools/icons_src.py) ---------- */
+const ICONS=ICONLIB.icons;const byName={};ICONS.forEach(i=>byName[i.n]=i);
+const pathsSvg=i=>i.p.map(([d,f])=>`<path d="${d}"${f?' fill="currentColor"':''}/>`).join('');
+document.body.insertAdjacentHTML('afterbegin','<svg width="0" height="0" style="position:absolute" aria-hidden="true">'+ICONS.map(i=>`<symbol id="i-${i.n}" viewBox="0 0 24 24">${pathsSvg(i)}</symbol>`).join('')+'</svg>');
+const icon=n=>{if(!byName[n])console.warn('missing icon',n);return `<svg class="i" aria-hidden="true"><use href="#i-${n}"/></svg>`};
 function expandIcons(root=document){$$('ic',root).forEach(e=>{const t=document.createElement('span');t.style.display='contents';t.innerHTML=icon(e.getAttribute('n'));e.replaceWith(t.firstChild)})}
 expandIcons();
 
@@ -1069,7 +1211,7 @@ function setTheme(t){root.dataset.theme=t;store.set('aurora-theme',t);
  $('#themeBtn').innerHTML=(t==='night'?icon('moon'):icon('bright'))+' '+(t==='night'?'Night':'Day');
  $('#themeBtn').setAttribute('aria-pressed',t==='night');
  ['roleTheme','a11yTheme'].forEach(i=>{const e=$('#'+i);if(e)e.textContent=t==='night'?'Night':'Day'});
- renderRoles();renderContrast();renderExport();}
+ renderRoles();renderContrast();renderExport();renderSpecs();}
 function setDriving(d){document.body.dataset.driving=d;store.set('aurora-drv',d);
  $('#drvBtn').innerHTML=icon('car')+' '+(d?'Driving':'Parked');$('#drvBtn').setAttribute('aria-pressed',d);
  $$('.drvlabel').forEach(e=>e.textContent=d?'Driving':'Parked');}
@@ -1116,10 +1258,6 @@ $('#shapescale').innerHTML=SH.map(s=>`<div style="text-align:center"><div class=
 const EL=[['level0','surface','none'],['level1','surfaceContainerLow','0 1px 3px rgba(0,0,0,.4)'],['level2','surfaceContainer','0 2px 6px rgba(0,0,0,.4)'],['level3','surfaceContainerHigh','0 4px 12px rgba(0,0,0,.45)'],['level4','surfaceContainerHigh','0 6px 16px rgba(0,0,0,.5)'],['level5','surfaceContainerHighest','0 10px 28px rgba(0,0,0,.55)']];
 $('#elev').innerHTML=EL.map((e,i)=>`<div style="text-align:center"><div class="el" style="background:var(--c-${kebab(e[1])});box-shadow:${e[2]}">${e[1]}</div><small><code>elevation.${e[0]}</code></small></div>`).join('');
 
-/* ---------- icon grid ---------- */
-$('#iconGrid').innerHTML=Object.keys(ICONS).map(k=>`<button data-n="${k}" title="Copy name">${icon(k)}<span>${k}</span></button>`).join('');
-$$('#iconGrid button').forEach(b=>b.onclick=()=>copy('ic_'+b.dataset.n));
-
 /* ---------- driving demo list ---------- */
 const songs=['Midnight Violet Drive','Lavender Haze','Indigo Skyline','Plum Highway','Orchid Hours','Twilight Lane','Amethyst Roads','Velvet Static'];
 $('#drvlist').innerHTML=Array.from({length:24},(_,i)=>{const n=songs[i%8]+(i>7?' '+(Math.floor(i/8)+1):'');return `<div class="a-li click"><div class="lead-i">${icon('music')}</div><div class="tx"><div class="p">${n}</div></div><div class="tr">${i+1} / 24</div></div>`}).join('');
@@ -1146,7 +1284,7 @@ const EXN={xml:['Android colors.xml','xml'],theme:['themes.xml + RRO','xml'],css
 function renderExport(){$('#exportTabs').innerHTML=Object.entries(EXN).map(([k,v])=>`<button aria-selected="${k===exp}" data-k="${k}">${v[0]}</button>`).join('');
  $$('#exportTabs button').forEach(b=>b.onclick=()=>{exp=b.dataset.k;renderExport()});
  $('#exportOut code').textContent=EX[exp]()}
-$('#dlExport').onclick=()=>{const b=new Blob([EX[exp]()],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='aurora-tokens.'+EXN[exp][1];a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)};
+$('#dlExport').onclick=()=>dl('aurora-tokens.'+EXN[exp][1],EX[exp](),'text/plain');
 $$('.cp[data-copy]').forEach(b=>b.onclick=()=>copy($(b.dataset.copy).textContent));
 
 /* ---------- checklist ---------- */
@@ -1184,14 +1322,172 @@ const rc=$$('.a-rot',rg);let ri=0;const rf=n=>{ri=(n+rc.length)%rc.length;rc.for
 rg.addEventListener('keydown',e=>{const m={ArrowRight:1,ArrowLeft:-1,ArrowDown:3,ArrowUp:-3}[e.key];if(m){e.preventDefault();rf(ri+m)}else if(e.key==='Enter'||e.key===' '){e.preventDefault();$('#rotout').textContent='Activated: '+rl[ri];toast(rl[ri]+' activated')}});
 rc.forEach((c,i)=>c.addEventListener('focus',()=>{ri=i;rc.forEach((x,j)=>x.classList.toggle('focus',j===i));$('#rotout').textContent='Focus: '+rl[i]}));
 
-/* ---------- screens ---------- */
-const screens=$$('.frame-wrap[data-screen]');
-$('#screenTabs').innerHTML=screens.map((s,i)=>`<button role="tab" aria-selected="${i===0}" data-i="${i}">${s.dataset.screen}</button>`).join('');
-function showScreen(i){screens.forEach((s,j)=>s.style.display=j===i?'block':'none');$$('#screenTabs button').forEach((b,j)=>b.setAttribute('aria-selected',j===i));fit()}
-$$('#screenTabs button').forEach(b=>b.onclick=()=>showScreen(+b.dataset.i));
-function fit(){$$('.frame-wrap').forEach(w=>{const f=$('.frame',w);const wd=w.clientWidth;if(!wd)return;const s=wd/1280;f.style.transform=`scale(${s})`;w.style.height=(720*s)+'px'})}
+function fit(){$$('.frame-wrap').forEach(w=>{const f=$('.frame',w);const wd=w.clientWidth;if(!wd||!f)return;const k=wd/1280;f.style.transform=`scale(${k})`;w.style.height=(720*k)+'px'})}
 addEventListener('resize',fit);
-/* disable dock links in frames */
+/* ---- system layout + reference screens ---- */
+const HV={l:21,r:22,fan:3,ac:true,auto:false,def:false,shl:0,shr:0};
+const NAV6=[['home','Home'],['nav','Maps'],['phone','Phone'],['music','Media'],['car','Vehicle'],['apps','Apps']];
+const statusBar=()=>`<div class="a-status"><div class="g"><span class="tmp">10:42</span><span>Tue 3 Nov · 14°C</span></div><div class="sp"></div><div class="g">${icon('bt')}${icon('wifi')}${icon('signal')}${icon('mic')}<span style="width:36px;height:36px;border-radius:50%;background:var(--c-primary-container);color:var(--c-on-primary-container);display:grid;place-items:center;font-size:18px;font-weight:500">AM</span></div></div>`;
+const rail=(act,foc)=>`<nav class="a-rail" aria-label="Apps">`+NAV6.map((n,i)=>`<a href="#" ${i===act?'aria-current="page"':''} class="${i===foc?'focused':''}"><span class="pl">${icon(n[0])}</span>${n[1]}</a>`).join('')+`</nav>`;
+const hvInner=()=>{const b=(a,ic,lbl,p)=>`<button class="a-ib" data-act="${a}" aria-label="${lbl}" ${p===undefined?'':`aria-pressed="${p}"`}>${icon(ic)}</button>`;
+ return `<div class="grp">${b('shl','seat-heat','Driver seat heat',HV.shl>0)}${b('l-','minus','Cooler')}<span class="tv">${HV.l.toFixed(1)}<small>°C</small></span>${b('l+','add','Warmer')}</div>`+
+ `<div class="grp">${b('f-','minus','Fan down')}<span class="fv">${icon('fan')}${HV.fan}</span>${b('f+','add','Fan up')}</div>`+
+ `<div class="grp">${b('ac','snow','A/C',HV.ac)}${b('auto','auto','Auto',HV.auto)}${b('def','defrost','Defrost',HV.def)}</div>`+
+ `<div class="grp">${b('r-','minus','Cooler')}<span class="tv">${HV.r.toFixed(1)}<small>°C</small></span>${b('r+','add','Warmer')}${b('shr','seat-heat','Passenger seat heat',HV.shr>0)}</div>`};
+const hvBar=()=>`<div class="a-hvbar">${hvInner()}</div>`;
+function renderHv(){$$('.a-hvbar').forEach(e=>e.innerHTML=hvInner())}
+document.addEventListener('click',e=>{const b=e.target.closest('.a-hvbar [data-act]');if(!b)return;const a=b.dataset.act;
+ if(a==='l-')HV.l=Math.max(16,HV.l-.5);if(a==='l+')HV.l=Math.min(28,HV.l+.5);if(a==='r-')HV.r=Math.max(16,HV.r-.5);if(a==='r+')HV.r=Math.min(28,HV.r+.5);
+ if(a==='f-')HV.fan=Math.max(0,HV.fan-1);if(a==='f+')HV.fan=Math.min(7,HV.fan+1);
+ if(a==='ac')HV.ac=!HV.ac;if(a==='auto')HV.auto=!HV.auto;if(a==='def')HV.def=!HV.def;
+ if(a==='shl')HV.shl=(HV.shl+1)%4;if(a==='shr')HV.shr=(HV.shr+1)%4;renderHv()});
+document.addEventListener('click',e=>{if(e.target.closest('[data-fsenter]'))setFs(true);if(e.target.closest('[data-fsexit]'))setFs(false)});
+let scr=0,fsOn=false;
+const li=(ic,p,s,tr,cls='')=>`<div class="a-li click ${cls}" tabindex="0"><div class="lead-i">${icon(ic)}</div><div class="tx"><div class="p">${p}</div><div class="s">${s}</div></div><div class="tr">${tr}</div></div>`;
+const SCREENS=[
+{n:'Home',nav:0,html:`<div class="pane map" style="flex:1.4"><div class="route"></div><div class="me">${icon('nav')}</div><div class="a-card" style="position:absolute;left:24px;top:24px;width:380px;background:var(--c-surface-container-high)"><div class="t-label-m" style="color:var(--c-primary)">HOME · 18 MIN</div><div class="t-headline-s">Via Violet Ave</div><div class="t-body-m" style="color:var(--c-on-surface-variant)">12.4 km · Light traffic</div></div></div>
+ <div class="pane" style="flex:1;display:flex;flex-direction:column;gap:16px"><div class="a-media" style="padding:20px;gap:20px"><div class="art" style="width:120px;height:120px"><svg class="i"><use href="#i-music"/></svg></div><div class="info"><div class="t-title-m">Midnight Violet Drive</div><div class="t-body-m" style="color:var(--c-on-surface-variant)">Neon Orchid</div><div class="ctl" style="margin-top:8px;gap:8px"><button class="a-ib">${icon('prev')}</button><button class="a-ib filled">${icon('pause')}</button><button class="a-ib">${icon('next')}</button></div></div></div><div class="a-card click filled"><h6>Alex Morgan</h6><p>Running late — tap to play message</p></div><div class="a-card pri"><h6>312 km range</h6><p>Battery 80% · Charge tonight</p></div></div>`},
+{n:'Media',nav:3,html:`<div class="pane" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:12px"><div class="art" style="width:180px;height:180px;border-radius:32px">${icon('music')}</div><div style="text-align:center"><div class="t-headline-s">Midnight Violet Drive</div><div class="t-body-m" style="color:var(--c-on-surface-variant)">Neon Orchid — Amethyst Roads</div></div><div class="a-prog" style="width:100%;margin-top:0"><span>1:12</span><div class="a-lin"><i style="width:34%"></i></div><span>3:21</span></div><div style="display:flex;gap:16px;align-items:center"><button class="a-ib">${icon('shuffle')}</button><button class="a-ib">${icon('prev')}</button><button class="a-ib filled" style="width:96px;height:96px">${icon('pause')}</button><button class="a-ib">${icon('next')}</button><button class="a-ib" aria-pressed="true">${icon('fav')}</button></div></div>
+ <div class="pane" style="flex:1"><div class="a-list restrict"><div class="a-li hdr">Up next</div>${li('music','Midnight Violet Drive','Neon Orchid','3:21','sel')}${li('music','Lavender Haze','Night Ride','4:02')}${li('music','Indigo Skyline','Dusk Theory','2:58')}${li('music','Plum Highway','The Orchids','3:44')}</div></div><button class="a-ib tonal" data-fsenter aria-label="Full screen" style="position:absolute;right:20px;top:16px">${icon('fullscreen')}</button>`},
+{n:'Navigation',nav:1,html:`<div class="map" style="flex:1;position:relative"><div class="route"></div><div class="me">${icon('nav')}</div>
+ <div style="position:absolute;left:24px;top:24px;width:440px;display:grid;gap:12px"><div class="a-guide" style="width:auto">${icon('turn-right')}<div><div class="t-display" style="font-size:48px;line-height:56px">400 m</div><div class="t-title-m">Turn right onto Violet Ave</div></div></div><div class="a-banner warn" style="padding:14px 24px">${icon('warn')}<span>Heavy traffic ahead</span></div></div>
+ <div style="position:absolute;right:24px;top:24px;display:grid;gap:12px"><button class="a-ib tonal" data-fsenter aria-label="Full screen">${icon('fullscreen')}</button><button class="a-ib tonal">${icon('zoom-in')}</button><button class="a-ib tonal">${icon('zoom-out')}</button><button class="a-ib tonal">${icon('locate')}</button></div>
+ <div class="a-card" style="position:absolute;left:24px;right:24px;bottom:24px;display:flex;align-items:center;gap:32px;background:var(--c-surface-container-high);padding:16px 28px"><div><div class="t-headline-m">18 min</div><div class="t-body-m" style="color:var(--c-on-surface-variant)">12.4 km · 11:00 AM</div></div><div style="flex:1"></div><button class="a-btn tonal has-i">${icon('route')}Route</button><button class="a-btn danger">End</button></div></div>`},
+{n:'Phone',nav:2,html:`<div class="pane" style="flex:1.2;display:flex;flex-direction:column;gap:12px;padding-top:12px"><div class="a-tabs"><button class="a-tab" aria-selected="true" style="height:72px">Recents</button><button class="a-tab" aria-selected="false" style="height:72px">Favourites</button><button class="a-tab" aria-selected="false" style="height:72px">Contacts</button></div><div class="a-list restrict">${li('phone','Alex Morgan','Mobile · 9:41 AM','','two')}${li('phone-missed','Home','Missed · Yesterday','','two')}${li('phone','Priya Shah','Outgoing · Mon','','two')}</div></div>
+ <div class="pane park-only" style="flex:.6;display:grid;place-items:center"><div class="dialpad" style="grid-template-columns:repeat(3,88px)"><button style="height:88px">1</button><button style="height:88px">2</button><button style="height:88px">3</button><button style="height:88px">4</button><button style="height:88px">5</button><button style="height:88px">6</button><button style="height:88px">7</button><button style="height:88px">8</button><button style="height:88px">9</button><button style="height:88px">*</button><button style="height:88px">0</button><button style="height:88px">#</button></div></div>`},
+{n:'Climate',nav:4,html:`<div class="pane" style="display:flex;gap:20px;padding:24px 28px"><div class="a-hvac" style="flex-direction:column;flex:1;justify-content:center"><div class="t-label-m" style="color:var(--c-primary)">DRIVER</div><div class="a-temp"><button class="a-ib tonal">${icon('minus')}</button><div class="v" style="min-width:130px">21.0<small>°C</small></div><button class="a-ib tonal">${icon('add')}</button></div><button class="a-lvl"><span class="ib">${icon('seat-heat')}</span><i class="on" style="height:16px"></i><i class="on" style="height:26px"></i><i style="height:36px"></i></button></div>
+ <div class="a-hvac" style="flex-direction:column;flex:1.1;justify-content:center"><div class="t-label-m" style="color:var(--c-primary)">AIRFLOW</div><div class="a-fan"><button class="a-ib">${icon('minus')}</button>${icon('fan')}<b style="font-size:36px;width:44px;text-align:center">3</b><button class="a-ib">${icon('add')}</button></div><div style="display:flex;gap:10px"><button class="a-tgl" aria-pressed="true" style="width:96px;height:96px">${icon('snow')}A/C</button><button class="a-tgl" aria-pressed="false" style="width:96px;height:96px">${icon('defrost')}Front</button><button class="a-tgl" aria-pressed="false" style="width:96px;height:96px">${icon('recirc')}Recirc</button></div></div>
+ <div class="a-hvac" style="flex-direction:column;flex:1;justify-content:center"><div class="t-label-m" style="color:var(--c-primary)">PASSENGER</div><div class="a-temp"><button class="a-ib tonal">${icon('minus')}</button><div class="v" style="min-width:130px">22.0<small>°C</small></div><button class="a-ib tonal">${icon('add')}</button></div><button class="a-lvl"><span class="ib" style="background:var(--c-surface-container-low);color:var(--c-on-surface-variant)">${icon('seat-vent')}</span><i style="height:16px"></i><i style="height:26px"></i><i style="height:36px"></i></button></div></div>`},
+{n:'Settings',nav:-1,html:`<div style="flex:1;display:flex;flex-direction:column"><div class="a-bar" style="height:96px"><button class="a-ib">${icon('back')}</button><div class="ttl">Settings</div><button class="a-ib">${icon('search')}</button></div><div style="display:flex;gap:28px;padding:0 28px 12px;flex:1;min-height:0"><nav class="a-nav" style="width:280px;flex:none;gap:4px"><a href="#">${icon('wifi')}Network</a><a href="#" aria-current="page">${icon('bt')}Bluetooth</a><a href="#">${icon('vol')}Sound</a><a href="#">${icon('display')}Display</a><a href="#">${icon('car')}Vehicle</a></nav><div style="flex:1"><div class="a-list"><div class="a-li hdr">Bluetooth</div><div class="a-li"><div class="tx"><div class="p">Bluetooth</div><div class="s">Visible as "Aurora Car"</div></div><button class="a-sw" role="switch" aria-checked="true"><i>${icon('check')}</i></button></div><div class="a-li hdr">Paired devices</div>${li('phone','Pixel 9','Connected · Calls, media',icon('settings'))}${li('phone',"Alex's iPhone",'Not connected',icon('settings'))}</div></div></div></div>`},
+{n:'Apps',nav:5,html:`<div class="pane" style="display:grid;align-content:center;padding:24px 40px"><div class="a-apps"><button class="a-app"><span class="ic">${icon('nav')}</span>Maps</button><button class="a-app"><span class="ic">${icon('music')}</span>Music</button><button class="a-app"><span class="ic">${icon('phone')}</span>Phone</button><button class="a-app"><span class="ic">${icon('radio')}</span>Radio</button><button class="a-app"><span class="ic">${icon('weather')}</span>Weather</button><button class="a-app"><span class="ic">${icon('calendar')}</span>Calendar</button><button class="a-app"><span class="ic">${icon('podcast')}</span>Podcasts</button><button class="a-app"><span class="ic">${icon('video')}</span>Video</button><button class="a-app"><span class="ic">${icon('settings')}</span>Settings</button><button class="a-app"><span class="ic">${icon('service')}</span>Service</button></div></div>`},
+{n:'Vehicle',nav:4,html:`<div class="pane" style="display:flex;gap:28px;align-items:center;padding:24px 32px"><div style="display:grid;place-items:center;gap:14px"><div class="a-gauge" style="--p:80"><div><b>312</b><small>km · 80%</small></div></div><div class="t-title-s" style="color:var(--c-on-surface-variant)">Estimated range</div></div><div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:14px"><div class="a-stat ok" style="min-width:0"><div class="ic">${icon('battery-charging')}</div><div><b>Charging</b><span>11 kW · 42 min</span></div></div><div class="a-stat wn" style="min-width:0"><div class="ic">${icon('tire-pressure')}</div><div><b>Tires</b><span>FL 1.9 bar</span></div></div><div class="a-stat" style="min-width:0"><div class="ic">${icon('lock')}</div><div><b>Locked</b><span>All doors</span></div></div><div class="a-stat" style="min-width:0"><div class="ic">${icon('service')}</div><div><b>Service</b><span>In 1,200 km</span></div></div><div class="a-stat" style="min-width:0"><div class="ic">${icon('eco')}</div><div><b>Eco</b><span>Drive mode</span></div></div><div class="a-stat" style="min-width:0"><div class="ic">${icon('trip')}</div><div><b>Trip</b><span>86.4 km</span></div></div></div></div>`},
+{n:'Reverse camera',nav:-1,fs:true,html:`<div class="map" style="flex:1;background:linear-gradient(180deg,#2a2a35,#14141a);position:relative"><div style="position:absolute;left:18%;right:18%;bottom:0;top:30%;border-left:10px solid var(--c-success);border-right:10px solid var(--c-success);transform:perspective(500px) rotateX(40deg);transform-origin:bottom;border-radius:6px;opacity:.9"></div><div style="position:absolute;left:30%;right:30%;top:42%;height:8px;background:var(--c-warning);border-radius:4px"></div><div class="a-banner warn" style="position:absolute;left:24px;top:24px;width:520px;padding:14px 24px">${icon('camera-rear')}<span>Check surroundings</span></div><div style="position:absolute;right:24px;top:24px;display:grid;gap:12px"><button class="a-ib tonal">${icon('camera-360')}</button><button class="a-ib tonal">${icon('parking-sensor')}</button></div></div>`}
+];
+function frame(i,fs){const s=SCREENS[i];return `<div class="frame a-root${(fs||s.fs)?' fs':''}">${statusBar()}<div class="mid"><div class="app">${s.html}</div>${rail(s.nav)}</div>${hvBar()}<button class="a-ib tonal fs-exit" data-fsexit aria-label="Exit full screen">${icon('fullscreen-exit')}</button></div>`}
+function showScreen(){$('#screenHost').innerHTML=frame(scr,fsOn);renderHv();$$('#screenTabs button').forEach((b,j)=>b.setAttribute('aria-selected',j===scr));
+ const f=SCREENS[scr];$('#fsBtn').disabled=!!f.fs;$('#fsBtn').textContent='Full screen: '+((fsOn||f.fs)?'on':'off');$('#fsBtn').setAttribute('aria-pressed',fsOn||!!f.fs);
+ $('#screenSpec').innerHTML=`<div class="specblock"><h4>${f.n} — layout spec</h4><div class="spec"><span><b>Viewport</b>1280 × 720 dp</span><span><b>Bars</b>${(fsOn||f.fs)?'dismissed':'status 56 · rail 120 · HVAC 96'}</span><span><b>App area</b>${(fsOn||f.fs)?'1280 × 720 dp':'1160 × 568 dp'}</span><span><b>Margins</b>${(fsOn||f.fs)?'40':'32'} dp · gutter 24 dp</span><span><b>Surface</b>${f.fs?'scrim/camera feed':'surface'}</span></div></div>`;
+ fit()}
+function setFs(v){fsOn=v;showScreen()}
+$('#screenTabs').innerHTML=SCREENS.map((s,i)=>`<button role="tab" data-i="${i}">${s.n}</button>`).join('');
+$$('#screenTabs button').forEach(b=>b.onclick=()=>{scr=+b.dataset.i;showScreen()});
+$('#fsBtn').onclick=()=>setFs(!fsOn);
+/* slots on other sections */
+$$('[data-slot]').forEach(e=>{const k=e.dataset.slot;e.innerHTML=k==='status'?statusBar():k==='rail'?rail(0):k==='rail:2'?rail(1,2):hvBar()});
+if($('#anatomy')){$('#anatomy').innerHTML=frame(0,false).replace(/<\/div>$/,['<div class="anno-l" style="left:620px;top:8px">1</div>','<div class="anno-l" style="left:560px;top:560px;background:var(--c-primary);color:var(--c-on-primary)">2</div>','<div class="anno-l" style="left:1130px;top:330px">3</div>','<div class="anno-l" style="left:40px;top:600px">4</div>'].join('')+'</div>')}
+if($('#fsCompare')){$('#fsCompare').innerHTML=`<div style="flex:1 1 440px"><div class="frame-wrap">${frame(2,false)}</div><small>Bars shown · app area 1160 × 568 dp</small></div><div style="flex:1 1 440px"><div class="frame-wrap">${frame(2,true)}</div><small>Full screen · app area 1280 × 720 dp</small></div>`}
+
+/* ---- icon library UI ---- */
+let icSel=null;
+const svgStr=(i,size=24)=>`<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${pathsSvg(i)}</svg>`;
+const vdStr=i=>`<vector xmlns:android="http://schemas.android.com/apk/res/android"\n    android:width="24dp" android:height="24dp"\n    android:viewportWidth="24" android:viewportHeight="24"\n    android:tint="?attr/colorControlNormal">`+i.p.map(([d,f])=>`\n    <path android:pathData="${d}" android:strokeWidth="2" android:strokeLineCap="round" android:strokeLineJoin="round" android:strokeColor="#FF000000" android:fillColor="${f?'#FF000000':'#00000000'}"/>`).join('')+`\n</vector>\n`;
+const DL_OK=/\.(svg|zip|json|txt|md|csv|html|png)$/i;
+async function dl(name,data,type){
+ try{if(window.claude&&claude.use){const d=await claude.use('downloads');if(d){await d.save({filename:DL_OK.test(name)?name:name+'.txt',data});return}}}catch(e){if(e&&e.code==='declined')return}
+ const b=data instanceof Blob?data:new Blob([data],{type:type||'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),800)}
+function crc32(buf){let t=crc32.t;if(!t){t=crc32.t=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}}let r=-1;for(let i=0;i<buf.length;i++)r=(r>>>8)^t[(r^buf[i])&255];return(r^-1)>>>0}
+function makeZip(files){const enc=new TextEncoder(),chunks=[],cen=[];let off=0;const u16=v=>[v&255,v>>8&255],u32=v=>[v&255,v>>8&255,v>>16&255,v>>>24&255];
+ files.forEach(f=>{const nm=enc.encode(f.name),d=enc.encode(f.data),crc=crc32(d);const h=[0x50,0x4b,3,4,...u16(20),...u16(0x0800),...u16(0),...u16(0),...u16(0x21),...u32(crc),...u32(d.length),...u32(d.length),...u16(nm.length),...u16(0)];chunks.push(new Uint8Array(h),nm,d);cen.push({nm,crc,len:d.length,off});off+=h.length+nm.length+d.length});
+ let cs=0;const cp=[];cen.forEach(c=>{const h=[0x50,0x4b,1,2,...u16(20),...u16(20),...u16(0x0800),...u16(0),...u16(0),...u16(0x21),...u32(c.crc),...u32(c.len),...u32(c.len),...u16(c.nm.length),...u16(0),...u16(0),...u16(0),...u16(0),...u32(0),...u32(c.off)];cp.push(new Uint8Array(h),c.nm);cs+=h.length+c.nm.length});
+ return new Blob([...chunks,...cp,new Uint8Array([0x50,0x4b,5,6,0,0,0,0,...u16(cen.length),...u16(cen.length),...u32(cs),...u32(off),0,0])],{type:'application/zip'})}
+function renderIcons(){const q=($('#icq').value||'').toLowerCase(),cat=$('#iccat').value;
+ let h='',n=0;ICONLIB.order.forEach(c=>{if(cat&&cat!==c)return;const list=ICONS.filter(i=>i.c===c&&(i.n.includes(q)||c.toLowerCase().includes(q)));if(!list.length)return;n+=list.length;
+  h+=`<div class="iccat">${c} · ${list.length}</div><div class="icons">`+list.map(i=>`<button data-n="${i.n}" aria-pressed="${icSel===i.n}" title="${i.n}">${icon(i.n)}<span>${i.n}</span></button>`).join('')+'</div>'});
+ $('#iconGrid').innerHTML=h||'<p>No icons match.</p>';
+ $$('#iconGrid button').forEach(b=>b.onclick=()=>selIcon(b.dataset.n))}
+function selIcon(n){icSel=n;const i=byName[n];$$('#iconGrid button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.n===n));
+ $('#icDetail').classList.add('on');$('#icBig').innerHTML=icon(n);$('#icName').textContent='ic_'+n.replace(/-/g,'_');
+ $('#icMeta').textContent=i.c+' · 24×24 dp grid · 2 dp stroke · '+i.p.length+' path'+(i.p.length>1?'s':'')+(i.p.some(p=>p[1])?' · filled parts':'')}
+$('#icq').oninput=renderIcons;$('#iccat').onchange=renderIcons;
+$('#iccat').innerHTML='<option value="">All families</option>'+ICONLIB.order.map(c=>`<option>${c}</option>`).join('');
+$('#icsize').onchange=e=>$('#iconGrid').style.setProperty('--ics',e.target.value+'px');
+$('#icCount').textContent=ICONS.length;
+$('#icDl').onclick=()=>icSel&&dl(icSel+'.svg',svgStr(byName[icSel]),'image/svg+xml');
+$('#icCp').onclick=()=>icSel&&copy(svgStr(byName[icSel]));
+$('#icAn').onclick=()=>icSel&&copy(vdStr(byName[icSel]));
+$('#icZip').onclick=()=>dl('aurora-icons-svg.zip',makeZip(ICONS.map(i=>({name:i.n+'.svg',data:svgStr(i)+'\n'}))));
+$('#icZipA').onclick=()=>dl('aurora-icons-android.zip',makeZip(ICONS.map(i=>({name:'ic_'+i.n.replace(/-/g,'_')+'.xml',data:vdStr(i)}))));
+renderIcons();
+
+/* ---- per-component specs: size, state, colors (resolved live from the active theme) ---- */
+const TR='tertiary';
+const FILL=(c,o,x='—')=>[['Enabled',c,o,x,''],['Hover',`${c}|${o}@8`,o,x,'state layer 8%'],['Focused (rotary)',`${c}|${o}@12`,o,TR,'12% layer + 6 dp ring, 4 dp offset'],['Pressed',`${c}|${o}@12`,o,x,'ripple 12%, ≤ 200 ms'],['Disabled','onSurface@12','onSurface@38',x==='—'?'—':'onSurface@12','not focusable; explain why']];
+const TXT=(o,x='—')=>[['Enabled','—',o,x,''],['Hover',`surface|${o}@8`,o,x,'state layer 8%'],['Focused (rotary)',`surface|${o}@12`,o,TR,'12% layer + 6 dp ring'],['Pressed',`surface|${o}@12`,o,x,'ripple 12%'],['Disabled','—','onSurface@38',x==='—'?'—':'onSurface@12','']];
+const SPECS={
+buttons:[
+ {n:'Filled button',s:'<b>Height</b> 76 · <b>min width</b> 120 · <b>padding</b> 40 H (32 left with icon) · <b>radius</b> 38 (full) · <b>label</b> Label Large 28/36 w500 · <b>icon</b> 40, gap 12',st:FILL('primary','onPrimary')},
+ {n:'Tonal button',s:'Same geometry as filled',st:FILL('secondaryContainer','onSecondaryContainer')},
+ {n:'Outlined button',s:'Same geometry · <b>stroke</b> 2 dp',st:TXT('primary','outline')},
+ {n:'Text button',s:'<b>Height</b> 76 · <b>padding</b> 24 H · label 28/36 w500',st:TXT('primary')},
+ {n:'Elevated button',s:'Same geometry · shadow elevation level 1',st:FILL('surfaceContainerLow','primary')},
+ {n:'Destructive button',s:'Same geometry · use only for irreversible actions',st:FILL('error','onError')},
+ {n:'Icon button',s:'<b>Size</b> 76 × 76 · <b>glyph</b> 40 · <b>radius</b> full. Variants: standard, filled, tonal, outlined, toggle',st:[['Standard — enabled','—','onSurfaceVariant','—',''],['Filled','primary','onPrimary','—',''],['Tonal','secondaryContainer','onSecondaryContainer','—',''],['Outlined','—','onSurfaceVariant','outline','stroke 2 dp'],['Toggle on','primaryContainer','onPrimaryContainer','—','aria-pressed=true'],['Pressed',"surfaceContainerHighest|onSurface@12",'onSurface','—',''],['Focused (rotary)','—','onSurface',TR,'ring 6 dp'],['Disabled','—','onSurface@38','—','']]},
+ {n:'FAB / Extended FAB',s:'<b>FAB</b> 96 × 96 · radius 28 · icon 44 · <b>Extended</b> height 96 · padding 28 H · label 28/36 w500 · shadow level 3 · one per screen',st:FILL('primaryContainer','onPrimaryContainer')}],
+selection:[
+ {n:'Switch',s:'<b>Track</b> 104 × 64, 2 dp border · <b>thumb</b> 32 (off) / 48 (on) · <b>on-thumb icon</b> 28 · <b>hit area</b> 76 tall row',st:[['Off','surfaceContainerHighest','outline','outline','thumb outline, border outline'],['On','primary','onPrimary','primary','thumb onPrimary, check icon primary'],['Focused','—','onSurface',TR,'ring 6 dp'],['Pressed','—','—','—','thumb grows to 56 dp'],['Disabled — off','onSurface@12','onSurface@38','onSurface@12',''],['Disabled — on','onSurface@12','surface','—','thumb surface, track onSurface 12%']]},
+ {n:'Checkbox',s:'<b>Box</b> 44 · radius 8 · border 3 dp · check 36 · <b>hit area</b> 76',st:[['Unchecked','—','—','onSurfaceVariant','border 3 dp'],['Checked','primary','onPrimary','primary',''],['Focused','—','—',TR,'ring 6 dp'],['Error','—','—','error','border error'],['Disabled','—','—','onSurface@38','']]},
+ {n:'Radio button',s:'<b>Ring</b> 44 · border 3 dp · <b>dot</b> 22 · hit area 76',st:[['Unselected','—','—','onSurfaceVariant',''],['Selected','—','primary','primary','dot primary'],['Focused','—','—',TR,'ring 6 dp'],['Disabled','—','onSurface@38','onSurface@38','']]},
+ {n:'Slider',s:'<b>Track</b> 16 · radius 8 · <b>handle</b> 12 × 64 · <b>row</b> 76 · value label 28/36 w500 · icon 40',st:[['Active track','primary','—','—',''],['Inactive track','secondaryContainer','—','—',''],['Handle','primary','—','—','12 × 64, 6 dp surface halo'],['Focused / dragging','tertiary','—',TR,'handle tertiary'],['Disabled','onSurface@12','—','—','handle onSurface 38%']]}],
+chips:[
+ {n:'Filter / choice chip',s:'<b>Height</b> 64 (hit 76) · radius 16 · padding 28 H · label 24/32 w500 · icon 32 · outline 2 dp',st:[['Unselected','—','onSurfaceVariant','outlineVariant',''],['Selected','secondaryContainer','onSecondaryContainer','—','leading check 32 dp'],['Hover','surface|onSurfaceVariant@8','onSurfaceVariant','outlineVariant',''],['Focused','—','onSurface',TR,'ring 6 dp'],['Pressed','surface|onSurface@12','onSurface','—',''],['Disabled','—','onSurface@38','onSurface@12','']]},
+ {n:'Segmented button',s:'<b>Height</b> 76 · padding 36 H · label 26/32 w500 · outline 2 dp · 2–4 segments',st:[['Unselected','—','onSurface','outline',''],['Selected','secondaryContainer','onSecondaryContainer','outline','check optional'],['Focused','—','onSurface',TR,'ring on segment'],['Disabled','—','onSurface@38','onSurface@12','']]}],
+fields:[
+ {n:'Text field (outlined)',s:'<b>Height</b> 88 · radius 12 · border 2 dp · input 28/36 · floating label 28 → 20 sp · helper 20/28 · padding 20 H',st:[['Enabled','—','onSurface','outline','label onSurfaceVariant'],['Focused','—','onSurface','primary','border 2 + 2 dp ring · label primary'],['Filled (has value)','—','onSurface','outline','label floats to top'],['Error','—','onSurface','error','helper + label error'],['Disabled','—','onSurface@38','onSurface@12','']]},
+ {n:'Search bar',s:'<b>Height</b> 88 · radius full · padding 28 H · text 28/36 · icons 40',st:[['Enabled','surfaceContainerHigh','onSurfaceVariant','—','placeholder onSurfaceVariant'],['Focused','surfaceContainerHigh','onSurface',TR,'ring 6 dp'],['Driving','surfaceContainerHigh','onSurface@38','—','replaced by voice button']]},
+ {n:'Keyboard key',s:'<b>Key</b> 76 min × 76 · gap 8 · radius 14 · label 30 · panel padding 12, radius 20',st:[['Letter key','surfaceContainerHighest','onSurface','—',''],['Function key','secondaryContainer','onSecondaryContainer','—','shift, delete, ?123'],['Action key (Go)','primary','onPrimary','—',''],['Pressed','surfaceContainerHighest|onSurface@12','onSurface','—','key preview 96 dp'],['Panel','surfaceContainer','—','—','blocked while driving']]}],
+lists:[
+ {n:'List item',s:'<b>Height</b> 96 (1-line) / 120 (2-line) / 144 (3-line) · padding 32 H · 12 V · leading avatar 64 or icon 40 · primary 28/36 · secondary 24/32 · divider 1 dp',st:[['Enabled','surfaceContainer','onSurface','outlineVariant','secondary text onSurfaceVariant'],['Hover','surfaceContainer|onSurface@8','onSurface','—',''],['Focused (rotary)','surfaceContainer|onSurface@12','onSurface',TR,'ring inset'],['Pressed','surfaceContainer|onSurface@12','onSurface','—',''],['Selected','surfaceContainer|primary@16','onSurface','—','trailing check'],['Disabled','surfaceContainer','onSurface@38','—','']]},
+ {n:'Card',s:'<b>Radius</b> 24 · padding 28 V / 32 H · title 32/40 w500 · body 24/32 · min height 120',st:[['Filled','surfaceContainerHighest','onSurface','—',''],['Elevated / default','surfaceContainer','onSurface','—','shadow level 1'],['Outlined','—','onSurface','outlineVariant','2 dp'],['Emphasis','primaryContainer','onPrimaryContainer','—','one per screen'],['Pressed','surfaceContainer|onSurface@12','onSurface','—','clickable cards only'],['Focused','—','onSurface',TR,'ring 6 dp']]}],
+tabs:[
+ {n:'Toolbar (Car UI)',s:'<b>Height</b> 96 · back 76 · title Headline Medium 36/44 · actions ≤ 3 + overflow',st:[['Container','surface','onSurface','—','no elevation; tone only'],['Action icon','—','onSurfaceVariant','—',''],['Action focused','—','onSurface',TR,'']]},
+ {n:'Tab',s:'<b>Height</b> 88 · label 28/36 w500 · icon 40 · indicator 6 dp (radius 3), 60% width · 2–4 tabs',st:[['Selected','—','primary','primary','indicator'],['Unselected','—','onSurfaceVariant','outlineVariant','divider 2 dp'],['Hover','surface|onSurface@8','onSurface','—',''],['Focused','—','onSurface',TR,''],['Disabled','—','onSurface@38','—','']]},
+ {n:'Navigation item (side)',s:'<b>Width</b> 280–300 · item 88 · radius full · icon 40 · label 28/36 w500 · padding 28 H · gap 4',st:[['Selected','secondaryContainer','onSecondaryContainer','—',''],['Unselected','—','onSurfaceVariant','—',''],['Focused','—','onSurface',TR,'']]}],
+dialogs:[
+ {n:'Dialog',s:'<b>Width</b> 640 (max 840) · radius 28 · padding 40 · title 36/44 · body 28/36 (≤ 120 chars driving) · buttons 76, right aligned, ≤ 2 driving · scrim 55%',st:[['Container','surfaceContainerHigh','onSurface','—','shadow level 3'],['Body text','—','onSurfaceVariant','—',''],['Icon','—','secondary','—','48 dp'],['Scrim','scrim@55','—','—','']]},
+ {n:'Menu',s:'<b>Width</b> 320–560 · radius 20 · item 76 · padding 28 H · text 28 · icon 40 · max 6 items driving',st:[['Container','surfaceContainer','onSurface','—','shadow level 2'],['Selected item','secondaryContainer','onSecondaryContainer','—',''],['Focused item','surfaceContainer|onSurface@12','onSurface',TR,''],['Destructive item','—','error','—','']]},
+ {n:'Snackbar / toast',s:'<b>Min height</b> 80 · radius 16 · width 640 · text 26/32 · action button 64 · duration 5–8 s · no action while driving',st:[['Container','inverseSurface','inverseOnSurface','—','shadow level 3'],['Action','—','inversePrimary','—','text button']]}],
+progress:[
+ {n:'Progress indicators',s:'<b>Linear</b> 8 dp · radius 4 · <b>circular</b> 72 dp, stroke 8 · skeleton row 96, radius 20',st:[['Track','secondaryContainer','—','—',''],['Indicator','primary','—','—',''],['Skeleton','surfaceContainerHigh','—','—','shimmer to surfaceContainerHighest']]},
+ {n:'Badge',s:'<b>Number</b> 32 high, min 32 wide · <b>dot</b> 16 · label 20/28 w600',st:[['Default','error','onError','—','']]},
+ {n:'Banner / alert',s:'<b>Radius</b> 20 · padding 20 V / 28 H · text 26/32 · icon 40 · ≤ 1 action',st:[['Error / safety','errorContainer','onErrorContainer','—','never auto-dismiss'],['Warning','warningContainer','onWarningContainer','—',''],['Success','successContainer','onSuccessContainer','—',''],['Info','secondaryContainer','onSecondaryContainer','—','']]}],
+sysbars:[
+ {n:'Status bar',s:'<b>1280 × 56</b> · padding 24 H · text Label Medium 24 · icons 32',st:[['Container','surfaceContainerLowest','onSurface','—',''],['Icons','—','onSurfaceVariant','—','active BT/voice: primary'],['Avatar','primaryContainer','onPrimaryContainer','—','36 dp']]},
+ {n:'App bar (right rail)',s:'<b>120 × 568</b> · item 112 × 88 · radius 28 · pill 88 × 44 · icon 36 · label 20/24 w500',st:[['Rail container','surfaceContainerLowest','—','—',''],['Active','secondaryContainer','onSecondaryContainer','—','label onSurface'],['Inactive','—','onSurfaceVariant','—',''],['Hover','—','onSurfaceVariant@8','—',''],['Focused (rotary)','—','onSurface',TR,'6 dp inset ring'],['Pressed','—','onSurface@12','—','']]},
+ {n:'HVAC bar',s:'<b>1280 × 96</b> · buttons 76 · temp Title 36/44 tabular, 0.5° step · padding 24 H · gap 12 between zones',st:[['Container','surfaceContainerLowest','onSurface','—',''],['Button — off','—','onSurfaceVariant','—','76 × 76 circle'],['Button — on','primaryContainer','onPrimaryContainer','—','aria-pressed'],['Focused','—','onSurface',TR,''],['Disabled','—','onSurface@38','—','']]}],
+hvac:[
+ {n:'Climate stepper & toggle tiles',s:'<b>Stepper</b> 76 · value Display 56 · <b>tile</b> 112 × 112 · radius 28 · icon 44 · label 20/28 w500',st:[['Stepper button','secondaryContainer','onSecondaryContainer','—',''],['Value','—','onSurface','—','unit onSurfaceVariant'],['Tile off','surfaceContainerHighest','onSurfaceVariant','—',''],['Tile on','primaryContainer','onPrimaryContainer','—',''],['Focused','—','onSurface',TR,'']]}],
+mediactl:[
+ {n:'Media player',s:'<b>Card</b> radius 28 · padding 32 · art 220 (compact 120), radius 24 · title 36/44 · artist 28/36 · progress 10 dp · play 96 · transport 76',st:[['Card','surfaceContainer','onSurface','—',''],['Art placeholder','primaryContainer','onPrimaryContainer','—','gradient to tertiaryContainer'],['Play / pause','primary','onPrimary','—',''],['Transport','—','onSurfaceVariant','—',''],['Progress','secondaryContainer','—','—','indicator primary'],['Source label','—','primary','—','Label Medium 24']]}],
+alerts:[
+ {n:'Heads-up notification',s:'<b>Width</b> 760 · radius 28 · padding 24 × 28 · avatar 72 · title 28 w500 · body 24 · actions 64 high · ≤ 2 actions · 8 s',st:[['Container','surfaceContainerHighest','onSurface','—','shadow level 5'],['Avatar','primaryContainer','onPrimaryContainer','—',''],['Body','—','onSurfaceVariant','—','']]},
+ {n:'Voice overlay',s:'<b>Orb</b> 120 · phrase Headline Small 32/40 · hint 24/32 · radius 28',st:[['Orb','primary','onPrimary','—','pulse ≤ 2 s'],['Background','primaryContainer@20','onSurface','—','gradient to surface']]},
+ {n:'Quick toggle tile',s:'<b>Tile</b> 128 high · radius 28 · icon 44 · label 20/28',st:[['Off','surfaceContainerHighest','onSurfaceVariant','—',''],['On','primaryContainer','onPrimaryContainer','—','']]}],
+'more-ui':[
+ {n:'Dropdown (select)',s:'<b>Field</b> 88 · radius 12 · border 2 · label 20 · value 28 · caret 40 · menu item 76',st:[['Enabled','—','onSurface','outline','label onSurfaceVariant'],['Open','—','onSurface','primary','menu surfaceContainer'],['Disabled','—','onSurface@38','onSurface@12','']]},
+ {n:'Picker (wheel)',s:'<b>Width</b> 420 · row 76 · selected 40/w500 · others 32 @55% · radius 24 · parked only',st:[['Container','surfaceContainer','—','—',''],['Selection band','secondaryContainer@70','onSecondaryContainer','—','76 dp high'],['Unselected','—','onSurfaceVariant','—','55% opacity']]},
+ {n:'Side sheet',s:'<b>Width</b> 520 · radius 28 (leading) · padding 28 × 32 · title 32/40 w500 · max 4 rows',st:[['Container','surfaceContainerLow','onSurface','—','shadow level 3, scrim optional']]},
+ {n:'Paging controls & dots',s:'<b>Page buttons</b> 76 · track 8 × 150 · indicator primary · dots 12 (active 36 × 12) gap 12',st:[['Track','secondaryContainer','—','—',''],['Thumb','primary','—','—',''],['Dot','outlineVariant','—','—',''],['Active dot','primary','—','—','']]}],
+'auto-more':[
+ {n:'In-call UI',s:'<b>Card</b> 520 · avatar 160 · name Headline Medium 36/44 · timer 28 · controls 96 · gap 20 · radius 28',st:[['Container','surfaceContainer','onSurface','—',''],['Avatar','primaryContainer','onPrimaryContainer','—','initials 64/w500'],['Control','secondaryContainer','onSecondaryContainer','—',''],['End call','error','onError','—','always rightmost'],['Answer','success','onSuccess','—','']]},
+ {n:'Range gauge & status tile',s:'<b>Gauge</b> 240 · ring 20 · value Display 56 · <b>tile</b> min 260 × 112 · icon chip 72 · title 28 w500 · sub 22/28',st:[['Gauge fill','primary','—','—',''],['Gauge track','secondaryContainer','—','—',''],['Tile — normal','surfaceContainer','onSurface','—','chip surfaceContainerHighest'],['Tile — ok','successContainer','onSuccessContainer','—','chip'],['Tile — warning','warningContainer','onWarningContainer','—','chip'],['Tile — error','errorContainer','onErrorContainer','—','chip']]},
+ {n:'Volume panel & seat level',s:'<b>Panel</b> 760 · radius 28 · row 76 · label 24 · slider track 16 · <b>seat chip</b> 64 + 3 bars 10 wide',st:[['Panel','surfaceContainerHigh','onSurface','—','shadow level 5'],['Label','—','onSurfaceVariant','—',''],['Seat level on','primaryContainer','onPrimaryContainer','—','bars primary'],['Seat level off','surfaceContainerLow','onSurfaceVariant','—','bars outlineVariant']]},
+ {n:'Radio tuner & guidance card',s:'<b>Frequency</b> 96/w400 tabular · preset 76 · scale 44 · <b>guidance</b> radius 24 · distance 48/56 · icon 80',st:[['Tuner card','surfaceContainer','onSurface','—',''],['Preset','secondaryContainer','onSecondaryContainer','—','selected: primary / onPrimary'],['Scale marker','primary','—','—',''],['Guidance card','primaryContainer','onPrimaryContainer','—','']]},
+ {n:'App launcher tile & user',s:'<b>Tile</b> ≥ 140 wide · icon chip 96, radius 28 · icon 52 · label 22/w500 · <b>user</b> avatar 96, selected ring 6 dp',st:[['Tile chip A','primaryContainer','onPrimaryContainer','—',''],['Tile chip B','secondaryContainer','onSecondaryContainer','—',''],['Tile chip C','tertiaryContainer','onTertiaryContainer','—',''],['Hover','surface|onSurface@8','onSurface','—',''],['Focused','—','onSurface',TR,''],['Selected user','primary','onPrimary','primary','ring offset 6 dp']]}],
+viewstates:[
+ {n:'Illustrated state (empty / error / offline / success / restricted)',s:'<b>Illustration</b> circle 144 · icon 72 · title 32/40 w500 · body 24/32 (≤ 120 chars) · max width 520 · one primary action 76 · gap 14',st:[['Empty / permission','primaryContainer','onPrimaryContainer','—','title onSurface'],['Info / restricted / loading','secondaryContainer','onSecondaryContainer','—',''],['Error','errorContainer','onErrorContainer','—','action tonal Retry'],['Offline / caution','warningContainer','onWarningContainer','—',''],['Success','successContainer','onSuccessContainer','—','auto-dismiss 3 s'],['Body text','—','onSurfaceVariant','—','']]},
+ {n:'Loading',s:'<b>Spinner</b> 72, stroke 8 · skeleton 96 · show after 300 ms, min 600 ms',st:[['Spinner','secondaryContainer','—','—','arc primary'],['Skeleton','surfaceContainerHigh','—','—','']]}],
+icons:[
+ {n:'Icon colors by state',s:'<b>Sizes</b> 24 / 32 / 36 / 40 (default) / 48 / 72 · stroke 2 · hit area ≥ 76',st:[['Default','—','onSurfaceVariant','—','inactive navigation, toolbar'],['Active / emphasis','—','onSurface','—',''],['Selected (container)','secondaryContainer','onSecondaryContainer','—','app bar pill'],['Primary action','primary','onPrimary','—','filled icon button'],['Link / accent','—','primary','—',''],['Success','—','success','—',''],['Warning','—','warning','—','with text'],['Error','—','error','—','with text'],['Disabled','—','onSurface@38','—','']]}]
+};
+function mixHex(a,b,p){const x=[1,3,5].map(i=>parseInt(a.substr(i,2),16)),y=[1,3,5].map(i=>parseInt(b.substr(i,2),16));return '#'+x.map((v,i)=>Math.round(v+(y[i]-v)*p/100).toString(16).padStart(2,'0')).join('').toUpperCase()}
+function cell(x){if(!x||x==='—')return '<span style="color:var(--c-on-surface-variant)">—</span>';const t=T();let hex,label;
+ if(x.includes('|')){const [b,l]=x.split('|'),[lr,pc]=l.split('@');hex=mixHex(t[b],t[lr],+pc);label=`${b} + ${lr} ${pc}%`}
+ else if(x.includes('@')){const [r,pc]=x.split('@');hex=mixHex(t.surface,t[r],+pc);label=`${r} @${pc}%`}
+ else{hex=t[x];label=x;if(!hex)return x}
+ return `<span class="sw-c"><i style="background:${hex}"></i><span>${label}</span><small>${hex.toUpperCase()}</small></span>`}
+function renderSpecs(){for(const [id,list] of Object.entries(SPECS)){let host=document.getElementById(id+'SpecHost');if(!host){const sec=document.getElementById(id);if(!sec)continue;host=sec.querySelector('.specblock[data-auto]');if(!host){host=document.createElement('div');host.className='specblock';host.dataset.auto='1';sec.appendChild(host)}}
+ host.innerHTML=`<h3 style="margin-top:.4em">Specifications — size, states &amp; colors <span class="pill">${root.dataset.theme==='night'?'Night':'Day'} values</span></h3>`+list.map(c=>`<h4>${c.n}</h4><div class="sz">${c.s}</div><div class="tw"><table class="tbl sp"><thead><tr><th>State / part</th><th>Container</th><th>Content</th><th>Outline / ring</th><th>Notes</th></tr></thead><tbody>${c.st.map(r=>`<tr><td><b>${r[0]}</b></td><td>${cell(r[1])}</td><td>${cell(r[2])}</td><td>${cell(r[3])}</td><td>${r[4]||''}</td></tr>`).join('')}</tbody></table></div>`).join('')}}
+
 
 /* ---------- nav ---------- */
 const secs=$$('section.sec[data-title]');const groups=[];secs.forEach(s=>{if(!groups.includes(s.dataset.group))groups.push(s.dataset.group)});
@@ -1206,8 +1502,7 @@ secs.forEach(s=>io.observe(s));
 /* ---------- init ---------- */
 setTheme(store.get('aurora-theme','night'));
 setDriving(store.get('aurora-drv','false')==='true');
-showScreen(0);
-$$('.frame-wrap.anat').forEach(w=>w.style.display='block');
+showScreen();
 requestAnimationFrame(fit);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 if('serviceWorker' in navigator&&/^https?:/.test(location.protocol)){navigator.serviceWorker.register('sw.js').catch(()=>{})}

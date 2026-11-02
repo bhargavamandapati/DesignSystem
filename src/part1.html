@@ -65,31 +65,28 @@
  </tbody></table></div>
 </section>
 
-<section class="sec" id="platform" data-title="Platform & displays" data-group="Start">
- <div class="eyebrow">Platform</div><h2>AAOS platform &amp; displays</h2>
- <p>Android Automotive OS runs natively on the head unit — apps are installed on the car, not projected from a phone. System UI, the Car UI Library, <code>CarService</code> and templates are customized by the OEM via RROs.</p>
- <h3>Anatomy of the home display</h3>
- <div class="stage a-root pad" style="justify-content:center"><span class="cap">Reference layout 1280 × 720 dp</span>
-  <div class="frame-wrap anat" style="max-width:900px"><div class="frame a-root anat-f" style="--s:1">
-   <div class="a-status" style="outline:2px dashed var(--c-tertiary);outline-offset:-2px"><div class="g tmp">21°</div><div class="sp"></div><span class="tmp">10:42</span><div class="sp"></div><div class="g"><ic n="bt"></ic><ic n="wifi"></ic><ic n="mic"></ic></div></div>
-   <div class="body"><div class="pane map" style="outline:2px dashed var(--c-primary);outline-offset:-2px;display:grid;place-items:center;font-size:28px;color:var(--c-on-surface)">App canvas (activity window)</div></div>
-   <div class="a-dock" style="outline:2px dashed var(--c-secondary);outline-offset:-2px"><a href="#" aria-current="page"><span class="pl"><ic n="home"></ic></span>Home</a><a href="#"><span class="pl"><ic n="nav"></ic></span>Maps</a><a href="#"><span class="pl"><ic n="phone"></ic></span>Phone</a><a href="#"><span class="pl"><ic n="music"></ic></span>Media</a><a href="#"><span class="pl"><ic n="apps"></ic></span>Apps</a></div>
-  </div></div>
- </div>
- <div class="grid g3">
-  <div class="card-d"><h5><span class="pill">1</span> Status bar · 76 dp</h5><p>Driver climate, clock, connectivity, voice, user profile. Always visible, never app-controlled.</p></div>
-  <div class="card-d"><h5><span class="pill">2</span> App canvas</h5><p>Remaining area. Apps draw edge-to-edge but keep content within the safe area and clear of system bars.</p></div>
-  <div class="card-d"><h5><span class="pill">3</span> Navigation dock · 112 dp</h5><p>5–6 primary destinations with persistent Home. Position (bottom / side) is OEM-defined; use window insets, never hard-code.</p></div>
- </div>
- <h3>Display classes</h3>
- <div class="tw"><table class="tbl"><thead><tr><th>Class</th><th>Typical px</th><th>Aspect</th><th>Layout strategy</th></tr></thead><tbody>
-  <tr><td>Landscape wide</td><td>1920 × 720 · 2160 × 720</td><td>≈ 8:3</td><td>Two- or three-pane; media + map side by side.</td></tr>
-  <tr><td>Landscape standard</td><td>1280 × 720 · 1920 × 1080</td><td>16:9</td><td>Reference. Two-pane with split controls.</td></tr>
-  <tr><td>Landscape compact</td><td>1280 × 800 · 1024 × 600</td><td>16:10 – 5:3</td><td>Single pane + sheet; keep 76 dp targets.</td></tr>
-  <tr><td>Portrait (center stack)</td><td>1080 × 1920 · 1200 × 1600</td><td>9:16 – 3:4</td><td>Stacked: map top, controls bottom; dock moves to bottom.</td></tr>
-  <tr><td>Passenger / rear</td><td>1920 × 1080</td><td>16:9</td><td>Multi-display zones: video &amp; games allowed (not driver zone).</td></tr>
+<section class="sec" id="platform" data-title="Display & layout" data-group="Start">
+ <div class="eyebrow">Platform</div><h2>Target display &amp; system layout</h2>
+ <p>Android Automotive OS runs natively on the head unit. This system targets one display: a <b>10-inch, 1920 × 1080 px</b> landscape center-stack panel.</p>
+ <div class="tw"><table class="tbl"><thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead><tbody>
+  <tr><td>Panel</td><td>10.1″ · 1920 × 1080 px · 16:9 · ≈ 218 ppi</td><td>Landscape, touch + rotary</td></tr>
+  <tr><td>Density bucket</td><td><b>1.5×</b> (240 dpi) → design viewport <b>1280 × 720 dp</b></td><td>All specs in this document are in dp / sp</td></tr>
+  <tr><td>Physical size of 76 dp target</td><td>76 × 1.5 = 114 px ≈ <b>13 mm</b></td><td>Meets 10–15 mm automotive touch-target guidance</td></tr>
+  <tr><td>Window size class</td><td>Expanded width (≥ 840 dp), medium height</td><td>12-column grid, two-pane layouts</td></tr>
  </tbody></table></div>
- <div class="callout"><b>Always design with insets</b>Use <code>WindowInsets</code>/<code>CarUiUtils</code> for system bars and cutouts. Never assume the dock is at the bottom — OEMs can place it on the leading edge or hide it in specific states.</div>
+ <h3>Standard system layout</h3>
+ <p>Three persistent system bars frame the app area. They are owned by System UI — apps never draw into them.</p>
+ <div class="stage a-root pad" style="justify-content:center"><span class="cap">1280 × 720 dp (1920 × 1080 px)</span><div class="frame-wrap anat" id="anatomy" style="max-width:1000px"></div></div>
+ <div class="tw"><table class="tbl"><thead><tr><th>#</th><th>Region</th><th>Size (dp)</th><th>Contents</th><th>Colors</th></tr></thead><tbody>
+  <tr><td><span class="pill">1</span></td><td><b>Status bar</b> (top)</td><td>1280 × <b>56</b></td><td>Clock, outside temp, user avatar, Bluetooth, Wi-Fi, signal, voice. Icons 32 dp, text Label Medium 24 sp.</td><td>surfaceContainerLowest · onSurface · icons onSurfaceVariant</td></tr>
+  <tr><td><span class="pill">2</span></td><td><b>App area</b></td><td>1160 × <b>568</b></td><td>The only region apps draw into. Edge-to-edge content stays 16 dp inside.</td><td>surface</td></tr>
+  <tr><td><span class="pill">3</span></td><td><b>App bar</b> (right rail)</td><td><b>120</b> × 568 · item 112 × 88</td><td>6 destinations: Home, Maps, Phone, Media, Vehicle, Apps. Icon 36 dp + 20 sp label.</td><td>surfaceContainerLowest · active pill 88×44 secondaryContainer</td></tr>
+  <tr><td><span class="pill">4</span></td><td><b>HVAC bar</b> (bottom)</td><td>1280 × <b>96</b></td><td>Driver seat heat + temp, fan, A/C, Auto, Defrost, passenger temp + seat heat. 76 dp targets.</td><td>surfaceContainerLowest · toggles primaryContainer when on</td></tr>
+ </tbody></table></div>
+ <h3>Full-screen (immersive) mode</h3>
+ <p>Apps such as maps, camera and parked video can request <b>full screen</b>: the status bar, app bar and HVAC bar are all dismissed and the app area grows to <b>1280 × 720 dp</b>. Use the <b>Full screen</b> toggle in the reference screens below to see it.</p>
+ <ul class="t"><li><b>Enter:</b> explicit user action (76 dp full-screen button) or by app policy (reverse camera, parked video). Never auto-enter while an alert is active.</li><li><b>Exit:</b> a persistent 76 dp <i>Exit full screen</i> button at the top-trailing corner (24 dp inset), the hardware Back/Home key, or any system alert.</li><li><b>Always still shown:</b> heads-up notifications, safety alerts, voice overlay and incoming-call UI draw above full-screen content.</li><li><b>Hardware independent:</b> hazard, volume and HVAC hardware keys keep working; the volume panel and a compact HVAC toast appear over the content.</li><li><b>Transition:</b> 300 ms fade + 24 dp slide, <code>motion.medium</code>; reduced motion → instant.</li><li><b>Driving:</b> video and games are never entered while driving; navigation and camera are the only full-screen apps allowed.</li></ul>
+ <div class="callout"><b>Design with insets</b>Use <code>WindowInsets</code> to get status/app/HVAC bar sizes. Never hard-code 56/120/96 — OEMs change bar sizes through Car UI RROs and the app area must reflow.</div>
 </section>
 
 <!-- ============ FOUNDATIONS ============ -->
@@ -161,10 +158,9 @@
  </div>
  <ul class="t"><li>Minimum target <b>76 × 76 dp</b>; primary driving actions <b>96 dp</b>. Visual element may be smaller, hit area may not.</li><li>Minimum <b>16 dp</b> between adjacent targets (8 dp absolute floor for dense toggle groups).</li><li>Place frequent controls in reach zone: toward the driver's side and lower half of the display.</li><li>No tiny close icons, drag handles, edge swipes or multi-finger gestures.</li></ul>
  <h3>Grid &amp; margins</h3>
- <div class="tw"><table class="tbl"><thead><tr><th>Window width</th><th>Columns</th><th>Margin</th><th>Gutter</th><th>Pattern</th></tr></thead><tbody>
-  <tr><td>&lt; 1100 dp</td><td>8</td><td>32 dp</td><td>24 dp</td><td>Single pane</td></tr>
-  <tr><td>1100 – 1600 dp</td><td>12</td><td>40 dp</td><td>24 dp</td><td>Two-pane (list + detail / map + card)</td></tr>
-  <tr><td>&gt; 1600 dp</td><td>12</td><td>48 dp</td><td>32 dp</td><td>Two- or three-pane; cap text lines at 60 ch</td></tr>
+ <div class="tw"><table class="tbl"><thead><tr><th>Area</th><th>Size</th><th>Columns</th><th>Margin</th><th>Gutter</th><th>Pattern</th></tr></thead><tbody>
+  <tr><td>App area (bars shown)</td><td>1160 × 568 dp</td><td>12</td><td>32 dp</td><td>24 dp</td><td>Two-pane (list + detail, map + card)</td></tr>
+  <tr><td>Full screen</td><td>1280 × 720 dp</td><td>12</td><td>40 dp</td><td>24 dp</td><td>Immersive: map, camera, video</td></tr>
  </tbody></table></div>
  <div class="spec"><span><b>Safe area</b>respect system-bar insets + 16 dp</span><span><b>Content max</b>no full-width paragraphs</span><span><b>Z-order</b>app &lt; HUN &lt; voice &lt; safety alert</span></div>
  <h3>Layout archetypes</h3>
@@ -185,12 +181,26 @@
 
 <section class="sec" id="icons" data-title="Iconography" data-group="Foundations">
  <div class="eyebrow">Foundations</div><h2>Iconography</h2>
- <p>Material Symbols (Rounded, weight 400–500, fill for selected). Inline SVG here so everything works offline. Click an icon to copy its name.</p>
- <div class="icons" id="iconGrid"></div>
+ <p class="lead"><b id="icCount">196</b> automotive IVI icons in seven families — system, connectivity, media, phone, navigation, climate and vehicle. One consistent style: 24 dp grid, 2 dp stroke, round caps and joins, fill used only for play/transport glyphs and dots.</p>
+ <div class="ictools"><input type="search" id="icq" placeholder="Search icons (name or family)" aria-label="Search icons"><select id="iccat" aria-label="Family"></select><select id="icsize" aria-label="Preview size"><option value="32">32 dp</option><option value="40" selected>40 dp</option><option value="48">48 dp</option><option value="64">64 dp</option></select><button class="tbtn" id="icZip">Download all SVG (.zip)</button><button class="tbtn" id="icZipA">Download Android XML (.zip)</button></div>
+ <p style="font-size:13px;color:var(--c-on-surface-variant);margin:0">Click an icon to select it. Then <b>Download SVG</b>, <b>Copy SVG</b> or <b>Copy Android VectorDrawable</b>. The same files are in the repo under <code>icons/</code> and <code>icons/android/</code>.</p>
+ <div id="iconGrid"></div>
+ <div class="icdetail" id="icDetail" aria-live="polite"><div class="big" id="icBig"></div><div><div class="t-title-m" id="icName" style="font:600 20px Roboto,sans-serif"></div><div id="icMeta" style="font-size:13px;color:var(--c-on-surface-variant)"></div></div><div style="flex:1"></div><button class="tbtn" id="icDl">Download SVG</button><button class="tbtn" id="icCp">Copy SVG</button><button class="tbtn" id="icAn">Copy Android XML</button></div>
+ <h3>Icon sizes</h3>
+ <div class="stage a-root pad" style="gap:36px"><span class="cap">Sizes in dp</span>
+  <div style="text-align:center"><svg class="i" style="font-size:24px"><use href="#i-nav"/></svg><br><small>24 · dense meta</small></div>
+  <div style="text-align:center"><svg class="i" style="font-size:32px"><use href="#i-nav"/></svg><br><small>32 · status bar</small></div>
+  <div style="text-align:center"><svg class="i" style="font-size:36px"><use href="#i-nav"/></svg><br><small>36 · app bar, HVAC bar</small></div>
+  <div style="text-align:center"><svg class="i" style="font-size:40px"><use href="#i-nav"/></svg><br><small>40 · default</small></div>
+  <div style="text-align:center"><svg class="i" style="font-size:48px"><use href="#i-nav"/></svg><br><small>48 · FAB, banners</small></div>
+  <div style="text-align:center"><svg class="i" style="font-size:72px"><use href="#i-nav"/></svg><br><small>72 · empty state</small></div>
+ </div>
+ <div class="spec" data-spec="Grid|24×24 viewport;Stroke|2 (scales: 40dp→3.3dp);Caps / joins|round;Keyline|20×20 live area, 2dp padding;Hit area|always ≥ 76×76dp;Format|SVG + Android VectorDrawable"></div>
+ <div id="iconsSpecHost"></div>
  <div class="grid g3" style="margin-top:16px">
-  <div class="card-d"><h5>Sizes</h5><p>32&nbsp;dp inline/status, <b>40&nbsp;dp default</b>, 48&nbsp;dp dock &amp; FAB, 96&nbsp;dp+ hero. Optical padding included; hit area is always ≥ 76.</p></div>
-  <div class="card-d"><h5>Meaning</h5><p>Pair every critical icon with a text label. Don't reuse standard icons (home, phone, hazard) for other meanings; use ISO 2575 telltale symbols for vehicle functions.</p></div>
-  <div class="card-d"><h5>Selected state</h5><p>Outlined → filled, plus pill indicator. Never rely on color shift only.</p></div>
+  <div class="card-d"><h5>Meaning</h5><p>Pair every critical icon with a text label. Don't reuse standard icons (home, phone, hazard) for other meanings; vehicle telltales must follow ISO&nbsp;2575 where legally required — the vehicle family here is for infotainment status, not instrument-cluster telltales.</p></div>
+  <div class="card-d"><h5>Selected state</h5><p>Inactive = onSurfaceVariant. Active = onSecondaryContainer inside a secondaryContainer pill (app bar) or onPrimaryContainer on primaryContainer (toggle). Never color alone — the container shape also changes.</p></div>
+  <div class="card-d"><h5>Mirroring (RTL)</h5><p>Mirror directional icons (back, forward, chevrons, turn arrows, route). Do <b>not</b> mirror media transport, clock, phone, volume or compass.</p></div>
  </div>
 </section>
 
@@ -221,7 +231,7 @@
  </div>
  <div class="grid g3">
   <div class="card-d"><h5>Focus ring</h5><p>6&nbsp;dp, <code>tertiary</code>, 4&nbsp;dp offset, rounded to the component shape. Contrast ≥ 3:1 vs. adjacent surfaces.</p></div>
-  <div class="card-d"><h5>Focus order</h5><p>Reading order (leading→trailing, top→bottom) with <code>nudge</code> shortcuts to jump between toolbar, content and dock.</p></div>
+  <div class="card-d"><h5>Focus order</h5><p>Reading order (leading→trailing, top→bottom) with <code>nudge</code> shortcuts to jump between toolbar, content and the app bar.</p></div>
   <div class="card-d"><h5>Default focus</h5><p>Restore last focus on return. On first entry focus the primary action or first list item, never a destructive button.</p></div>
  </div>
 </section>

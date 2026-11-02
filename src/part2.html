@@ -150,14 +150,24 @@ font-family: "Roboto Mono", ui-monospace, Menlo, Consolas, monospace;     /* dat
 </section>
 
 <!-- ============ AUTOMOTIVE ============ -->
-<section class="sec" id="sysbars" data-title="Status bar & dock" data-group="Automotive">
- <div class="eyebrow">Automotive components</div><h2>System status bar &amp; navigation dock</h2>
- <div class="stage a-root col pad" style="padding:20px;gap:0"><span class="cap">System UI</span>
-  <div class="a-status"><div class="g tmp"><ic n="seat"></ic>21°</div><div class="sp"></div><span class="tmp">10:42</span><div class="sp"></div><div class="g"><ic n="bt"></ic><ic n="wifi"></ic><ic n="signal"></ic><ic n="mic"></ic><span style="width:36px;height:36px;border-radius:50%;background:var(--c-primary-container);color:var(--c-on-primary-container);display:grid;place-items:center;font-size:20px">AM</span></div></div>
-  <div style="height:80px"></div>
-  <div class="a-dock"><a href="#" aria-current="page"><span class="pl"><ic n="home"></ic></span>Home</a><a href="#"><span class="pl"><ic n="nav"></ic></span>Maps</a><a href="#"><span class="pl"><ic n="phone"></ic></span>Phone</a><a href="#"><span class="pl"><ic n="music"></ic></span>Media</a><a href="#"><span class="pl"><ic n="car"></ic></span>Vehicle</a><a href="#"><span class="pl"><ic n="apps"></ic></span>Apps</a></div>
+<section class="sec" id="sysbars" data-title="System bars" data-group="Automotive">
+ <div class="eyebrow">Automotive components</div><h2>System bars: status, app bar, HVAC bar</h2>
+ <p>Shown at true size (1 dp = 1 px here). In the product the bars are drawn by System UI; apps only receive insets.</p>
+ <h3>Status bar · 1280 × 56 dp</h3>
+ <div class="stage a-root col pad" style="padding:20px"><span class="cap">Top</span><div data-slot="status" style="width:1280px;max-width:none"></div></div>
+ <div class="spec" data-spec="Height|56dp;Padding|24dp H;Text|Label Medium 24sp tabular;Icons|32dp, 20dp gap;Tap targets|avatar & voice 76dp hit"></div>
+ <h3>App bar (right rail) · 120 × 568 dp</h3>
+ <div class="stage a-root pad" style="align-items:flex-start;gap:32px"><span class="cap">Right rail — Home active · Maps active (hover) · focus</span>
+  <div data-slot="rail" style="height:568px;width:120px"></div>
+  <div data-slot="rail:2" style="height:568px;width:120px"></div>
+  <div class="card-d" style="max-width:440px"><h5>Rules</h5><ul class="t" style="margin:0;padding-left:18px"><li>6 fixed destinations; Home is always first and returns to launcher state.</li><li>Active item: filled pill 88 × 44 dp, label in onSurface. Inactive: icon + label in onSurfaceVariant.</li><li>Order is stable — never re-sort by usage.</li><li>Badge (32 dp, error) allowed on Phone / Messages only.</li><li>Hidden in full-screen mode.</li></ul></div>
  </div>
- <div class="spec" data-spec="Status bar|76dp;Dock|112dp;Dock item|150×96dp, indicator 112×56dp;Destinations|5–6, always Home;Label|Label Small 20sp always visible"></div>
+ <div class="spec" data-spec="Width|120dp;Item|112×88dp, radius 28dp;Active pill|88×44dp, radius 22dp;Icon|36dp;Label|20sp/24 w500;Gap|4dp;Items|6 (max)"></div>
+ <h3>HVAC bar · 1280 × 96 dp</h3>
+ <div class="stage a-root col pad" style="padding:20px"><span class="cap">Bottom — interactive</span><div data-slot="hvbar" style="width:1280px;max-width:none"></div></div>
+ <div class="spec" data-spec="Height|96dp;Targets|76dp, 4dp gaps;Temp value|Title 36sp tabular, 0.5° steps;Zones|driver · fan/modes · passenger;Toggle on|primaryContainer / onPrimaryContainer"></div>
+ <h3>Full-screen (all bars dismissed)</h3>
+ <div class="stage a-root pad"><span class="cap">Compare — bars shown vs. dismissed</span><div id="fsCompare" style="display:flex;gap:24px;flex-wrap:wrap;width:100%"></div></div>
 </section>
 
 <section class="sec" id="hvac" data-title="Climate (HVAC)" data-group="Automotive">

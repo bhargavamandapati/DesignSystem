@@ -1,0 +1,67 @@
+<section class="sec" id="more-ui" data-title="More UI components" data-group="Components">
+ <div class="eyebrow">Components</div><h2>Select, picker, sheets, paging &amp; loading</h2>
+ <h3>Dropdown (select) &amp; time picker</h3>
+ <div class="stage a-root pad" style="align-items:flex-start"><span class="cap">Parked-first controls</span>
+  <div class="a-select"><button class="fld" aria-haspopup="listbox"><small>Units</small><span>Kilometres</span><ic n="chev-down"></ic></button></div>
+  <ul class="a-menu" role="listbox" style="width:420px"><li role="option" class="sel"><ic n="check"></ic>Kilometres</li><li role="option">Miles</li></ul>
+  <div class="a-picker"><div class="col"><div>07</div><div>08</div><div class="s">09</div><div>10</div><div>11</div></div><div class="col"><div>40</div><div>41</div><div class="s">42</div><div>43</div><div>44</div></div><div class="col"><div></div><div>AM</div><div class="s">PM</div><div></div><div></div></div></div>
+ </div>
+ <h3>Side sheet, scroll paging &amp; page dots</h3>
+ <div class="stage a-root pad" style="align-items:flex-start;gap:36px"><span class="cap">Side sheet · pager · dots</span>
+  <div class="a-sheet"><div class="hd">Route options<button class="a-ib" aria-label="Close"><ic n="close"></ic></button></div><div class="a-li" style="padding:0"><div class="tx"><div class="p">Avoid tolls</div></div><button class="a-sw" role="switch" aria-checked="true"><i><ic n="check"></ic></i></button></div><div class="a-li" style="padding:0"><div class="tx"><div class="p">Avoid highways</div></div><button class="a-sw" role="switch" aria-checked="false"><i><ic n="check"></ic></i></button></div><button class="a-btn">Apply</button></div>
+  <div class="a-pager"><button class="a-ib tonal" aria-label="Page up"><ic n="chev-up"></ic></button><div class="trk"><i></i></div><button class="a-ib tonal" aria-label="Page down"><ic n="chev-down"></ic></button></div>
+  <div style="display:grid;gap:20px"><div class="a-dots"><i class="on"></i><i></i><i></i><i></i></div><small>Page indicator (max 6 pages)</small></div>
+ </div>
+ <h3>Loading skeleton</h3>
+ <div class="stage a-root pad"><span class="cap">Shimmer ≤ 1.6 s loop · static if reduced motion</span><div class="a-skel"><div></div><div></div><div></div></div></div>
+ <div class="callout"><b>Not used in vehicles</b>Tooltips and hover cards (no hover), right-click / long-press context menus, drag-and-drop reordering, swipe-to-dismiss, pull-to-refresh, horizontal carousels, date-range pickers and rich-text editors. Use buttons, sheets and voice instead.</div>
+</section>
+
+<section class="sec" id="auto-more" data-title="More automotive components" data-group="Automotive">
+ <div class="eyebrow">Automotive components</div><h2>Calls, charging, status, audio &amp; launcher</h2>
+ <h3>In-call UI</h3>
+ <div class="stage a-root pad" style="align-items:flex-start"><span class="cap">Active call</span>
+  <div class="a-call"><div class="av">AM</div><div class="t-headline-m">Alex Morgan</div><div class="t-body-l" style="color:var(--c-on-surface-variant)">Mobile · 02:41</div><div class="row"><button class="a-ib tonal" aria-label="Mute"><ic n="mic-off"></ic></button><button class="a-ib tonal" aria-label="Speaker"><ic n="vol"></ic></button><button class="a-ib tonal" aria-label="Keypad"><ic n="dialpad"></ic></button><button class="a-ib" style="background:var(--c-error);color:var(--c-on-error)" aria-label="End call"><ic n="phone-end"></ic></button></div></div>
+  <div class="a-hun" style="width:560px"><div class="lead-i"><ic n="phone-in"></ic></div><div class="ti">Incoming call</div><div class="bo">Alex Morgan · Mobile</div><div class="act"><button class="a-btn" style="background:var(--c-success);color:var(--c-on-success)">Answer</button><button class="a-btn danger">Decline</button></div></div>
+ </div>
+ <h3>Range, charging &amp; vehicle status</h3>
+ <div class="stage a-root pad" style="align-items:flex-start"><span class="cap">Gauge · status tiles</span>
+  <div class="a-gauge" style="--p:80"><div><b>312</b><small>km · 80%</small></div></div>
+  <div style="display:grid;gap:14px"><div class="a-stat ok"><div class="ic"><ic n="battery-charging"></ic></div><div><b>Charging</b><span>11 kW · 42 min left</span></div></div><div class="a-stat wn"><div class="ic"><ic n="tire-pressure"></ic></div><div><b>Tire pressure</b><span>Front left 1.9 bar</span></div></div><div class="a-stat er"><div class="ic"><ic n="door"></ic></div><div><b>Door open</b><span>Rear right</span></div></div><div class="a-stat"><div class="ic"><ic n="lock"></ic></div><div><b>Locked</b><span>All doors</span></div></div></div>
+ </div>
+ <h3>Volume panel &amp; seat comfort</h3>
+ <div class="stage a-root pad" style="align-items:flex-start"><span class="cap">Per-stream volume · seat levels</span>
+  <div class="a-volp"><div class="rw"><span class="lb">Media</span><div class="a-slider"><ic n="music"></ic><input type="range" min="0" max="40" value="18" aria-label="Media"><output>18</output></div></div><div class="rw"><span class="lb">Navigation</span><div class="a-slider"><ic n="nav"></ic><input type="range" min="0" max="40" value="24" aria-label="Navigation"><output>24</output></div></div><div class="rw"><span class="lb">Call</span><div class="a-slider"><ic n="phone"></ic><input type="range" min="0" max="40" value="30" aria-label="Call"><output>30</output></div></div></div>
+  <div style="display:grid;gap:14px"><button class="a-lvl" aria-label="Driver seat heat"><span class="ib"><ic n="seat-heat"></ic></span><i class="on" style="height:16px"></i><i class="on" style="height:26px"></i><i style="height:36px"></i></button><button class="a-lvl" aria-label="Seat ventilation"><span class="ib" style="background:var(--c-surface-container-low);color:var(--c-on-surface-variant)"><ic n="seat-vent"></ic></span><i style="height:16px"></i><i style="height:26px"></i><i style="height:36px"></i></button></div>
+ </div>
+ <h3>Radio tuner &amp; turn guidance</h3>
+ <div class="stage a-root pad" style="align-items:flex-start"><span class="cap">FM tuner · guidance card</span>
+  <div style="flex:1;min-width:560px"><div class="a-tuner"><div class="fr"><button class="a-ib tonal" aria-label="Seek down"><ic n="prev"></ic></button><b>98.4</b><small>FM · HD2</small><button class="a-ib tonal" aria-label="Seek up"><ic n="next"></ic></button></div><div class="scale"><i></i></div><div class="pr"><button class="a-btn tonal">P1</button><button class="a-btn">P2</button><button class="a-btn tonal">P3</button><button class="a-btn tonal">P4</button><button class="a-btn tonal">P5</button></div></div></div>
+  <div class="a-guide"><ic n="turn-right"></ic><div><div class="t-display" style="font-size:48px;line-height:56px">400 m</div><div class="t-title-m">Turn right onto Violet Ave</div></div></div>
+ </div>
+ <h3>App launcher &amp; user switcher</h3>
+ <div class="stage a-root pad" style="align-items:flex-start"><span class="cap">Launcher grid · profiles</span>
+  <div class="a-apps" style="max-width:820px"><button class="a-app"><span class="ic"><ic n="nav"></ic></span>Maps</button><button class="a-app"><span class="ic"><ic n="music"></ic></span>Music</button><button class="a-app"><span class="ic"><ic n="phone"></ic></span>Phone</button><button class="a-app"><span class="ic"><ic n="radio"></ic></span>Radio</button><button class="a-app"><span class="ic"><ic n="weather"></ic></span>Weather</button><button class="a-app"><span class="ic"><ic n="calendar"></ic></span>Calendar</button><button class="a-app"><span class="ic"><ic n="podcast"></ic></span>Podcasts</button><button class="a-app"><span class="ic"><ic n="video"></ic></span>Video</button><button class="a-app"><span class="ic"><ic n="settings"></ic></span>Settings</button><button class="a-app"><span class="ic"><ic n="service"></ic></span>Service</button></div>
+  <div class="a-users"><div class="a-user sel"><div class="av">AM</div>Alex</div><div class="a-user"><div class="av">PS</div>Priya</div><div class="a-user"><div class="av"><ic n="user"></ic></div>Guest</div></div>
+ </div>
+</section>
+
+<section class="sec" id="viewstates" data-title="View states" data-group="View states">
+ <div class="eyebrow">View states</div><h2>Screen-level view states</h2>
+ <p>Every screen must define these states. Each is built from the same pattern — an illustration circle, a title, one line of body and at most one primary action — so drivers learn it once.</p>
+ <div class="vs-grid a-root">
+  <div class="vs"><b>Loading</b><div class="a-empty sec"><div class="a-cir" role="progressbar" aria-label="Loading"></div><h6>Loading</h6><p>Getting your music…</p></div></div>
+  <div class="vs"><b>Loading (skeleton)</b><div class="a-skel"><div style="height:72px"></div><div style="height:72px"></div></div></div>
+  <div class="vs"><b>Empty</b><div class="a-empty"><div class="ill"><ic n="music"></ic></div><h6>No music yet</h6><p>Connect a phone or sign in to start listening.</p><button class="a-btn">Connect phone</button></div></div>
+  <div class="vs"><b>Error</b><div class="a-empty err"><div class="ill"><ic n="error"></ic></div><h6>Can't load this</h6><p>Something went wrong. Try again.</p><button class="a-btn tonal">Retry</button></div></div>
+  <div class="vs"><b>Offline</b><div class="a-empty warn"><div class="ill"><ic n="wifi-off"></ic></div><h6>No connection</h6><p>Showing saved maps and downloads.</p><button class="a-btn tonal">Connection settings</button></div></div>
+  <div class="vs"><b>Restricted while driving</b><div class="a-empty sec"><div class="ill"><ic n="lock"></ic></div><h6>Unavailable while driving</h6><p>Park to use the keyboard — or use voice.</p><button class="a-btn has-i"><ic n="mic"></ic>Use voice</button></div></div>
+  <div class="vs"><b>Permission needed</b><div class="a-empty"><div class="ill"><ic n="shield-check"></ic></div><h6>Allow location?</h6><p>Maps needs your location to route you.</p><div style="display:flex;gap:12px"><button class="a-btn text">Not now</button><button class="a-btn">Allow</button></div></div></div>
+  <div class="vs"><b>Success / confirmation</b><div class="a-empty ok"><div class="ill"><ic n="check"></ic></div><h6>Phone connected</h6><p>Pixel 9 is ready for calls and media.</p></div></div>
+  <div class="vs"><b>Connecting</b><div class="a-empty sec"><div class="ill"><ic n="bt"></ic></div><h6>Connecting to Pixel 9…</h6><div class="a-lin ind" style="max-width:360px"><i></i></div></div></div>
+  <div class="vs"><b>Low battery alert</b><div class="a-banner warn"><ic n="battery"></ic><span>Range 42 km — find a charger?</span><button class="a-btn text" style="color:inherit">Find</button></div></div>
+ </div>
+ <p style="margin-top:14px">Other system-level views: <b>Full screen</b> (see reference screens), <b>Reverse camera</b> (full screen, overrides everything but safety alerts), <b>Day / Night</b> (300 ms cross-fade), <b>Parked / Driving</b> (toggle in the top bar), <b>Focused / Pressed / Hover / Disabled / Selected</b> (state matrix in each component's spec).</p>
+ <div id="viewstatesSpecHost"></div>
+</section>
+
