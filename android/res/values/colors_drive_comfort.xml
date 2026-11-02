@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Aurora AAOS IVI design system — Comfort (Drive mode, dark)
+  Calm everyday driving — indigo-purple
+  Place in: res/values/colors_drive_comfort.xml
+  Naming: aurora_comfort_<role> (snake_case Material 3 roles) · aurora_comfort_palette_<family>_<tone> (tonal palette)
+-->
+<resources>
+
+    <!-- Primary / secondary / tertiary -->
+    <color name="aurora_comfort_primary">#FFC1C1FF</color>
+    <color name="aurora_comfort_on_primary">#FF292A60</color>
+    <color name="aurora_comfort_primary_container">#FF404178</color>
+    <color name="aurora_comfort_on_primary_container">#FFE1DFFF</color>
+    <color name="aurora_comfort_secondary">#FFC6C4DD</color>
+    <color name="aurora_comfort_on_secondary">#FF2F2F42</color>
+    <color name="aurora_comfort_secondary_container">#FF454559</color>
+    <color name="aurora_comfort_on_secondary_container">#FFE2E0F9</color>
+    <color name="aurora_comfort_tertiary">#FFE9B9D3</color>
+    <color name="aurora_comfort_on_tertiary">#FF46263A</color>
+    <color name="aurora_comfort_tertiary_container">#FF5F3C51</color>
+    <color name="aurora_comfort_on_tertiary_container">#FFFFD8EC</color>
+
+    <!-- Status (error / success / warning) -->
+    <color name="aurora_comfort_error">#FFFFB4AB</color>
+    <color name="aurora_comfort_on_error">#FF690005</color>
+    <color name="aurora_comfort_error_container">#FF93000A</color>
+    <color name="aurora_comfort_on_error_container">#FFFFDAD6</color>
+    <color name="aurora_comfort_success">#FF7DDB95</color>
+    <color name="aurora_comfort_on_success">#FF00391C</color>
+    <color name="aurora_comfort_success_container">#FF115229</color>
+    <color name="aurora_comfort_on_success_container">#FF99F8AF</color>
+    <color name="aurora_comfort_warning">#FFFFB870</color>
+    <color name="aurora_comfort_on_warning">#FF4A2800</color>
+    <color name="aurora_comfort_warning_container">#FF6A3C00</color>
+    <color name="aurora_comfort_on_warning_container">#FFFFDCBC</color>
+
+    <!-- Surface & background -->
+    <color name="aurora_comfort_background">#FF131318</color>
+    <color name="aurora_comfort_on_background">#FFE4E1E9</color>
+    <color name="aurora_comfort_surface">#FF131318</color>
+    <color name="aurora_comfort_on_surface">#FFE4E1E9</color>
+    <color name="aurora_comfort_surface_variant">#FF47464F</color>
+    <color name="aurora_comfort_on_surface_variant">#FFC8C5D0</color>
+    <color name="aurora_comfort_surface_container_lowest">#FF0E0E13</color>
+    <color name="aurora_comfort_surface_container_low">#FF1B1B21</color>
+    <color name="aurora_comfort_surface_container">#FF1F1F25</color>
+    <color name="aurora_comfort_surface_container_high">#FF2A292F</color>
+    <color name="aurora_comfort_surface_container_highest">#FF35343A</color>
+
+    <!-- Outline & inverse -->
+    <color name="aurora_comfort_outline">#FF918F9A</color>
+    <color name="aurora_comfort_outline_variant">#FF47464F</color>
+    <color name="aurora_comfort_inverse_surface">#FFE4E1E9</color>
+    <color name="aurora_comfort_inverse_on_surface">#FF303036</color>
+    <color name="aurora_comfort_inverse_primary">#FF585992</color>
+    <color name="aurora_comfort_scrim">#FF000000</color>
+
+    <!-- Tonal palettes -->
+    <color name="aurora_comfort_palette__primary_0">#FF000000</color>
+    <color name="aurora_comfort_palette__primary_10">#FF13144A</color>
+    <color name="aurora_comfort_palette__primary_20">#FF292A60</color>
+    <color name="aurora_comfort_palette__primary_30">#FF404178</color>
+    <color name="aurora_comfort_palette__primary_40">#FF585992</color>
+    <color name="aurora_comfort_palette__primary_50">#FF7072AC</color>
+    <color name="aurora_comfort_palette__primary_60">#FF8A8BC8</color>
+    <color name="aurora_comfort_palette__primary_70">#FFA5A6E4</color>
+    <color name="aurora_comfort_palette__primary_80">#FFC1C1FF</color>
+    <color name="aurora_comfort_palette__primary_90">#FFE1DFFF</color>
+    <color name="aurora_comfort_palette__primary_95">#FFF2EFFF</color>
+    <color name="aurora_comfort_palette__primary_99">#FFFFFBFF</color>
+    <color name="aurora_comfort_palette__primary_100">#FFFFFFFF</color>
+    <color name="aurora_comfort_palette__secondary_0">#FF000000</color>
+    <color name="aurora_comfort_palette__secondary_10">#FF1A1A2C</color>
+    <color name="aurora_comfort_palette__secondary_20">#FF2F2F42</color>
+    <color name="aurora_comfort_palette__secondary_30">#FF454559</color>
+    <color name="aurora_comfort_palette__secondary_40">#FF5D5C72</color>
+    <color name="aurora_comfort_palette__secondary_50">#FF76758B</color>
+    <color name="aurora_comfort_palette__secondary_60">#FF908FA5</color>
+    <color name="aurora_comfort_palette__secondary_70">#FFAAA9C1</color>
+    <color name="aurora_comfort_palette__secondary_80">#FFC6C4DD</color>
+    <color name="aurora_comfort_palette__secondary_90">#FFE2E0F9</color>
+    <color name="aurora_comfort_palette__secondary_95">#FFF2EFFF</color>
+    <color name="aurora_comfort_palette__secondary_99">#FFFFFBFF</color>
+    <color name="aurora_comfort_palette__secondary_100">#FFFFFFFF</color>
+    <color name="aurora_comfort_palette__tertiary_0">#FF000000</color>
+    <color name="aurora_comfort_palette__tertiary_10">#FF2E1125</color>
+    <color name="aurora_comfort_palette__tertiary_20">#FF46263A</color>
+    <color name="aurora_comfort_palette__tertiary_30">#FF5F3C51</color>
+    <color name="aurora_comfort_palette__tertiary_40">#FF795369</color>
+    <color name="aurora_comfort_palette__tertiary_50">#FF946B82</color>
+    <color name="aurora_comfort_palette__tertiary_60">#FFAF849D</color>
+    <color name="aurora_comfort_palette__tertiary_70">#FFCC9EB7</color>
+    <color name="aurora_comfort_palette__tertiary_80">#FFE9B9D3</color>
+    <color name="aurora_comfort_palette__tertiary_90">#FFFFD8EC</color>
+    <color name="aurora_comfort_palette__tertiary_95">#FFFFECF4</color>
+    <color name="aurora_comfort_palette__tertiary_99">#FFFFFBFF</color>
+    <color name="aurora_comfort_palette__tertiary_100">#FFFFFFFF</color>
+    <color name="aurora_comfort_palette__neutral_0">#FF000000</color>
+    <color name="aurora_comfort_palette__neutral_10">#FF1B1B21</color>
+    <color name="aurora_comfort_palette__neutral_20">#FF303036</color>
+    <color name="aurora_comfort_palette__neutral_30">#FF47464C</color>
+    <color name="aurora_comfort_palette__neutral_40">#FF5F5D64</color>
+    <color name="aurora_comfort_palette__neutral_50">#FF78767D</color>
+    <color name="aurora_comfort_palette__neutral_60">#FF929097</color>
+    <color name="aurora_comfort_palette__neutral_70">#FFACAAB1</color>
+    <color name="aurora_comfort_palette__neutral_80">#FFC8C5CD</color>
+    <color name="aurora_comfort_palette__neutral_90">#FFE4E1E9</color>
+    <color name="aurora_comfort_palette__neutral_95">#FFF3EFF7</color>
+    <color name="aurora_comfort_palette__neutral_99">#FFFFFBFF</color>
+    <color name="aurora_comfort_palette__neutral_100">#FFFFFFFF</color>
+    <color name="aurora_comfort_palette__neutral__variant_0">#FF000000</color>
+    <color name="aurora_comfort_palette__neutral__variant_10">#FF1B1B23</color>
+    <color name="aurora_comfort_palette__neutral__variant_20">#FF303038</color>
+    <color name="aurora_comfort_palette__neutral__variant_30">#FF47464F</color>
+    <color name="aurora_comfort_palette__neutral__variant_40">#FF5E5D67</color>
+    <color name="aurora_comfort_palette__neutral__variant_50">#FF777680</color>
+    <color name="aurora_comfort_palette__neutral__variant_60">#FF918F9A</color>
+    <color name="aurora_comfort_palette__neutral__variant_70">#FFACAAB4</color>
+    <color name="aurora_comfort_palette__neutral__variant_80">#FFC8C5D0</color>
+    <color name="aurora_comfort_palette__neutral__variant_90">#FFE4E1EC</color>
+    <color name="aurora_comfort_palette__neutral__variant_95">#FFF2EFFA</color>
+    <color name="aurora_comfort_palette__neutral__variant_99">#FFFFFBFF</color>
+    <color name="aurora_comfort_palette__neutral__variant_100">#FFFFFFFF</color>
+    <color name="aurora_comfort_palette__error_0">#FF000000</color>
+    <color name="aurora_comfort_palette__error_10">#FF410002</color>
+    <color name="aurora_comfort_palette__error_20">#FF690005</color>
+    <color name="aurora_comfort_palette__error_30">#FF93000A</color>
+    <color name="aurora_comfort_palette__error_40">#FFBA1A1A</color>
+    <color name="aurora_comfort_palette__error_50">#FFDE3730</color>
+    <color name="aurora_comfort_palette__error_60">#FFFF5449</color>
+    <color name="aurora_comfort_palette__error_70">#FFFF897D</color>
+    <color name="aurora_comfort_palette__error_80">#FFFFB4AB</color>
+    <color name="aurora_comfort_palette__error_90">#FFFFDAD6</color>
+    <color name="aurora_comfort_palette__error_95">#FFFFEDEA</color>
+    <color name="aurora_comfort_palette__error_99">#FFFFFBFF</color>
+    <color name="aurora_comfort_palette__error_100">#FFFFFFFF</color>
+
+    <!-- State layer opacities -->
+    <item name="aurora_comfort_state_hover" format="float" type="dimen">0.08</item>
+    <item name="aurora_comfort_state_focus" format="float" type="dimen">0.12</item>
+    <item name="aurora_comfort_state_pressed" format="float" type="dimen">0.12</item>
+    <item name="aurora_comfort_state_dragged" format="float" type="dimen">0.16</item>
+    <item name="aurora_comfort_state_disabled_content" format="float" type="dimen">0.38</item>
+    <item name="aurora_comfort_state_disabled_container" format="float" type="dimen">0.12</item>
+</resources>

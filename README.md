@@ -19,3 +19,6 @@ Top status bar (56 dp) · right app bar (120 dp) · bottom HVAC bar (96 dp) · a
 ## Icons
 196 automotive IVI icons in `icons/*.svg` and Android VectorDrawables in `icons/android/ic_*.xml` (also downloadable from the Iconography section).
 Regenerate with `python3 tools/icons_src.py` (or `python3 build.py`).
+
+## Android colors
+`android/res/values*/colors*.xml` — every role + tonal palette per theme (`aurora_<role>`, drive modes `aurora_eco_<role>` …). Also downloadable from the Developers → Token export section.

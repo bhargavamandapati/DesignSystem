@@ -4,7 +4,7 @@ const svgStr=(i,size=24)=>`<svg xmlns="http://www.w3.org/2000/svg" width="${size
 const vdStr=i=>`<vector xmlns:android="http://schemas.android.com/apk/res/android"\n    android:width="24dp" android:height="24dp"\n    android:viewportWidth="24" android:viewportHeight="24"\n    android:tint="?attr/colorControlNormal">`+i.p.map(([d,f])=>`\n    <path android:pathData="${d}" android:strokeWidth="2" android:strokeLineCap="round" android:strokeLineJoin="round" android:strokeColor="#FF000000" android:fillColor="${f?'#FF000000':'#00000000'}"/>`).join('')+`\n</vector>\n`;
 const DL_OK=/\.(svg|zip|json|txt|md|csv|html|png)$/i;
 async function dl(name,data,type){
- try{if(window.claude&&claude.use){const d=await claude.use('downloads');if(d){await d.save({filename:DL_OK.test(name)?name:name+'.txt',data});return}}}catch(e){if(e&&e.code==='declined')return}
+ try{if(window.claude&&claude.use){const d=await claude.use('downloads');if(d){if(DL_OK.test(name))await d.save({filename:name,data});else await d.save({filename:name.split('/').pop()+'.zip',data:makeZip([{name,data:typeof data==='string'?data:''}])});return}}}catch(e){if(e&&e.code==='declined')return}
  const b=data instanceof Blob?data:new Blob([data],{type:type||'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),800)}
 function crc32(buf){let t=crc32.t;if(!t){t=crc32.t=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}}let r=-1;for(let i=0;i<buf.length;i++)r=(r>>>8)^t[(r^buf[i])&255];return(r^-1)>>>0}
 function makeZip(files){const enc=new TextEncoder(),chunks=[],cen=[];let off=0;const u16=v=>[v&255,v>>8&255],u32=v=>[v&255,v>>8&255,v>>16&255,v>>>24&255];
@@ -29,3 +29,6 @@ $('#icAn').onclick=()=>icSel&&copy(vdStr(byName[icSel]));
 $('#icZip').onclick=()=>dl('aurora-icons-svg.zip',makeZip(ICONS.map(i=>({name:i.n+'.svg',data:svgStr(i)+'\n'}))));
 $('#icZipA').onclick=()=>dl('aurora-icons-android.zip',makeZip(ICONS.map(i=>({name:'ic_'+i.n.replace(/-/g,'_')+'.xml',data:vdStr(i)}))));
 renderIcons();
+
+$('#dlColors').onclick=()=>dl('colors.xml',colorsXml(root.dataset.theme),'application/xml');
+$('#dlColorsAll').onclick=()=>dl('aurora-colors-all-themes.zip',makeZip(xmlZipFiles(TORDER)));

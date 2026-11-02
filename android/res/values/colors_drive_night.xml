@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Aurora AAOS IVI design system — Night drive (Drive mode, dark)
+  Low-glare dimmed purple for dark roads (all text still ≥ 4.5:1)
+  Place in: res/values/colors_drive_night.xml
+  Naming: aurora_night_<role> (snake_case Material 3 roles) · aurora_night_palette_<family>_<tone> (tonal palette)
+-->
+<resources>
+
+    <!-- Primary / secondary / tertiary -->
+    <color name="aurora_night_primary">#FFB6A6E0</color>
+    <color name="aurora_night_on_primary">#FF302252</color>
+    <color name="aurora_night_primary_container">#FF443667</color>
+    <color name="aurora_night_on_primary_container">#FFCDC2E0</color>
+    <color name="aurora_night_secondary">#FFB3ABC1</color>
+    <color name="aurora_night_on_secondary">#FF2D2839</color>
+    <color name="aurora_night_secondary_container">#FF413C4D</color>
+    <color name="aurora_night_on_secondary_container">#FFCCC3DA</color>
+    <color name="aurora_night_tertiary">#FFD2A2B0</color>
+    <color name="aurora_night_on_tertiary">#FF41212C</color>
+    <color name="aurora_night_tertiary_container">#FF57343F</color>
+    <color name="aurora_night_on_tertiary_container">#FFE0BFC8</color>
+
+    <!-- Status (error / success / warning) -->
+    <color name="aurora_night_error">#FFE09E96</color>
+    <color name="aurora_night_on_error">#FF5C0004</color>
+    <color name="aurora_night_error_container">#FF810009</color>
+    <color name="aurora_night_on_error_container">#FFE0C0BC</color>
+    <color name="aurora_night_success">#FF6EC183</color>
+    <color name="aurora_night_on_success">#FF003219</color>
+    <color name="aurora_night_success_container">#FF0F4824</color>
+    <color name="aurora_night_on_success_container">#FF87DA9A</color>
+    <color name="aurora_night_warning">#FFE0A263</color>
+    <color name="aurora_night_on_warning">#FF412300</color>
+    <color name="aurora_night_warning_container">#FF5D3500</color>
+    <color name="aurora_night_on_warning_container">#FFE0C2A5</color>
+
+    <!-- Surface & background -->
+    <color name="aurora_night_background">#FF0E0D11</color>
+    <color name="aurora_night_on_background">#FFCAC5CD</color>
+    <color name="aurora_night_surface">#FF0E0D11</color>
+    <color name="aurora_night_on_surface">#FFCAC5CD</color>
+    <color name="aurora_night_surface_variant">#FF353238</color>
+    <color name="aurora_night_on_surface_variant">#FFB2ACB6</color>
+    <color name="aurora_night_surface_container_lowest">#FF0B090E</color>
+    <color name="aurora_night_surface_container_low">#FF151317</color>
+    <color name="aurora_night_surface_container">#FF18161A</color>
+    <color name="aurora_night_surface_container_high">#FF1F1E22</color>
+    <color name="aurora_night_surface_container_highest">#FF27252A</color>
+
+    <!-- Outline & inverse -->
+    <color name="aurora_night_outline">#FF827E87</color>
+    <color name="aurora_night_outline_variant">#FF403D45</color>
+    <color name="aurora_night_inverse_surface">#FFCAC5CD</color>
+    <color name="aurora_night_inverse_on_surface">#FF2C292F</color>
+    <color name="aurora_night_inverse_primary">#FF594B7E</color>
+    <color name="aurora_night_scrim">#FF000000</color>
+
+    <!-- Tonal palettes -->
+    <color name="aurora_night_palette__primary_0">#FF000000</color>
+    <color name="aurora_night_palette__primary_10">#FF1D0E40</color>
+    <color name="aurora_night_palette__primary_20">#FF312354</color>
+    <color name="aurora_night_palette__primary_30">#FF453769</color>
+    <color name="aurora_night_palette__primary_40">#FF5B4C81</color>
+    <color name="aurora_night_palette__primary_50">#FF716398</color>
+    <color name="aurora_night_palette__primary_60">#FF897AB1</color>
+    <color name="aurora_night_palette__primary_70">#FFA192CA</color>
+    <color name="aurora_night_palette__primary_80">#FFBAAAE5</color>
+    <color name="aurora_night_palette__primary_90">#FFD2C7E6</color>
+    <color name="aurora_night_palette__primary_95">#FFDDD6E6</color>
+    <color name="aurora_night_palette__primary_99">#FFE6E2E6</color>
+    <color name="aurora_night_palette__primary_100">#FFE6E6E6</color>
+    <color name="aurora_night_palette__secondary_0">#FF000000</color>
+    <color name="aurora_night_palette__secondary_10">#FF1B1627</color>
+    <color name="aurora_night_palette__secondary_20">#FF2E283A</color>
+    <color name="aurora_night_palette__secondary_30">#FF433D4F</color>
+    <color name="aurora_night_palette__secondary_40">#FF585266</color>
+    <color name="aurora_night_palette__secondary_50">#FF6F687C</color>
+    <color name="aurora_night_palette__secondary_60">#FF867F94</color>
+    <color name="aurora_night_palette__secondary_70">#FF9E96AD</color>
+    <color name="aurora_night_palette__secondary_80">#FFB7AFC5</color>
+    <color name="aurora_night_palette__secondary_90">#FFD1C8DF</color>
+    <color name="aurora_night_palette__secondary_95">#FFDDD6E6</color>
+    <color name="aurora_night_palette__secondary_99">#FFE6E2E6</color>
+    <color name="aurora_night_palette__secondary_100">#FFE6E6E6</color>
+    <color name="aurora_night_palette__tertiary_0">#FF000000</color>
+    <color name="aurora_night_palette__tertiary_10">#FF2C0E1A</color>
+    <color name="aurora_night_palette__tertiary_20">#FF43212D</color>
+    <color name="aurora_night_palette__tertiary_30">#FF593541</color>
+    <color name="aurora_night_palette__tertiary_40">#FF714A56</color>
+    <color name="aurora_night_palette__tertiary_50">#FF8A5F6D</color>
+    <color name="aurora_night_palette__tertiary_60">#FFA37683</color>
+    <color name="aurora_night_palette__tertiary_70">#FFBD8D9C</color>
+    <color name="aurora_night_palette__tertiary_80">#FFD7A6B4</color>
+    <color name="aurora_night_palette__tertiary_90">#FFE6C3CC</color>
+    <color name="aurora_night_palette__tertiary_95">#FFE6D4D8</color>
+    <color name="aurora_night_palette__tertiary_99">#FFE6E2E6</color>
+    <color name="aurora_night_palette__tertiary_100">#FFE6E6E6</color>
+    <color name="aurora_night_palette__neutral_0">#FF000000</color>
+    <color name="aurora_night_palette__neutral_10">#FF1A181D</color>
+    <color name="aurora_night_palette__neutral_20">#FF2D2A30</color>
+    <color name="aurora_night_palette__neutral_30">#FF413F44</color>
+    <color name="aurora_night_palette__neutral_40">#FF56545A</color>
+    <color name="aurora_night_palette__neutral_50">#FF6D6A70</color>
+    <color name="aurora_night_palette__neutral_60">#FF848187</color>
+    <color name="aurora_night_palette__neutral_70">#FF9D989F</color>
+    <color name="aurora_night_palette__neutral_80">#FFB6B1B8</color>
+    <color name="aurora_night_palette__neutral_90">#FFCFCAD2</color>
+    <color name="aurora_night_palette__neutral_95">#FFDCD7DE</color>
+    <color name="aurora_night_palette__neutral_99">#FFE6E2E6</color>
+    <color name="aurora_night_palette__neutral_100">#FFE6E6E6</color>
+    <color name="aurora_night_palette__neutral__variant_0">#FF000000</color>
+    <color name="aurora_night_palette__neutral__variant_10">#FF1A171F</color>
+    <color name="aurora_night_palette__neutral__variant_20">#FF2D2A32</color>
+    <color name="aurora_night_palette__neutral__variant_30">#FF423E46</color>
+    <color name="aurora_night_palette__neutral__variant_40">#FF57545C</color>
+    <color name="aurora_night_palette__neutral__variant_50">#FF6E6972</color>
+    <color name="aurora_night_palette__neutral__variant_60">#FF85818A</color>
+    <color name="aurora_night_palette__neutral__variant_70">#FF9E98A2</color>
+    <color name="aurora_night_palette__neutral__variant_80">#FFB6B0BA</color>
+    <color name="aurora_night_palette__neutral__variant_90">#FFD0CAD4</color>
+    <color name="aurora_night_palette__neutral__variant_95">#FFDCD6E1</color>
+    <color name="aurora_night_palette__neutral__variant_99">#FFE6E2E6</color>
+    <color name="aurora_night_palette__neutral__variant_100">#FFE6E6E6</color>
+    <color name="aurora_night_palette__error_0">#FF000000</color>
+    <color name="aurora_night_palette__error_10">#FF3A0002</color>
+    <color name="aurora_night_palette__error_20">#FF5E0004</color>
+    <color name="aurora_night_palette__error_30">#FF840009</color>
+    <color name="aurora_night_palette__error_40">#FFA71717</color>
+    <color name="aurora_night_palette__error_50">#FFC8322B</color>
+    <color name="aurora_night_palette__error_60">#FFE64C42</color>
+    <color name="aurora_night_palette__error_70">#FFE67B70</color>
+    <color name="aurora_night_palette__error_80">#FFE6A29A</color>
+    <color name="aurora_night_palette__error_90">#FFE6C4C1</color>
+    <color name="aurora_night_palette__error_95">#FFE6D5D3</color>
+    <color name="aurora_night_palette__error_99">#FFE6E2E6</color>
+    <color name="aurora_night_palette__error_100">#FFE6E6E6</color>
+
+    <!-- State layer opacities -->
+    <item name="aurora_night_state_hover" format="float" type="dimen">0.08</item>
+    <item name="aurora_night_state_focus" format="float" type="dimen">0.12</item>
+    <item name="aurora_night_state_pressed" format="float" type="dimen">0.12</item>
+    <item name="aurora_night_state_dragged" format="float" type="dimen">0.16</item>
+    <item name="aurora_night_state_disabled_content" format="float" type="dimen">0.38</item>
+    <item name="aurora_night_state_disabled_container" format="float" type="dimen">0.12</item>
+</resources>

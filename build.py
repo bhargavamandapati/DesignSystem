@@ -22,3 +22,26 @@ html = (html.replace('/*FONTS*/', fonts).replace('/*TOKENS*/', css_tok).replace(
             .replace('/*JS*/', (S/'app.js').read_text().replace('/*SCREENS*/', (S/'screens.js').read_text()).replace('/*ICONS_UI*/', (S/'icons.js').read_text()).replace('/*SPECS*/', (S/'specs.js').read_text())))
 (R/'index.html').write_text(html)
 print('index.html', len(html)//1024, 'KB')
+
+# ---- Android colors.xml per theme -> android/res/ (same naming as the in-page export) ----
+def snake(s): return kebab(s).replace('-', '_')
+GROUPS = [('Primary / secondary / tertiary', ['primary','onPrimary','primaryContainer','onPrimaryContainer','secondary','onSecondary','secondaryContainer','onSecondaryContainer','tertiary','onTertiary','tertiaryContainer','onTertiaryContainer']),
+ ('Status (error / success / warning)', ['error','onError','errorContainer','onErrorContainer','success','onSuccess','successContainer','onSuccessContainer','warning','onWarning','warningContainer','onWarningContainer']),
+ ('Surface & background', ['background','onBackground','surface','onSurface','surfaceVariant','onSurfaceVariant','surfaceContainerLowest','surfaceContainerLow','surfaceContainer','surfaceContainerHigh','surfaceContainerHighest']),
+ ('Outline & inverse', ['outline','outlineVariant','inverseSurface','inverseOnSurface','inversePrimary','scrim'])]
+def colors_xml(tid, t):
+    p = 'aurora' if tid in ('aurora-night','aurora-day') else 'aurora_' + snake(tid.replace('drive-',''))
+    A = lambda h: '#FF' + h[1:].upper()
+    where = 'res/values-night/colors.xml' if tid=='aurora-night' else 'res/values/colors.xml' if tid=='aurora-day' else 'res/values/colors_%s.xml' % snake(tid)
+    o = '<?xml version="1.0" encoding="utf-8"?>\n<!--\n  Aurora AAOS IVI design system — %s (%s, %s)\n  %s\n  Place in: %s\n  Naming: %s_<role> (snake_case Material 3 roles) · %s_palette_<family>_<tone> (tonal palette)\n-->\n<resources>\n' % (t['name'], t['group'], t['mode'], t['desc'], where, p, p)
+    for title, ks in GROUPS:
+        o += '\n    <!-- %s -->\n' % title + '\n'.join('    <color name="%s_%s">%s</color>' % (p, snake(k), A(t['roles'][k])) for k in ks) + '\n'
+    o += '\n    <!-- Tonal palettes -->\n'
+    for fam, steps in t['tonal'].items():
+        o += '\n'.join('    <color name="%s_palette_%s_%s">%s</color>' % (p, snake(fam.replace(' ','_')).lower(), tn, A(v)) for tn, v in steps.items()) + '\n'
+    o += '\n    <!-- State layer opacities -->\n' + ''.join('    <item name="%s_state_%s" format="float" type="dimen">%s</item>\n' % (p, n, v) for n, v in [('hover','0.08'),('focus','0.12'),('pressed','0.12'),('dragged','0.16'),('disabled_content','0.38'),('disabled_container','0.12')]) + '</resources>\n'
+    return where, o
+for tid, t in tok['themes'].items():
+    w, x = colors_xml(tid, t)
+    f = R/'android'/w; f.parent.mkdir(parents=True, exist_ok=True); f.write_text(x)
+print('android colors written')
