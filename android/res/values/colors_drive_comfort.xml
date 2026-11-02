@@ -16,10 +16,10 @@
     <color name="aurora_comfort_on_secondary">#FF293041</color>
     <color name="aurora_comfort_secondary_container">#FF3F4759</color>
     <color name="aurora_comfort_on_secondary_container">#FFDBE2F9</color>
-    <color name="aurora_comfort_tertiary">#FFDFBBDE</color>
-    <color name="aurora_comfort_on_tertiary">#FF402843</color>
-    <color name="aurora_comfort_tertiary_container">#FF583E5A</color>
-    <color name="aurora_comfort_on_tertiary_container">#FFFCD7FB</color>
+    <color name="aurora_comfort_tertiary">#FF86D4D1</color>
+    <color name="aurora_comfort_on_tertiary">#FF003736</color>
+    <color name="aurora_comfort_tertiary_container">#FF00504F</color>
+    <color name="aurora_comfort_on_tertiary_container">#FFA2F0EE</color>
 
     <!-- Status (error / success / warning) -->
     <color name="aurora_comfort_error">#FFFFB4AB</color>
@@ -84,17 +84,17 @@
     <color name="aurora_comfort_palette__secondary_99">#FFFEFBFF</color>
     <color name="aurora_comfort_palette__secondary_100">#FFFFFFFF</color>
     <color name="aurora_comfort_palette__tertiary_0">#FF000000</color>
-    <color name="aurora_comfort_palette__tertiary_10">#FF2A132D</color>
-    <color name="aurora_comfort_palette__tertiary_20">#FF402843</color>
-    <color name="aurora_comfort_palette__tertiary_30">#FF583E5A</color>
-    <color name="aurora_comfort_palette__tertiary_40">#FF725573</color>
-    <color name="aurora_comfort_palette__tertiary_50">#FF8C6D8C</color>
-    <color name="aurora_comfort_palette__tertiary_60">#FFA786A7</color>
-    <color name="aurora_comfort_palette__tertiary_70">#FFC2A1C2</color>
-    <color name="aurora_comfort_palette__tertiary_80">#FFDFBBDE</color>
-    <color name="aurora_comfort_palette__tertiary_90">#FFFCD7FB</color>
-    <color name="aurora_comfort_palette__tertiary_95">#FFFFEBFB</color>
-    <color name="aurora_comfort_palette__tertiary_99">#FFFFFBFF</color>
+    <color name="aurora_comfort_palette__tertiary_10">#FF00201F</color>
+    <color name="aurora_comfort_palette__tertiary_20">#FF003736</color>
+    <color name="aurora_comfort_palette__tertiary_30">#FF00504F</color>
+    <color name="aurora_comfort_palette__tertiary_40">#FF096968</color>
+    <color name="aurora_comfort_palette__tertiary_50">#FF318381</color>
+    <color name="aurora_comfort_palette__tertiary_60">#FF4F9D9B</color>
+    <color name="aurora_comfort_palette__tertiary_70">#FF6AB8B6</color>
+    <color name="aurora_comfort_palette__tertiary_80">#FF86D4D1</color>
+    <color name="aurora_comfort_palette__tertiary_90">#FFA2F0EE</color>
+    <color name="aurora_comfort_palette__tertiary_95">#FFB0FFFC</color>
+    <color name="aurora_comfort_palette__tertiary_99">#FFF1FFFE</color>
     <color name="aurora_comfort_palette__tertiary_100">#FFFFFFFF</color>
     <color name="aurora_comfort_palette__neutral_0">#FF000000</color>
     <color name="aurora_comfort_palette__neutral_10">#FF1A1B20</color>
