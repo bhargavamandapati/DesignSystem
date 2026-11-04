@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.Aurora.HVAC" parent="Widget.Material3.Button.UnelevatedButton">
+        <item name="android:minHeight">112dp</item>
+        <item name="android:minWidth">112dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.Aurora.LabelSmall</item>
+        <item name="android:background">@drawable/aurora_tile_background</item>
+        <item name="android:textColor">@color/aurora_tile_content</item>
+        <item name="android:checkable">true</item>
+        <item name="backgroundTint">@null</item>
+        <item name="iconTint">@color/aurora_tile_content</item>
+        <item name="iconGravity">top</item>
+        <item name="iconSize">44dp</item>
+        <item name="android:layout_width">112dp</item>
+        <item name="android:layout_height">112dp</item>
+    </style>
+</resources>

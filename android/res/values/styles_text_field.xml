@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.Aurora.TextField" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="boxStrokeWidthFocused">4dp</item>
+        <item name="boxStrokeColor">@color/aurora_field_stroke</item>
+        <item name="hintTextColor">@color/aurora_field_hint</item>
+        <item name="android:textColorHint">@color/aurora_field_hint</item>
+        <item name="errorTextColor">@color/aurora_field_error</item>
+        <item name="boxStrokeErrorColor">@color/aurora_field_error</item>
+        <item name="helperTextTextAppearance">@style/TextAppearance.Aurora.BodySmall</item>
+        <item name="errorTextAppearance">@style/TextAppearance.Aurora.BodySmall</item>
+    </style>
+</resources>

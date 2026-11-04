@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.Aurora.Filter" parent="Widget.Material3.Chip.Filter">
+        <item name="android:minHeight">64dp</item>
+        <item name="android:minWidth">64dp</item>
+        <item name="android:paddingStart">28dp</item>
+        <item name="android:paddingEnd">28dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.Aurora.LabelMedium</item>
+        <item name="android:background">@drawable/aurora_chip_background</item>
+        <item name="android:textColor">@color/aurora_chip_content</item>
+        <item name="android:checkable">true</item>
+        <item name="backgroundTint">@null</item>
+        <item name="iconTint">@color/aurora_chip_content</item>
+    </style>
+</resources>

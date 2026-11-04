@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.Aurora.Banner.Text" parent="">
+        <item name="android:textAppearance">@style/TextAppearance.Aurora.BodyLarge</item>
+        <item name="android:minHeight">76dp</item>
+    </style>
+</resources>

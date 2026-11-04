@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spacing (8dp grid) -->
+    <dimen name="aurora_space_2xs">4dp</dimen><dimen name="aurora_space_xs">8dp</dimen><dimen name="aurora_space_sm">12dp</dimen><dimen name="aurora_space_md">16dp</dimen>
+    <dimen name="aurora_space_lg">24dp</dimen><dimen name="aurora_space_xl">32dp</dimen><dimen name="aurora_space_2xl">40dp</dimen><dimen name="aurora_space_3xl">48dp</dimen>
+    <!-- Touch -->
+    <dimen name="aurora_touch_min">76dp</dimen><dimen name="aurora_touch_primary">96dp</dimen>
+    <!-- System bars (1280x720dp viewport, 10" 1920x1080 @1.5x) -->
+    <dimen name="aurora_status_bar_height">56dp</dimen><dimen name="aurora_app_bar_width">120dp</dimen><dimen name="aurora_hvac_bar_height">96dp</dimen><dimen name="aurora_display_corner_radius">32dp</dimen>
+    <!-- Components -->
+    <dimen name="aurora_button_height">76dp</dimen><dimen name="aurora_icon_button_size">76dp</dimen><dimen name="aurora_fab_size">96dp</dimen>
+    <dimen name="aurora_chip_height">64dp</dimen><dimen name="aurora_field_height">88dp</dimen><dimen name="aurora_list_item_height">96dp</dimen>
+    <dimen name="aurora_tab_height">88dp</dimen><dimen name="aurora_toolbar_height">96dp</dimen><dimen name="aurora_dialog_width">640dp</dimen>
+    <dimen name="aurora_icon_size">40dp</dimen><dimen name="aurora_focus_ring_width">6dp</dimen><dimen name="aurora_focus_ring_offset">4dp</dimen>
+    <!-- State layer opacities -->
+    <item name="aurora_state_hover" format="float" type="dimen">0.08</item><item name="aurora_state_focus" format="float" type="dimen">0.12</item>
+    <item name="aurora_state_pressed" format="float" type="dimen">0.12</item><item name="aurora_state_dragged" format="float" type="dimen">0.16</item>
+    <item name="aurora_state_disabled_content" format="float" type="dimen">0.38</item><item name="aurora_state_disabled_container" format="float" type="dimen">0.12</item>
+</resources>

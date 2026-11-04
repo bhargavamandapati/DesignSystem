@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
+
+    <!-- Enabled / pressed / focused / hovered states are driven by the drawable + color state lists -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button"
+        style="@style/Widget.Aurora.Button.Filled"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Navigate"
+        app:icon="@drawable/ic_nav" />
+
+    <!-- Disabled state -->
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.Aurora.Button.Filled"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:enabled="false" android:text="Disabled" />
+</LinearLayout>

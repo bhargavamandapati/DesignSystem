@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- override with your scrim: black @ 55% (dim amount 0.55 via android:backgroundDimAmount) -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="?android:attr/colorBackgroundFloating"/>
+</selector>

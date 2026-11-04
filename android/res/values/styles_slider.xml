@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.Aurora.Slider" parent="Widget.Material3.Slider">
+        <item name="android:minHeight">76dp</item>
+        <item name="trackHeight">16dp</item>
+        <item name="trackCornerSize">8dp</item>
+        <item name="thumbWidth">12dp</item>
+        <item name="thumbHeight">64dp</item>
+        <item name="thumbTrackGapSize">6dp</item>
+        <item name="trackColorActive">@color/aurora_slider_active</item>
+        <item name="trackColorInactive">@color/aurora_slider_inactive</item>
+        <item name="thumbTintList">@color/aurora_slider_thumb</item>
+        <item name="haloColor">@color/aurora_slider_halo</item>
+        <item name="haloRadius">38dp</item>
+    </style>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- inversePrimary -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" android:color="?attr/colorPrimaryInverse" android:alpha="0.8"/>
+    <item android:color="?attr/colorPrimaryInverse"/>
+</selector>

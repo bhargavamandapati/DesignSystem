@@ -24,7 +24,7 @@ function setTheme(t){if(!THEMES[t])t='aurora-night';root.dataset.theme=t;store.s
  const m=document.querySelector('meta[name=theme-color]');if(m)m.content=th.roles.background;
  $$('.themeName').forEach(e=>e.textContent=th.name);
  $$('#roleTheme,#a11yTheme').forEach(e=>e.textContent=th.name);
- renderThemeCards();renderTonal();renderRoles();renderContrast();renderExport();renderSpecs();}
+ renderThemeCards();renderTonal();renderRoles();renderKit();renderContrast();renderExport();renderSpecs();}
 $('#themeSel').innerHTML=['Appearance','Drive mode'].map(g=>`<optgroup label="${g==='Drive mode'?'Drive modes':g}">`+TORDER.filter(i=>THEMES[i].group===g).map(i=>`<option value="${i}">${THEMES[i].name}</option>`).join('')+'</optgroup>').join('');
 $('#themeSel').onchange=e=>setTheme(e.target.value);
 function setWidth(w){root.dataset.width=w==='condensed'?'condensed':'normal';store.set('aurora-width',w);$('#fontSel').value=root.dataset.width;requestAnimationFrame(fit)}
@@ -156,6 +156,7 @@ rc.forEach((c,i)=>c.addEventListener('focus',()=>{ri=i;rc.forEach((x,j)=>x.class
 
 /*SCREENS*/
 /*ICONS_UI*/
+/*KIT*/
 /*SPECS*/
 /*AUDIT*/
 

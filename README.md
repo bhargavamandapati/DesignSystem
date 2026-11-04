@@ -25,3 +25,8 @@ Regenerate with `python3 tools/icons_src.py` (or `python3 build.py`).
 
 ## Android fonts
 `android/res/font/*.ttf` (Roboto, Roboto Condensed, Roboto Mono; 400/500, Latin), font-family XMLs (`roboto.xml`, `roboto_condensed.xml`, `roboto_mono.xml`) and `android/res/values/type.xml` (`TextAppearance.Aurora.*` and `.Condensed.*`). Also downloadable from the Fonts section. TTFs are in `fonts/ttf/`.
+
+## Android UI kit (Compose + XML)
+`android/compose/` — `AuroraTheme.kt` (7 color schemes, normal/condensed type, shapes, focus-ring modifier) and one composable per component with every state.
+`android/res/` — `color/` state lists (enabled/disabled/pressed/focused/hovered/checked), `drawable/` state selectors + ripples + focus rings, `values/` styles, themes, attrs, dimens, shapes, colors, type, `layout/` examples. `android/examples/` — Kotlin usage snippets.
+Each component's code, color states, drawable states and a resolved state map are in its section of the page under **Code & resources**, with per-component and full-kit zip downloads.

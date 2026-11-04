@@ -44,11 +44,20 @@ tx += '\n    <!-- Tabular numerals helper -->\n    <style name="TextAppearance.A
 fontxml['res/values/type.xml'] = tx
 for k, v in fontxml.items():
     f = R/'android'/k; f.parent.mkdir(parents=True, exist_ok=True); f.write_text(v)
+# ---- Android UI kit (Compose + XML per component) ----
+(R/'android'/'res'/'drawable').mkdir(parents=True, exist_ok=True)
+for _f in (R/'icons'/'android').glob('ic_*.xml'):
+    shutil.copy(_f, R/'android'/'res'/'drawable'/_f.name)
+sys.path.insert(0, str(R/'tools'))
+import android_kit
+kitfiles, compkit = android_kit.build_kit(tok, TYPE)
+for p, c in kitfiles.items():
+    f = R/'android'/p; f.parent.mkdir(parents=True, exist_ok=True); f.write_text(c)
 content = ''.join((S/p).read_text() for p in ('part1.html','part2.html','part4.html','part3.html'))
 html = (S/'template.html').read_text()
 html = (html.replace('/*FONTS*/', fonts).replace('/*TOKENS*/', css_tok).replace('/*STYLES*/', (S/'styles.css').read_text())
-            .replace('<!--CONTENT-->', content).replace('/*JSON*/', json.dumps(tok)).replace('/*FONTFILES*/', json.dumps(fontfiles)).replace('/*FONTXML*/', json.dumps(fontxml)).replace('/*ICONS*/', (S/'icons.json').read_text())
-            .replace('/*JS*/', (S/'app.js').read_text().replace('/*SCREENS*/', (S/'screens.js').read_text()).replace('/*ICONS_UI*/', (S/'icons.js').read_text()).replace('/*SPECS*/', (S/'specs.js').read_text()).replace('/*AUDIT*/', (S/'audit.js').read_text()).replace('/*TYPE*/', json.dumps(TYPE))))
+            .replace('<!--CONTENT-->', content).replace('/*JSON*/', json.dumps(tok)).replace('/*FONTFILES*/', json.dumps(fontfiles)).replace('/*FONTXML*/', json.dumps(fontxml)).replace('/*KITFILES*/', json.dumps(kitfiles)).replace('/*COMPKIT*/', json.dumps(compkit)).replace('/*ICONS*/', (S/'icons.json').read_text())
+            .replace('/*JS*/', (S/'app.js').read_text().replace('/*SCREENS*/', (S/'screens.js').read_text()).replace('/*ICONS_UI*/', (S/'icons.js').read_text()).replace('/*KIT*/', (S/'kit.js').read_text()).replace('/*SPECS*/', (S/'specs.js').read_text()).replace('/*AUDIT*/', (S/'audit.js').read_text()).replace('/*TYPE*/', json.dumps(TYPE))))
 (R/'index.html').write_text(html)
 print('index.html', len(html)//1024, 'KB')
 

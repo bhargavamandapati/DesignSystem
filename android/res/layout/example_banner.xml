@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="horizontal" android:gravity="center_vertical"
+    android:paddingHorizontal="28dp" android:paddingVertical="20dp"
+    android:background="@drawable/aurora_banner_warning_bg">
+    <ImageView android:layout_width="40dp" android:layout_height="40dp" android:src="@drawable/ic_warn" app:tint="?attr/auroraColorOnWarningContainer" xmlns:app="http://schemas.android.com/apk/res-auto"/>
+    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:layout_marginStart="20dp"
+        android:textAppearance="@style/TextAppearance.Aurora.BodyLarge" android:textColor="@color/aurora_banner_warning_text" android:text="Range 42 km — find a charger?"/>
+</LinearLayout>
+<!-- Variants: aurora_banner_error_bg / _warning_bg / _success_bg / _info_bg -->

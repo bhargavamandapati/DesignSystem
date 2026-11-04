@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- selected row = primary @16% over surfaceContainer -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_activated="true" android:color="?attr/colorPrimary" android:alpha="0.16"/>
+    <item android:state_selected="true" android:color="?attr/colorPrimary" android:alpha="0.16"/>
+    <item android:color="@android:color/transparent"/>
+</selector>

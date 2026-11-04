@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ThemeOverlay.Aurora.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorSurfaceContainerHigh">?attr/colorSurfaceContainerHigh</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Aurora.ExtraLarge</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.Aurora.Title</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/MaterialAlertDialog.Aurora.Body</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.Aurora.Button.Filled</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.Aurora.Button.Text</item>
+        <item name="android:windowMinWidthMajor">640dp</item>
+        <item name="android:backgroundDimAmount">0.55</item>
+    </style>
+    <style name="MaterialAlertDialog.Aurora.Title" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textAppearance">@style/TextAppearance.Aurora.HeadlineMedium</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+    <style name="MaterialAlertDialog.Aurora.Body" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:textAppearance">@style/TextAppearance.Aurora.BodyLarge</item>
+        <item name="android:textColor">@color/aurora_dialog_body</item>
+    </style>
+</resources>

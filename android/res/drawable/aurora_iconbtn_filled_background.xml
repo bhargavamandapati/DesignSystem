@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ripple = state layer (pressed/focused/hovered). Mask matches the 38dp corner radius. -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android" android:color="@color/aurora_iconbtn_filled_layer">
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/white"/>
+            <corners android:radius="38dp"/>
+        </shape>
+    </item>
+    <item android:drawable="@drawable/aurora_iconbtn_filled_shape"/>
+</ripple>
