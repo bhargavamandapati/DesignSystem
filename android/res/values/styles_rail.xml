@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Widget.Aurora.NavigationRail" parent="Widget.Material3.NavigationRailView">
+    <style name="Widget.Ivi.NavigationRail" parent="Widget.Material3.NavigationRailView">
         <item name="android:background">?attr/colorSurfaceContainerLowest</item>
         <item name="itemIconSize">36dp</item>
         <item name="itemMinHeight">88dp</item>
-        <item name="itemIconTint">@color/aurora_rail_icon</item>
-        <item name="itemTextColor">@color/aurora_rail_label</item>
-        <item name="itemRippleColor">@color/aurora_rail_ripple</item>
-        <item name="itemActiveIndicatorStyle">@style/Widget.Aurora.NavigationRail.Indicator</item>
-        <item name="itemTextAppearanceActive">@style/TextAppearance.Aurora.LabelMedium</item>
-        <item name="itemTextAppearanceInactive">@style/TextAppearance.Aurora.LabelMedium</item>
+        <item name="itemIconTint">@color/rail_icon</item>
+        <item name="itemTextColor">@color/rail_label</item>
+        <item name="itemRippleColor">@color/rail_ripple</item>
+        <item name="itemActiveIndicatorStyle">@style/Widget.Ivi.NavigationRail.Indicator</item>
+        <item name="itemTextAppearanceActive">@style/TextAppearance.Ivi.LabelMedium</item>
+        <item name="itemTextAppearanceInactive">@style/TextAppearance.Ivi.LabelMedium</item>
         <item name="labelVisibilityMode">labeled</item>
         <item name="menuGravity">center</item>
     </style>
-    <style name="Widget.Aurora.NavigationRail.Indicator" parent="Widget.Material3.NavigationRailView.ActiveIndicator">
+    <style name="Widget.Ivi.NavigationRail.Indicator" parent="Widget.Material3.NavigationRailView.ActiveIndicator">
         <item name="android:width">88dp</item>
         <item name="android:height">40dp</item>
-        <item name="android:color">@color/aurora_rail_pill</item>
+        <item name="android:color">@color/rail_pill</item>
     </style>
 </resources>

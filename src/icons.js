@@ -26,12 +26,12 @@ $('#icCount').textContent=ICONS.length;
 $('#icDl').onclick=()=>icSel&&dl(icSel+'.svg',svgStr(byName[icSel]),'image/svg+xml');
 $('#icCp').onclick=()=>icSel&&copy(svgStr(byName[icSel]));
 $('#icAn').onclick=()=>icSel&&copy(vdStr(byName[icSel]));
-$('#icZip').onclick=()=>dl('aurora-icons-svg.zip',makeZip(ICONS.map(i=>({name:i.n+'.svg',data:svgStr(i)+'\n'}))));
-$('#icZipA').onclick=()=>dl('aurora-icons-android.zip',makeZip(ICONS.map(i=>({name:'ic_'+i.n.replace(/-/g,'_')+'.xml',data:vdStr(i)}))));
+$('#icZip').onclick=()=>dl('icons-svg.zip',makeZip(ICONS.map(i=>({name:i.n+'.svg',data:svgStr(i)+'\n'}))));
+$('#icZipA').onclick=()=>dl('icons-android.zip',makeZip(ICONS.map(i=>({name:'ic_'+i.n.replace(/-/g,'_')+'.xml',data:vdStr(i)}))));
 renderIcons();
 
 $('#dlColors').onclick=()=>dl('colors.xml',colorsXml(root.dataset.theme),'application/xml');
-$('#dlColorsAll').onclick=()=>dl('aurora-colors-all-themes.zip',makeZip(xmlZipFiles(TORDER)));
+$('#dlColorsAll').onclick=()=>dl('colors-all-themes.zip',makeZip(xmlZipFiles(TORDER)));
 
 /* ---- font downloads ---- */
 const b64u8=b=>{const s=atob(b),u=new Uint8Array(s.length);for(let i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return u};
@@ -40,7 +40,7 @@ const FKEYS=Object.keys(FONTFILES);
 $('#fontFiles').innerHTML=FKEYS.map(k=>{const f=FONTFILES[k];return `<tr><td><b>${f.family}</b></td><td>${f.weight} ${f.weight===400?'Regular':'Medium'}</td><td><code>res/font/${k}.ttf</code></td><td><button class="tbtn" data-ttf="${k}">TTF</button> <button class="tbtn" data-w2="${k}">WOFF2</button></td></tr>`}).join('');
 $$('#fontFiles [data-ttf]').forEach(b=>b.onclick=()=>dl(b.dataset.ttf+'.ttf',b64u8(FONTFILES[b.dataset.ttf].b64)));
 $$('#fontFiles [data-w2]').forEach(b=>b.onclick=()=>{const f=FONTFILES[b.dataset.w2],u=woff2Of(f.family,f.weight);if(u)dl(b.dataset.w2+'.woff2',u,'font/woff2');else toast('WOFF2 not available here')});
-$('#fontZipAndroid').onclick=()=>dl('aurora-fonts-android.zip',makeZip([...FKEYS.map(k=>({name:`res/font/${k}.ttf`,data:b64u8(FONTFILES[k].b64)})),...Object.entries(FONTXML).map(([n,d])=>({name:n,data:d}))]));
-$('#fontZipXml').onclick=()=>dl('aurora-fonts-xml.zip',makeZip(Object.entries(FONTXML).map(([n,d])=>({name:n,data:d}))));
-$('#fontZipWeb').onclick=()=>{const files=[],css=[];FKEYS.forEach(k=>{const f=FONTFILES[k],w=woff2Of(f.family,f.weight);files.push({name:`fonts/${k}.ttf`,data:b64u8(f.b64)});if(w){files.push({name:`fonts/${k}.woff2`,data:w})}css.push(`@font-face{font-family:"${f.family}";font-weight:${f.weight};font-style:normal;font-display:swap;src:url(fonts/${k}.woff2) format("woff2"),url(fonts/${k}.ttf) format("truetype")}`)});files.push({name:'fonts.css',data:css.join('\n')+'\n'});dl('aurora-fonts-web.zip',makeZip(files))};
+$('#fontZipAndroid').onclick=()=>dl('fonts-android.zip',makeZip([...FKEYS.map(k=>({name:`res/font/${k}.ttf`,data:b64u8(FONTFILES[k].b64)})),...Object.entries(FONTXML).map(([n,d])=>({name:n,data:d}))]));
+$('#fontZipXml').onclick=()=>dl('fonts-xml.zip',makeZip(Object.entries(FONTXML).map(([n,d])=>({name:n,data:d}))));
+$('#fontZipWeb').onclick=()=>{const files=[],css=[];FKEYS.forEach(k=>{const f=FONTFILES[k],w=woff2Of(f.family,f.weight);files.push({name:`fonts/${k}.ttf`,data:b64u8(f.b64)});if(w){files.push({name:`fonts/${k}.woff2`,data:w})}css.push(`@font-face{font-family:"${f.family}";font-weight:${f.weight};font-style:normal;font-display:swap;src:url(fonts/${k}.woff2) format("woff2"),url(fonts/${k}.ttf) format("truetype")}`)});files.push({name:'fonts.css',data:css.join('\n')+'\n'});dl('fonts-web.zip',makeZip(files))};
 $('#fontXmlView').textContent=FONTXML['res/font/roboto_condensed.xml']+'\n'+FONTXML['res/values/type.xml'].split('\n').slice(0,22).join('\n')+'\n    …';

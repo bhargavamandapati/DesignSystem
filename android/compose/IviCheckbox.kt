@@ -1,0 +1,28 @@
+package com.ivi.designsystem.components
+
+import androidx.compose.foundation.*
+import androidx.compose.foundation.interaction.*
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.unit.dp
+import com.ivi.designsystem.*
+
+
+/** box 44dp, radius 8dp, border 3dp. Glyph is scaled to match the spec; the clickable box is 76x76dp. */
+@Composable
+fun IviCheckbox(checked: Boolean, onCheckedChange: ((Boolean) -> Unit)?, modifier: Modifier = Modifier, enabled: Boolean = true) {
+    val cs = MaterialTheme.colorScheme
+    val interaction = remember { MutableInteractionSource() }
+    val focused by interaction.collectIsFocusedAsState()
+    Box(modifier.size(76.dp).iviFocusRing(focused, 38.dp), contentAlignment = Alignment.Center) {
+        Checkbox(checked, onCheckedChange, Modifier.scale(2.4f), enabled, interactionSource = interaction,
+            colors = CheckboxDefaults.colors(checkedColor = cs.primary, uncheckedColor = cs.outline, checkmarkColor = cs.onPrimary, disabledCheckedColor = cs.onSurface.copy(0.38f), disabledUncheckedColor = cs.onSurface.copy(0.38f)))
+    }
+}

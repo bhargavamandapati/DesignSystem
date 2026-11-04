@@ -4,7 +4,7 @@ const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelect
 const kebab=s=>s.replace(/[A-Z]/g,m=>'-'+m.toLowerCase());
 const store={get(k,d){try{return localStorage.getItem(k)||d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
 
-/* ---------- icons (Aurora set, generated from tools/icons_src.py) ---------- */
+/* ---------- icons (generated from tools/icons_src.py) ---------- */
 const ICONS=ICONLIB.icons;const byName={};ICONS.forEach(i=>byName[i.n]=i);
 const pathsSvg=i=>i.p.map(([d,f])=>`<path d="${d}"${f?' fill="currentColor"':''}/>`).join('');
 document.body.insertAdjacentHTML('afterbegin','<svg width="0" height="0" style="position:absolute" aria-hidden="true">'+ICONS.map(i=>`<symbol id="i-${i.n}" viewBox="0 0 24 24">${pathsSvg(i)}</symbol>`).join('')+'</svg>');
@@ -91,32 +91,21 @@ const ROLES28=['primary','onPrimary','primaryContainer','onPrimaryContainer','se
 
 /* ---- Android colors.xml (all roles of a theme, snake_case names) ---- */
 const snake=s=>kebab(s).replace(/-/g,'_');
-const themePrefix=id=>id==='aurora-night'||id==='aurora-day'?'aurora':'aurora_'+snake(id.replace('drive-',''));
-const XML_GROUPS=[['Primary / secondary / tertiary',['primary','onPrimary','primaryContainer','onPrimaryContainer','secondary','onSecondary','secondaryContainer','onSecondaryContainer','tertiary','onTertiary','tertiaryContainer','onTertiaryContainer']],
- ['Status (error / success / warning)',['error','onError','errorContainer','onErrorContainer','success','onSuccess','successContainer','onSuccessContainer','warning','onWarning','warningContainer','onWarningContainer']],
- ['Surface & background',['background','onBackground','surface','onSurface','surfaceVariant','onSurfaceVariant','surfaceContainerLowest','surfaceContainerLow','surfaceContainer','surfaceContainerHigh','surfaceContainerHighest']],
- ['Outline & inverse',['outline','outlineVariant','inverseSurface','inverseOnSurface','inversePrimary','scrim']]];
-function colorsXml(id){const th=THEMES[id],p=themePrefix(id),r=th.roles,A=h=>'#FF'+h.slice(1).toUpperCase();
- const where=id==='aurora-night'?'res/values-night/colors.xml':id==='aurora-day'?'res/values/colors.xml':`res/values/colors_${snake(id)}.xml`;
- let o=`<?xml version="1.0" encoding="utf-8"?>\n<!--\n  Aurora AAOS IVI design system — ${th.name} (${th.group}, ${th.mode})\n  ${th.desc}\n  Place in: ${where}\n  Naming: ${p}_<role> (snake_case Material 3 roles) · ${p}_palette_<family>_<tone> (tonal palette)\n-->\n<resources>\n`;
- XML_GROUPS.forEach(([t,ks])=>{o+=`\n    <!-- ${t} -->\n`+ks.map(k=>`    <color name="${p}_${snake(k)}">${A(r[k])}</color>`).join('\n')+'\n'});
- o+='\n    <!-- Tonal palettes -->\n';
- for(const [fam,steps] of Object.entries(th.tonal)){o+=Object.entries(steps).map(([t,v])=>`    <color name="${p}_palette_${snake(fam.replace(/ /g,'_')).toLowerCase()}_${t}">${A(v)}</color>`).join('\n')+'\n'}
- o+=`\n    <!-- State layer opacities -->\n    <item name="${p}_state_hover" format="float" type="dimen">0.08</item>\n    <item name="${p}_state_focus" format="float" type="dimen">0.12</item>\n    <item name="${p}_state_pressed" format="float" type="dimen">0.12</item>\n    <item name="${p}_state_dragged" format="float" type="dimen">0.16</item>\n    <item name="${p}_state_disabled_content" format="float" type="dimen">0.38</item>\n    <item name="${p}_state_disabled_container" format="float" type="dimen">0.12</item>\n</resources>\n`;
- return o}
-function xmlZipFiles(ids){return ids.map(id=>({name:id==='aurora-night'?'res/values-night/colors.xml':id==='aurora-day'?'res/values/colors.xml':`res/values/colors_${snake(id)}.xml`,data:colorsXml(id)}))}
+/* Colors: ONE set of resource names (color_<role>) for every theme. Day/Night = values / values-night; drive modes = RRO overlays. */
+const colorsXml=id=>THEMEFILES[id].files[THEMEFILES[id].main];
+function xmlZipFiles(ids){return ids.flatMap(id=>Object.entries(THEMEFILES[id].files).map(([name,data])=>({name:id.startsWith('drive-')?name:name,data})))}
 const EX={
  xml:()=>colorsXml(root.dataset.theme),
- theme:()=>`<!-- res/values/themes.xml  (colors from the selected theme: ${TH().name}) -->\n<style name="Theme.Aurora" parent="Theme.Material3.${TH().mode==='dark'?'Dark':'Light'}.NoActionBar">\n`+['primary','onPrimary','primaryContainer','onPrimaryContainer','secondary','onSecondary','secondaryContainer','onSecondaryContainer','tertiary','onTertiary','error','onError','background','onBackground','surface','onSurface','surfaceVariant','onSurfaceVariant','outline','outlineVariant'].map(k=>`  <item name="color${k[0].toUpperCase()+k.slice(1)}">@color/aurora_${kebab(k).replace(/-/g,'_')}</item>`).join('\n')+`\n  <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Aurora.Medium</item>\n  <item name="android:fontFamily">sans-serif</item>\n</style>\n\n<!-- Car UI Library RRO (res/values/car_ui_overlays.xml) -->\n<resources>\n  <dimen name="car_ui_touch_target_size">76dp</dimen>\n  <dimen name="car_ui_toolbar_height">96dp</dimen>\n  <dimen name="car_ui_list_item_height">96dp</dimen>\n  <dimen name="car_ui_primary_icon_size">40dp</dimen>\n  <bool name="car_ui_scrollbar_enable">true</bool>\n</resources>`,
- css:()=>TORDER.map(id=>`/* ${THEMES[id].name} — ${THEMES[id].desc} */\n:root[data-theme="${id}"]{\n  color-scheme: ${THEMES[id].mode};\n`+Object.entries(THEMES[id].roles).map(([k,v])=>`  --aurora-${kebab(k)}: ${v};`).join('\n')+'\n}').join('\n\n'),
+ theme:()=>KITFILES['res/values/themes.xml']+'\n'+KITFILES['res/values/attrs.xml']+'\n<!-- Car UI Library RRO (res/values/car_ui_overlays.xml) -->\n<resources>\n  <dimen name="car_ui_touch_target_size">76dp</dimen>\n  <dimen name="car_ui_toolbar_height">96dp</dimen>\n  <dimen name="car_ui_list_item_height">96dp</dimen>\n  <dimen name="car_ui_primary_icon_size">40dp</dimen>\n  <bool name="car_ui_scrollbar_enable">true</bool>\n</resources>',
+ css:()=>TORDER.map(id=>`/* ${THEMES[id].name} — ${THEMES[id].desc} */\n:root[data-theme="${id}"]{\n  color-scheme: ${THEMES[id].mode};\n`+Object.entries(THEMES[id].roles).map(([k,v])=>`  --color-${kebab(k)}: ${v};`).join('\n')+'\n}').join('\n\n'),
  json:()=>JSON.stringify({$schema:'design-tokens',themes:Object.fromEntries(TORDER.map(i=>[i,{name:THEMES[i].name,group:THEMES[i].group,mode:THEMES[i].mode,color:THEMES[i].roles}])),type:Object.fromEntries(TYPE.map(t=>[t[0],{size:t[2]+'sp',lineHeight:t[3]+'sp',weight:t[4],letterSpacing:t[5]}])),space:Object.fromEntries(SP.map(s=>[s[0],s[1]+'dp'])),shape:Object.fromEntries(SH.map(s=>[s[0],s[1]+'dp'])),touch:{min:'76dp',primary:'96dp'}},null,2),
- kt:()=>`// Aurora AAOS Compose theme — ${TH().name}\nval Aurora${TH().name.replace(/[^A-Za-z]/g,'')} = ${TH().mode==='dark'?'dark':'light'}ColorScheme(\n`+ROLES28.map(k=>`    ${k} = Color(${hexA(T()[k]).replace('#','0x')}),`).join('\n')+`\n)\n\nval AuroraTypography = Typography(\n`+TYPE.filter(t=>t[0]!=='Display').map(t=>{const n=t[0].replace(/ (\w)/g,(m,c)=>c.toUpperCase());return `    ${n[0].toLowerCase()+n.slice(1)} = TextStyle(fontSize = ${t[2]}.sp, lineHeight = ${t[3]}.sp, fontWeight = FontWeight.W${t[4]}),`}).join('\n')+`\n)\n\n// Minimum touch size\nCompositionLocalProvider(LocalMinimumInteractiveComponentSize provides 76.dp) { content() }`
+ kt:()=>KITFILES['compose/IviTheme.kt']
 };
-const EXN={xml:['Android colors.xml','xml'],theme:['themes.xml + RRO','xml'],css:['CSS (all themes)','css'],json:['JSON (all themes)','json'],kt:['Compose','kt']};
+const EXN={xml:['colors.xml (this theme)','xml'],theme:['themes.xml + attrs','xml'],css:['CSS (all themes)','css'],json:['JSON (all themes)','json'],kt:['Compose','kt']};
 function renderExport(){$('#exportTabs').innerHTML=Object.entries(EXN).map(([k,v])=>`<button aria-selected="${k===exp}" data-k="${k}">${v[0]}</button>`).join('');
  $$('#exportTabs button').forEach(b=>b.onclick=()=>{exp=b.dataset.k;renderExport()});
  $('#exportOut code').textContent=EX[exp]()}
-$('#dlExport').onclick=()=>dl('aurora-tokens.'+EXN[exp][1],EX[exp](),'text/plain');
+$('#dlExport').onclick=()=>dl('design-tokens.'+EXN[exp][1],EX[exp](),'text/plain');
 $$('.cp[data-copy]').forEach(b=>b.onclick=()=>copy($(b.dataset.copy).textContent));
 
 /* ---------- checklist ---------- */

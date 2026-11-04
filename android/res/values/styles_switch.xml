@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Track 104x64dp = default M3 switch (52x32) scaled 2x; row min height 76dp -->
-    <style name="Widget.Aurora.Switch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+    <style name="Widget.Ivi.Switch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
         <item name="android:minHeight">76dp</item>
         <item name="android:scaleX">2</item>
         <item name="android:scaleY">2</item>
-        <item name="android:textAppearance">@style/TextAppearance.Aurora.BodyLarge</item>
-        <item name="thumbTint">@color/aurora_switch_thumb</item>
-        <item name="trackTint">@color/aurora_switch_track</item>
-        <item name="trackDecorationTint">@color/aurora_switch_track_stroke</item>
-        <item name="thumbIconTint">@color/aurora_switch_icon</item>
+        <item name="android:textAppearance">@style/TextAppearance.Ivi.BodyLarge</item>
+        <item name="thumbTint">@color/switch_thumb</item>
+        <item name="trackTint">@color/switch_track</item>
+        <item name="trackDecorationTint">@color/switch_track_stroke</item>
+        <item name="thumbIconTint">@color/switch_icon</item>
         <item name="thumbIcon">@drawable/ic_check</item>
-        <item name="android:foreground">@drawable/aurora_switch_focus</item>
+        <item name="android:foreground">@drawable/switch_focus</item>
     </style>
 </resources>

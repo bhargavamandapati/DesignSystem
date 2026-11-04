@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Aurora extras beyond Material 3 roles. Focus ring = onPrimaryContainer (theme-hued). -->
-    <attr name="auroraColorSuccess" format="color"/>
-    <attr name="auroraColorOnSuccess" format="color"/>
-    <attr name="auroraColorSuccessContainer" format="color"/>
-    <attr name="auroraColorOnSuccessContainer" format="color"/>
-    <attr name="auroraColorWarning" format="color"/>
-    <attr name="auroraColorOnWarning" format="color"/>
-    <attr name="auroraColorWarningContainer" format="color"/>
-    <attr name="auroraColorOnWarningContainer" format="color"/>
-    <attr name="auroraColorFocusRing" format="color"/>
+    <!-- Extras beyond Material 3 roles. Focus ring = onPrimaryContainer (always in the theme hue). -->
+    <attr name="colorSuccess" format="color"/>
+    <attr name="colorOnSuccess" format="color"/>
+    <attr name="colorSuccessContainer" format="color"/>
+    <attr name="colorOnSuccessContainer" format="color"/>
+    <attr name="colorWarning" format="color"/>
+    <attr name="colorOnWarning" format="color"/>
+    <attr name="colorWarningContainer" format="color"/>
+    <attr name="colorOnWarningContainer" format="color"/>
+    <attr name="colorFocusRing" format="color"/>
 </resources>

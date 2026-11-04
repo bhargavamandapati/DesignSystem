@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Widget.Aurora.LinearProgress" parent="Widget.Material3.LinearProgressIndicator">
+    <style name="Widget.Ivi.LinearProgress" parent="Widget.Material3.LinearProgressIndicator">
         <item name="trackThickness">8dp</item>
         <item name="trackCornerRadius">4dp</item>
-        <item name="indicatorColor">@color/aurora_progress_indicator</item>
-        <item name="trackColor">@color/aurora_progress_track</item>
+        <item name="indicatorColor">@color/progress_indicator</item>
+        <item name="trackColor">@color/progress_track</item>
     </style>
-    <style name="Widget.Aurora.CircularProgress" parent="Widget.Material3.CircularProgressIndicator">
+    <style name="Widget.Ivi.CircularProgress" parent="Widget.Material3.CircularProgressIndicator">
         <item name="indicatorSize">72dp</item>
         <item name="trackThickness">8dp</item>
-        <item name="indicatorColor">@color/aurora_progress_indicator</item>
-        <item name="trackColor">@color/aurora_progress_track</item>
+        <item name="indicatorColor">@color/progress_indicator</item>
+        <item name="trackColor">@color/progress_track</item>
     </style>
 </resources>

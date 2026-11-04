@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- 76 x 76dp, glyph 40dp, circular. Variants: standard, filled, tonal, outlined, toggle (checkable) -->
-    <style name="Widget.Aurora.IconButton.Standard" parent="Widget.Material3.Button.IconButton">
+    <style name="Widget.Ivi.IconButton.Standard" parent="Widget.Material3.Button.IconButton">
         <item name="android:minWidth">76dp</item>
         <item name="android:minHeight">76dp</item>
         <item name="android:layout_width">76dp</item>
@@ -10,11 +10,11 @@
         <item name="iconPadding">0dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
-        <item name="android:background">@drawable/aurora_iconbtn_standard_background</item>
+        <item name="android:background">@drawable/iconbtn_standard_background</item>
         <item name="backgroundTint">@null</item>
-        <item name="iconTint">@color/aurora_iconbtn_standard_content</item>
+        <item name="iconTint">@color/iconbtn_standard_content</item>
     </style>
-    <style name="Widget.Aurora.IconButton.Filled" parent="Widget.Material3.Button.IconButton">
+    <style name="Widget.Ivi.IconButton.Filled" parent="Widget.Material3.Button.IconButton">
         <item name="android:minWidth">76dp</item>
         <item name="android:minHeight">76dp</item>
         <item name="android:layout_width">76dp</item>
@@ -23,11 +23,11 @@
         <item name="iconPadding">0dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
-        <item name="android:background">@drawable/aurora_iconbtn_filled_background</item>
+        <item name="android:background">@drawable/iconbtn_filled_background</item>
         <item name="backgroundTint">@null</item>
-        <item name="iconTint">@color/aurora_iconbtn_filled_content</item>
+        <item name="iconTint">@color/iconbtn_filled_content</item>
     </style>
-    <style name="Widget.Aurora.IconButton.Tonal" parent="Widget.Material3.Button.IconButton">
+    <style name="Widget.Ivi.IconButton.Tonal" parent="Widget.Material3.Button.IconButton">
         <item name="android:minWidth">76dp</item>
         <item name="android:minHeight">76dp</item>
         <item name="android:layout_width">76dp</item>
@@ -36,11 +36,11 @@
         <item name="iconPadding">0dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
-        <item name="android:background">@drawable/aurora_iconbtn_tonal_background</item>
+        <item name="android:background">@drawable/iconbtn_tonal_background</item>
         <item name="backgroundTint">@null</item>
-        <item name="iconTint">@color/aurora_iconbtn_tonal_content</item>
+        <item name="iconTint">@color/iconbtn_tonal_content</item>
     </style>
-    <style name="Widget.Aurora.IconButton.Outlined" parent="Widget.Material3.Button.IconButton">
+    <style name="Widget.Ivi.IconButton.Outlined" parent="Widget.Material3.Button.IconButton">
         <item name="android:minWidth">76dp</item>
         <item name="android:minHeight">76dp</item>
         <item name="android:layout_width">76dp</item>
@@ -49,11 +49,11 @@
         <item name="iconPadding">0dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
-        <item name="android:background">@drawable/aurora_iconbtn_outlined_background</item>
+        <item name="android:background">@drawable/iconbtn_outlined_background</item>
         <item name="backgroundTint">@null</item>
-        <item name="iconTint">@color/aurora_iconbtn_outlined_content</item>
+        <item name="iconTint">@color/iconbtn_outlined_content</item>
     </style>
-    <style name="Widget.Aurora.IconButton.Toggle" parent="Widget.Material3.Button.IconButton">
+    <style name="Widget.Ivi.IconButton.Toggle" parent="Widget.Material3.Button.IconButton">
         <item name="android:minWidth">76dp</item>
         <item name="android:minHeight">76dp</item>
         <item name="android:layout_width">76dp</item>
@@ -62,9 +62,9 @@
         <item name="iconPadding">0dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
-        <item name="android:background">@drawable/aurora_iconbtn_toggle_background</item>
+        <item name="android:background">@drawable/iconbtn_toggle_background</item>
         <item name="backgroundTint">@null</item>
-        <item name="iconTint">@color/aurora_iconbtn_toggle_content</item>
+        <item name="iconTint">@color/iconbtn_toggle_content</item>
         <item name="android:checkable">true</item>
     </style>
 </resources>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Colors — Comfort (Drive mode, dark)
+  Calm everyday driving — cool blue
+  Place in: rro/comfort/res/values-night/colors.xml
+  Resource names are IDENTICAL in every theme: a theme is just a different set of values.
+  Drive modes ship as runtime resource overlays (RRO) that override these same names.
+-->
+<resources>
+
+    <!-- Primary / secondary / tertiary -->
+    <color name="color_primary">#FFAFC6FF</color>
+    <color name="color_on_primary">#FF132F60</color>
+    <color name="color_primary_container">#FF2D4678</color>
+    <color name="color_on_primary_container">#FFD9E2FF</color>
+    <color name="color_secondary">#FFBFC6DC</color>
+    <color name="color_on_secondary">#FF293041</color>
+    <color name="color_secondary_container">#FF3F4759</color>
+    <color name="color_on_secondary_container">#FFDBE2F9</color>
+    <color name="color_tertiary">#FF86D4D1</color>
+    <color name="color_on_tertiary">#FF003736</color>
+    <color name="color_tertiary_container">#FF00504F</color>
+    <color name="color_on_tertiary_container">#FFA2F0EE</color>
+
+    <!-- Status (error / success / warning) -->
+    <color name="color_error">#FFFFB4AB</color>
+    <color name="color_on_error">#FF690005</color>
+    <color name="color_error_container">#FF93000A</color>
+    <color name="color_on_error_container">#FFFFDAD6</color>
+    <color name="color_success">#FF7DDB95</color>
+    <color name="color_on_success">#FF00391C</color>
+    <color name="color_success_container">#FF115229</color>
+    <color name="color_on_success_container">#FF99F8AF</color>
+    <color name="color_warning">#FFFFB870</color>
+    <color name="color_on_warning">#FF4A2800</color>
+    <color name="color_warning_container">#FF6A3C00</color>
+    <color name="color_on_warning_container">#FFFFDCBC</color>
+
+    <!-- Surface & background -->
+    <color name="color_background">#FF121318</color>
+    <color name="color_on_background">#FFE2E2E9</color>
+    <color name="color_surface">#FF121318</color>
+    <color name="color_on_surface">#FFE2E2E9</color>
+    <color name="color_surface_variant">#FF44474F</color>
+    <color name="color_on_surface_variant">#FFC5C6D0</color>
+    <color name="color_surface_container_lowest">#FF0C0E13</color>
+    <color name="color_surface_container_low">#FF1A1B20</color>
+    <color name="color_surface_container">#FF1E1F25</color>
+    <color name="color_surface_container_high">#FF282A2F</color>
+    <color name="color_surface_container_highest">#FF33353A</color>
+
+    <!-- Outline & inverse -->
+    <color name="color_outline">#FF7890C7</color>
+    <color name="color_outline_variant">#FF2D4678</color>
+    <color name="color_inverse_surface">#FFE2E2E9</color>
+    <color name="color_inverse_on_surface">#FF2F3036</color>
+    <color name="color_inverse_primary">#FF455E91</color>
+    <color name="color_scrim">#FF000000</color>
+
+    <!-- Tonal palettes -->
+    <color name="color_palette__primary_0">#FF000000</color>
+    <color name="color_palette__primary_10">#FF001A43</color>
+    <color name="color_palette__primary_20">#FF132F60</color>
+    <color name="color_palette__primary_30">#FF2D4678</color>
+    <color name="color_palette__primary_40">#FF455E91</color>
+    <color name="color_palette__primary_50">#FF5E76AC</color>
+    <color name="color_palette__primary_60">#FF7890C7</color>
+    <color name="color_palette__primary_70">#FF93ABE4</color>
+    <color name="color_palette__primary_80">#FFAFC6FF</color>
+    <color name="color_palette__primary_90">#FFD9E2FF</color>
+    <color name="color_palette__primary_95">#FFEDF0FF</color>
+    <color name="color_palette__primary_99">#FFFEFBFF</color>
+    <color name="color_palette__primary_100">#FFFFFFFF</color>
+    <color name="color_palette__secondary_0">#FF000000</color>
+    <color name="color_palette__secondary_10">#FF141B2C</color>
+    <color name="color_palette__secondary_20">#FF293041</color>
+    <color name="color_palette__secondary_30">#FF3F4759</color>
+    <color name="color_palette__secondary_40">#FF575E71</color>
+    <color name="color_palette__secondary_50">#FF70778B</color>
+    <color name="color_palette__secondary_60">#FF8990A5</color>
+    <color name="color_palette__secondary_70">#FFA4ABC0</color>
+    <color name="color_palette__secondary_80">#FFBFC6DC</color>
+    <color name="color_palette__secondary_90">#FFDBE2F9</color>
+    <color name="color_palette__secondary_95">#FFEDF0FF</color>
+    <color name="color_palette__secondary_99">#FFFEFBFF</color>
+    <color name="color_palette__secondary_100">#FFFFFFFF</color>
+    <color name="color_palette__tertiary_0">#FF000000</color>
+    <color name="color_palette__tertiary_10">#FF00201F</color>
+    <color name="color_palette__tertiary_20">#FF003736</color>
+    <color name="color_palette__tertiary_30">#FF00504F</color>
+    <color name="color_palette__tertiary_40">#FF096968</color>
+    <color name="color_palette__tertiary_50">#FF318381</color>
+    <color name="color_palette__tertiary_60">#FF4F9D9B</color>
+    <color name="color_palette__tertiary_70">#FF6AB8B6</color>
+    <color name="color_palette__tertiary_80">#FF86D4D1</color>
+    <color name="color_palette__tertiary_90">#FFA2F0EE</color>
+    <color name="color_palette__tertiary_95">#FFB0FFFC</color>
+    <color name="color_palette__tertiary_99">#FFF1FFFE</color>
+    <color name="color_palette__tertiary_100">#FFFFFFFF</color>
+    <color name="color_palette__neutral_0">#FF000000</color>
+    <color name="color_palette__neutral_10">#FF1A1B20</color>
+    <color name="color_palette__neutral_20">#FF2F3036</color>
+    <color name="color_palette__neutral_30">#FF45464C</color>
+    <color name="color_palette__neutral_40">#FF5D5E64</color>
+    <color name="color_palette__neutral_50">#FF76777D</color>
+    <color name="color_palette__neutral_60">#FF909097</color>
+    <color name="color_palette__neutral_70">#FFAAABB1</color>
+    <color name="color_palette__neutral_80">#FFC6C6CD</color>
+    <color name="color_palette__neutral_90">#FFE2E2E9</color>
+    <color name="color_palette__neutral_95">#FFF1F0F7</color>
+    <color name="color_palette__neutral_99">#FFFEFBFF</color>
+    <color name="color_palette__neutral_100">#FFFFFFFF</color>
+    <color name="color_palette__neutral__variant_0">#FF000000</color>
+    <color name="color_palette__neutral__variant_10">#FF191B23</color>
+    <color name="color_palette__neutral__variant_20">#FF2E3038</color>
+    <color name="color_palette__neutral__variant_30">#FF44474F</color>
+    <color name="color_palette__neutral__variant_40">#FF5C5E67</color>
+    <color name="color_palette__neutral__variant_50">#FF757780</color>
+    <color name="color_palette__neutral__variant_60">#FF8E9099</color>
+    <color name="color_palette__neutral__variant_70">#FFA9ABB4</color>
+    <color name="color_palette__neutral__variant_80">#FFC5C6D0</color>
+    <color name="color_palette__neutral__variant_90">#FFE1E2EC</color>
+    <color name="color_palette__neutral__variant_95">#FFEFF0FA</color>
+    <color name="color_palette__neutral__variant_99">#FFFEFBFF</color>
+    <color name="color_palette__neutral__variant_100">#FFFFFFFF</color>
+    <color name="color_palette__error_0">#FF000000</color>
+    <color name="color_palette__error_10">#FF410002</color>
+    <color name="color_palette__error_20">#FF690005</color>
+    <color name="color_palette__error_30">#FF93000A</color>
+    <color name="color_palette__error_40">#FFBA1A1A</color>
+    <color name="color_palette__error_50">#FFDE3730</color>
+    <color name="color_palette__error_60">#FFFF5449</color>
+    <color name="color_palette__error_70">#FFFF897D</color>
+    <color name="color_palette__error_80">#FFFFB4AB</color>
+    <color name="color_palette__error_90">#FFFFDAD6</color>
+    <color name="color_palette__error_95">#FFFFEDEA</color>
+    <color name="color_palette__error_99">#FFFFFBFF</color>
+    <color name="color_palette__error_100">#FFFFFFFF</color>
+</resources>

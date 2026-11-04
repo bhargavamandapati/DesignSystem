@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.navigationrail.NavigationRailView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.Aurora.NavigationRail"
+    style="@style/Widget.Ivi.NavigationRail"
     android:layout_width="120dp" android:layout_height="match_parent"
-    app:menu="@menu/aurora_app_bar"/>
+    app:menu="@menu/app_bar"/>
 
-<!-- res/menu/aurora_app_bar.xml: Home, Maps, Phone, Media, Vehicle, Apps (6 max) -->
+<!-- res/menu/app_bar.xml: Home, Maps, Phone, Media, Vehicle, Apps (6 max) -->

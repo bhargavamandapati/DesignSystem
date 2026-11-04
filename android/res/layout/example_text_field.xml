@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.textfield.TextInputLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.Aurora.TextField"
+    style="@style/Widget.Ivi.TextField"
     android:layout_width="420dp" android:layout_height="wrap_content"
     android:hint="Destination" app:helperText="Street, place or contact">
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.Aurora.BodyLarge" android:minHeight="88dp"/>
+        android:textAppearance="@style/TextAppearance.Ivi.BodyLarge" android:minHeight="88dp"/>
 </com.google.android.material.textfield.TextInputLayout>
 
-<!-- Error: style="@style/Widget.Aurora.TextField" + app:errorEnabled="true" + setError() -->
+<!-- Error: style="@style/Widget.Ivi.TextField" + app:errorEnabled="true" + setError() -->

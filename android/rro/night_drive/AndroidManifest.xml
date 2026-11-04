@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Runtime resource overlay: Night drive. Change targetPackage to the package that owns the colors (your design-system / car UI app). -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.ivi.overlay.night_drive">
+    <overlay android:targetPackage="com.ivi.designsystem" android:category="com.ivi.designsystem.theme" android:priority="10" android:isStatic="false"/>
+    <application android:hasCode="false"/>
+</manifest>

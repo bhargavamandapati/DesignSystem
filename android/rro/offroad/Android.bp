@@ -1,0 +1,8 @@
+// AOSP build rule (AAOS product makefile: PRODUCT_PACKAGES += IviThemeOffroad)
+runtime_resource_overlay {
+    name: "IviThemeOffroad",
+    sdk_version: "current",
+    product_specific: true,
+    manifest: "AndroidManifest.xml",
+    resource_dirs: ["res"],
+}

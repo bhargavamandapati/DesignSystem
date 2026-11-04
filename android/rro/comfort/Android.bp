@@ -1,0 +1,8 @@
+// AOSP build rule (AAOS product makefile: PRODUCT_PACKAGES += IviThemeComfort)
+runtime_resource_overlay {
+    name: "IviThemeComfort",
+    sdk_version: "current",
+    product_specific: true,
+    manifest: "AndroidManifest.xml",
+    resource_dirs: ["res"],
+}

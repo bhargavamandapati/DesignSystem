@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Widget.Aurora.Tabs" parent="Widget.Material3.TabLayout.Secondary">
+    <style name="Widget.Ivi.Tabs" parent="Widget.Material3.TabLayout.Secondary">
         <item name="android:minHeight">88dp</item>
         <item name="tabMinWidth">160dp</item>
-        <item name="tabIndicator">@drawable/aurora_tab_indicator</item>
+        <item name="tabIndicator">@drawable/tab_indicator</item>
         <item name="tabIndicatorHeight">6dp</item>
         <item name="tabIndicatorFullWidth">false</item>
-        <item name="tabTextColor">@color/aurora_tab_text</item>
-        <item name="tabIconTint">@color/aurora_tab_text</item>
-        <item name="tabRippleColor">@color/aurora_tab_ripple</item>
-        <item name="tabTextAppearance">@style/TextAppearance.Aurora.LabelLarge</item>
-        <item name="tabSelectedTextAppearance">@style/TextAppearance.Aurora.LabelLarge</item>
+        <item name="tabTextColor">@color/tab_text</item>
+        <item name="tabIconTint">@color/tab_text</item>
+        <item name="tabRippleColor">@color/tab_ripple</item>
+        <item name="tabTextAppearance">@style/TextAppearance.Ivi.LabelLarge</item>
+        <item name="tabSelectedTextAppearance">@style/TextAppearance.Ivi.LabelLarge</item>
     </style>
 </resources>

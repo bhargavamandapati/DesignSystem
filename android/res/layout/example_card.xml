@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Widget.Aurora.Card"
+    style="@style/Widget.Ivi.Card"
     android:layout_width="match_parent" android:layout_height="wrap_content"
     android:checkable="false" android:clickable="true" android:focusable="true">
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="32dp" android:paddingVertical="28dp">
-        <TextView android:textAppearance="@style/TextAppearance.Aurora.TitleLarge" android:textColor="?attr/colorOnSurface" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Next: Fuel stop"/>
-        <TextView android:textAppearance="@style/TextAppearance.Aurora.BodyMedium" android:textColor="?attr/colorOnSurfaceVariant" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="In 6.2 km"/>
+        <TextView android:textAppearance="@style/TextAppearance.Ivi.TitleLarge" android:textColor="?attr/colorOnSurface" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Next: Fuel stop"/>
+        <TextView android:textAppearance="@style/TextAppearance.Ivi.BodyMedium" android:textColor="?attr/colorOnSurfaceVariant" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="In 6.2 km"/>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

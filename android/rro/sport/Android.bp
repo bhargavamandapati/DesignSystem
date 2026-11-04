@@ -1,0 +1,8 @@
+// AOSP build rule (AAOS product makefile: PRODUCT_PACKAGES += IviThemeSport)
+runtime_resource_overlay {
+    name: "IviThemeSport",
+    sdk_version: "current",
+    product_specific: true,
+    manifest: "AndroidManifest.xml",
+    resource_dirs: ["res"],
+}

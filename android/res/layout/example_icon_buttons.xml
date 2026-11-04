@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
-    <com.google.android.material.button.MaterialButton style="@style/Widget.Aurora.IconButton.Standard" app:icon="@drawable/ic_menu" android:contentDescription="Menu"/>
-    <com.google.android.material.button.MaterialButton style="@style/Widget.Aurora.IconButton.Filled"   app:icon="@drawable/ic_mic"  android:contentDescription="Voice"/>
-    <com.google.android.material.button.MaterialButton style="@style/Widget.Aurora.IconButton.Tonal"    app:icon="@drawable/ic_vol" android:contentDescription="Volume"/>
-    <com.google.android.material.button.MaterialButton style="@style/Widget.Aurora.IconButton.Outlined" app:icon="@drawable/ic_search" android:contentDescription="Search"/>
+    <com.google.android.material.button.MaterialButton style="@style/Widget.Ivi.IconButton.Standard" app:icon="@drawable/ic_menu" android:contentDescription="Menu"/>
+    <com.google.android.material.button.MaterialButton style="@style/Widget.Ivi.IconButton.Filled"   app:icon="@drawable/ic_mic"  android:contentDescription="Voice"/>
+    <com.google.android.material.button.MaterialButton style="@style/Widget.Ivi.IconButton.Tonal"    app:icon="@drawable/ic_vol" android:contentDescription="Volume"/>
+    <com.google.android.material.button.MaterialButton style="@style/Widget.Ivi.IconButton.Outlined" app:icon="@drawable/ic_search" android:contentDescription="Search"/>
     <!-- Toggle: checked = primaryContainer -->
-    <com.google.android.material.button.MaterialButton style="@style/Widget.Aurora.IconButton.Toggle"   app:icon="@drawable/ic_seat_heat" android:contentDescription="Seat heat"/>
-    <com.google.android.material.button.MaterialButton style="@style/Widget.Aurora.IconButton.Filled"   app:icon="@drawable/ic_mic" android:enabled="false" android:contentDescription="Disabled"/>
+    <com.google.android.material.button.MaterialButton style="@style/Widget.Ivi.IconButton.Toggle"   app:icon="@drawable/ic_seat_heat" android:contentDescription="Seat heat"/>
+    <com.google.android.material.button.MaterialButton style="@style/Widget.Ivi.IconButton.Filled"   app:icon="@drawable/ic_mic" android:enabled="false" android:contentDescription="Disabled"/>
 </LinearLayout>

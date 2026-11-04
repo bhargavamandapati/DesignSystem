@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="ShapeAppearance.Aurora.None" parent="">
+    <style name="ShapeAppearance.Ivi.None" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">0dp</item>
     </style>
-    <style name="ShapeAppearance.Aurora.ExtraSmall" parent="">
+    <style name="ShapeAppearance.Ivi.ExtraSmall" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
     </style>
-    <style name="ShapeAppearance.Aurora.Small" parent="">
+    <style name="ShapeAppearance.Ivi.Small" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">12dp</item>
     </style>
-    <style name="ShapeAppearance.Aurora.Medium" parent="">
+    <style name="ShapeAppearance.Ivi.Medium" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>
     </style>
-    <style name="ShapeAppearance.Aurora.Large" parent="">
+    <style name="ShapeAppearance.Ivi.Large" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">24dp</item>
     </style>
-    <style name="ShapeAppearance.Aurora.ExtraLarge" parent="">
+    <style name="ShapeAppearance.Ivi.ExtraLarge" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">28dp</item>
     </style>
-    <style name="ShapeAppearance.Aurora.Full" parent="">
+    <style name="ShapeAppearance.Ivi.Full" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>

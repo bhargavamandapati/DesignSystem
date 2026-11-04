@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Banner (success): radius 20dp, never rely on color alone: always add icon + text -->
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="?attr/auroraColorSuccessContainer"/>
-    <corners android:radius="20dp"/>
-</shape>

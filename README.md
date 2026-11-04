@@ -20,13 +20,13 @@ Top status bar (56 dp) · right app bar (120 dp) · bottom HVAC bar (96 dp) · a
 196 automotive IVI icons in `icons/*.svg` and Android VectorDrawables in `icons/android/ic_*.xml` (also downloadable from the Iconography section).
 Regenerate with `python3 tools/icons_src.py` (or `python3 build.py`).
 
-## Android colors
-`android/res/values*/colors*.xml` — every role + tonal palette per theme (`aurora_<role>`, drive modes `aurora_eco_<role>` …). Also downloadable from the Developers → Token export section.
+## Android colors (common names, themes as RRO)
+`android/res/values/colors.xml` (Day) and `values-night/colors.xml` (Night) define `color_<role>` + `color_palette_<family>_<tone>`. Each drive mode is an RRO under `android/rro/<mode>/` overriding the **same** names (`AndroidManifest.xml`, `Android.bp`, `res/values[-night]/colors.xml`). No brand or theme appears in any resource name.
 
 ## Android fonts
-`android/res/font/*.ttf` (Roboto, Roboto Condensed, Roboto Mono; 400/500, Latin), font-family XMLs (`roboto.xml`, `roboto_condensed.xml`, `roboto_mono.xml`) and `android/res/values/type.xml` (`TextAppearance.Aurora.*` and `.Condensed.*`). Also downloadable from the Fonts section. TTFs are in `fonts/ttf/`.
+`android/res/font/*.ttf` (Roboto, Roboto Condensed, Roboto Mono; 400/500, Latin), font-family XMLs (`roboto.xml`, `roboto_condensed.xml`, `roboto_mono.xml`) and `android/res/values/type.xml` (`TextAppearance.Ivi.*` and `.Condensed.*`). Also downloadable from the Fonts section. TTFs are in `fonts/ttf/`.
 
 ## Android UI kit (Compose + XML)
-`android/compose/` — `AuroraTheme.kt` (7 color schemes, normal/condensed type, shapes, focus-ring modifier) and one composable per component with every state.
+`android/compose/` — `IviTheme.kt` (reads common `color_*` resources, normal/condensed type, shapes, focus-ring modifier) and one composable per component with every state.
 `android/res/` — `color/` state lists (enabled/disabled/pressed/focused/hovered/checked), `drawable/` state selectors + ripples + focus rings, `values/` styles, themes, attrs, dimens, shapes, colors, type, `layout/` examples. `android/examples/` — Kotlin usage snippets.
 Each component's code, color states, drawable states and a resolved state map are in its section of the page under **Code & resources**, with per-component and full-kit zip downloads.

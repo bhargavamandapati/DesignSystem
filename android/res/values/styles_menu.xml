@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="ThemeOverlay.Aurora.PopupMenu" parent="">
-        <item name="popupMenuStyle">@style/Widget.Aurora.PopupMenu</item>
-        <item name="android:textAppearanceLargePopupMenu">@style/TextAppearance.Aurora.BodyLarge</item>
-        <item name="android:itemBackground">@color/aurora_menu_item_bg</item>
-        <item name="android:textColor">@color/aurora_menu_text</item>
+    <style name="ThemeOverlay.Ivi.PopupMenu" parent="">
+        <item name="popupMenuStyle">@style/Widget.Ivi.PopupMenu</item>
+        <item name="android:textAppearanceLargePopupMenu">@style/TextAppearance.Ivi.BodyLarge</item>
+        <item name="android:itemBackground">@color/menu_item_bg</item>
+        <item name="android:textColor">@color/menu_text</item>
     </style>
-    <style name="Widget.Aurora.PopupMenu" parent="Widget.Material3.PopupMenu">
-        <item name="android:popupBackground">@drawable/aurora_menu_bg</item>
+    <style name="Widget.Ivi.PopupMenu" parent="Widget.Material3.PopupMenu">
+        <item name="android:popupBackground">@drawable/menu_bg</item>
         <item name="android:dropDownWidth">320dp</item>
         <item name="android:minHeight">76dp</item>
     </style>

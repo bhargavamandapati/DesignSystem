@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Widget.Aurora.Badge" parent="Widget.Material3.Badge">
-        <item name="backgroundColor">@color/aurora_badge_bg</item>
-        <item name="badgeTextColor">@color/aurora_badge_text</item>
+    <style name="Widget.Ivi.Badge" parent="Widget.Material3.Badge">
+        <item name="backgroundColor">@color/badge_bg</item>
+        <item name="badgeTextColor">@color/badge_text</item>
         <item name="badgeHeight">32dp</item>
         <item name="badgeWidth">32dp</item>
         <item name="badgeWithTextHeight">32dp</item>
         <item name="badgeWithTextWidth">32dp</item>
-        <item name="badgeTextAppearance">@style/TextAppearance.Aurora.LabelSmall</item>
+        <item name="badgeTextAppearance">@style/TextAppearance.Ivi.LabelSmall</item>
     </style>
 </resources>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- RecyclerView / CarUiRecyclerView container -->
-    <style name="Widget.Aurora.List" parent="">
+    <style name="Widget.Ivi.List" parent="">
         <item name="android:background">?attr/colorSurfaceContainer</item>
         <item name="android:clipToOutline">true</item>
         <item name="android:outlineProvider">background</item>
     </style>
-    <style name="Widget.Aurora.ListItem.Primary"><item name="android:textAppearance">@style/TextAppearance.Aurora.BodyLarge</item><item name="android:textColor">@color/aurora_list_primary_text</item></style>
-    <style name="Widget.Aurora.ListItem.Secondary"><item name="android:textAppearance">@style/TextAppearance.Aurora.BodyMedium</item><item name="android:textColor">@color/aurora_list_secondary_text</item></style>
+    <style name="Widget.Ivi.ListItem.Primary"><item name="android:textAppearance">@style/TextAppearance.Ivi.BodyLarge</item><item name="android:textColor">@color/list_primary_text</item></style>
+    <style name="Widget.Ivi.ListItem.Secondary"><item name="android:textAppearance">@style/TextAppearance.Ivi.BodyMedium</item><item name="android:textColor">@color/list_secondary_text</item></style>
 </resources>

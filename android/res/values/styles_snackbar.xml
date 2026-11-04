@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Widget.Aurora.Snackbar" parent="Widget.Material3.Snackbar">
+    <style name="Widget.Ivi.Snackbar" parent="Widget.Material3.Snackbar">
         <item name="android:minHeight">92dp</item>
         <item name="android:maxWidth">640dp</item>
-        <item name="backgroundTint">@color/aurora_snackbar_container</item>
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Aurora.Medium</item>
+        <item name="backgroundTint">@color/snackbar_container</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Ivi.Medium</item>
     </style>
-    <style name="Widget.Aurora.Snackbar.TextView" parent="Widget.Material3.Snackbar.TextView">
-        <item name="android:textAppearance">@style/TextAppearance.Aurora.BodyLarge</item>
-        <item name="android:textColor">@color/aurora_snackbar_text</item>
+    <style name="Widget.Ivi.Snackbar.TextView" parent="Widget.Material3.Snackbar.TextView">
+        <item name="android:textAppearance">@style/TextAppearance.Ivi.BodyLarge</item>
+        <item name="android:textColor">@color/snackbar_text</item>
     </style>
-    <style name="Widget.Aurora.Snackbar.Button" parent="Widget.Material3.Button.TextButton.Snackbar">
+    <style name="Widget.Ivi.Snackbar.Button" parent="Widget.Material3.Button.TextButton.Snackbar">
         <item name="android:minHeight">76dp</item>
-        <item name="android:textColor">@color/aurora_snackbar_action</item>
-        <item name="android:textAppearance">@style/TextAppearance.Aurora.LabelLarge</item>
+        <item name="android:textColor">@color/snackbar_action</item>
+        <item name="android:textAppearance">@style/TextAppearance.Ivi.LabelLarge</item>
     </style>
 </resources>

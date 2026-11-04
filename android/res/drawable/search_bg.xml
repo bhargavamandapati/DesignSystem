@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Search bar: surfaceContainerHigh, fully rounded; focused = 6dp focus ring -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true">
+        <layer-list>
+            <item><shape><solid android:color="?attr/colorSurfaceContainerHigh"/><corners android:radius="44dp"/><stroke android:width="6dp" android:color="?attr/colorFocusRing"/></shape></item>
+        </layer-list>
+    </item>
+    <item><shape><solid android:color="?attr/colorSurfaceContainerHigh"/><corners android:radius="44dp"/></shape></item>
+</selector>

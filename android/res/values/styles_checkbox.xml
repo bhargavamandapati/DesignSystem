@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Widget.Aurora.Checkbox" parent="Widget.Material3.CompoundButton.CheckBox">
+    <style name="Widget.Ivi.Checkbox" parent="Widget.Material3.CompoundButton.CheckBox">
         <item name="android:minHeight">76dp</item>
         <item name="android:minWidth">76dp</item>
         <item name="android:paddingStart">16dp</item>
-        <item name="android:textAppearance">@style/TextAppearance.Aurora.BodyLarge</item>
-        <item name="buttonTint">@color/aurora_checkbox_tint</item>
-        <item name="android:foreground">@drawable/aurora_checkbox_focus</item>
+        <item name="android:textAppearance">@style/TextAppearance.Ivi.BodyLarge</item>
+        <item name="buttonTint">@color/checkbox_tint</item>
+        <item name="android:foreground">@drawable/checkbox_focus</item>
     </style>
-    <style name="Widget.Aurora.Checkbox.Error">
-        <item name="buttonTint">@color/aurora_checkbox_tint_error</item>
+    <style name="Widget.Ivi.Checkbox.Error">
+        <item name="buttonTint">@color/checkbox_tint_error</item>
     </style>
 </resources>
